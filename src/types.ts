@@ -53,3 +53,13 @@ export type JsonParseOptions = {
    */
   reviver?: (key: string, value: any) => any;
 };
+
+/**
+ * 指定のプロパティをオプショナルにするユーティリティ型
+ */
+export type Optional<T, K extends keyof T> = Partial<Pick<T, K>> & Omit<T, K>;
+
+/**
+ * 指定のプロパティを必須にするユーティリティ型
+ */
+export type Essential<T, K extends keyof T> = Required<Pick<T, K>> & Omit<T, K>;
