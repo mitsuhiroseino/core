@@ -10,7 +10,7 @@ const INPUT = './src/index.ts',
   EXTENTION_CJS = 'js',
   EXTENTION_ESM = 'mjs',
   // node_modules配下のdependenciesはバンドルしない。下記の正規表現の指定をするためには'@rollup/plugin-node-resolve'が必要
-  EXTERNAL = [/node_modules/, /@visue/],
+  EXTERNAL = [/node_modules/],
   OUTPUT = './build',
   OUTPUT_CJS = OUTPUT,
   OUTPUT_ESM = OUTPUT,
