@@ -1,5 +1,5 @@
 import Events, { EventsConfig } from '../../events/Events';
-import { EventHandler, EventHandlerOptions, EventHandlers, FireOptions, FireParams } from '../../events/Observable';
+import { EventHandler, EventHandlerOptions, FireOptions, FireParams } from '../../events/Observable';
 import DestructibleBase from '../DestructibleBase';
 import { EventedEvents } from './constants';
 import { EventedConfig, EventedEventHandlers, IEvented } from './types';

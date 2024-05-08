@@ -1,6 +1,5 @@
 import { EventedConfig, EventedEventHandlers } from '../../base/Evented';
 import { EventInfo } from '../../events/Observable';
-import I18nResources from './I18nResources';
 import { I18nResourcesEvents } from './constants';
 
 /**

@@ -1,6 +1,6 @@
 import Base from '../../base/Base';
 import initFactoryable from '../../helpers/initFactoryable';
-import { ExamineOptions, IRelationalOperator } from '../types';
+import { IRelationalOperator } from '../types';
 import { ExamineOptionsBase, RelationalOperatorConfigBase } from './types';
 
 /**

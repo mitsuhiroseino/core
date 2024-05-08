@@ -1,3 +1,4 @@
+export * from './constants';
 export { default as easeInBack } from './easeInBack';
 export { default as easeInBounce } from './easeInBounce';
 export { default as easeInCirc } from './easeInCirc';
@@ -39,5 +40,4 @@ export { default as easeOutQuart } from './easeOutQuart';
 export { default as easeOutQuint } from './easeOutQuint';
 export { default as easeOutSine } from './easeOutSine';
 export { default as linear } from './linear';
-export * from './constants';
 export type * from './types';

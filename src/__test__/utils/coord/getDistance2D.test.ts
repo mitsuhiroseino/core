@@ -1,4 +1,4 @@
-import getDistance2D, { GetDistance2DOptions } from 'src/utils/coord/getDistance2D';
+import getDistance2D from 'src/utils/coord/getDistance2D';
 import ensureAccuracy from 'src/utils/number/ensureAccuracy';
 
 const getLength = (x: number, y: number) => Math.sqrt(x * x + y * y);

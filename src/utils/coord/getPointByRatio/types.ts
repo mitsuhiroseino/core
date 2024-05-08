@@ -1,5 +1,5 @@
 import { CorrectionType } from '../../number/clamp';
-import { CalcPathDistanceOptions, CalcPathDistanceResult } from '../calcPathDistance';
+import { CalcPathDistanceOptions } from '../calcPathDistance';
 import { CalcPathDistanceRatioResult } from '../calcPathDistanceRatio';
 
 /**

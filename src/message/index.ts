@@ -1,4 +1,4 @@
 export { default as Message } from './Message';
-export * as notifier from './notifier';
 export * from './constants';
+export * as notifier from './notifier';
 export type * from './types';

@@ -1,5 +1,6 @@
 export * as base from './base';
 export * as comparators from './comparators';
+export * from './constants';
 export * as data from './data';
 export * as datasources from './datasources';
 export * as events from './events';
@@ -17,7 +18,6 @@ export * as readers from './readers';
 export * as relationaloperators from './relationaloperators';
 export * as selections from './selections';
 export * as sorters from './sorters';
+export type * from './types';
 export * as utils from './utils';
 export * as writers from './writers';
-export * from './constants';
-export type * from './types';
