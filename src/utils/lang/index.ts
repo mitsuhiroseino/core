@@ -10,5 +10,6 @@ export { default as isIterable } from './isIterable';
 export { default as isPrimitive } from './isPrimitive';
 export { default as preCompare } from './preCompare';
 export { default as toBuffer } from './toBuffer';
+export { default as toString } from './toString';
 export { default as toValidValue } from './toValidValue';
 export { default as typeOf } from './typeOf';
