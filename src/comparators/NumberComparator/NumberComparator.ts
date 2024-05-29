@@ -11,8 +11,8 @@ class NumberComparator extends ComparatorBase<number, NumberCompareOptions, Numb
    */
   static TYPE = 'number';
 
-  protected _compare(value0: number, value1: number, config: NumberComparatorConfig): number {
-    return compare(value0, value1, config);
+  protected _compare(value1: number, value2: number, config: NumberComparatorConfig): number {
+    return compare(value1, value2, config);
   }
 }
 export default NumberComparator;

@@ -10,8 +10,8 @@ class AnyComparator extends ComparatorBase<any, AnyCompareOptions, AnyComparator
    */
   static TYPE = 'any';
 
-  protected _compare(value0: any, value1: any, config: AnyComparatorConfig): number {
-    return config.compare ? config.compare(value0, value1, config) : 0;
+  protected _compare(value1: any, value2: any, config: AnyComparatorConfig): number {
+    return config.compare ? config.compare(value1, value2, config) : 0;
   }
 }
 export default AnyComparator;

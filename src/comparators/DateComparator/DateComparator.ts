@@ -11,8 +11,8 @@ class DateComparator extends ComparatorBase<Date, DateCompareOptions, DateCompar
    */
   static TYPE = 'date';
 
-  protected _compare(value0: Date, value1: Date, config: DateComparatorConfig): number {
-    return compare(value0, value1, config);
+  protected _compare(value1: Date, value2: Date, config: DateComparatorConfig): number {
+    return compare(value1, value2, config);
   }
 }
 export default DateComparator;

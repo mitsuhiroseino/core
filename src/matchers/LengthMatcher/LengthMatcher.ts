@@ -13,8 +13,8 @@ class LengthMatcher extends MatcherBase<any, LengthMatchOptions, LengthMatcherCo
    */
   static TYPE = 'length';
 
-  protected _match(value0: any, value1: any, config: LengthMatcherConfig): boolean {
-    return match(size(value0), size(value1), config);
+  protected _match(value1: any, value2: any, config: LengthMatcherConfig): boolean {
+    return match(size(value1), size(value2), config);
   }
 }
 export default LengthMatcher;

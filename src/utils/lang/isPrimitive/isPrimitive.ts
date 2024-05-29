@@ -4,9 +4,9 @@
  * @returns
  */
 export default function isPrimitive(value: unknown): boolean {
-  if (value === null || value === undefined) {
+  if (value == null) {
     return true;
   }
   const type = typeof value;
-  return type === 'string' || type === 'number' || type === 'boolean' || type === 'bigint' || type === 'symbol';
+  return type !== 'object' && type !== 'function';
 }

@@ -9,13 +9,13 @@ export type GetItemByRatioOptions = {
 
   /**
    * 規定の値補間処理で任意の値に任意の値を加算する為の関数
-   * 未指定の場合は frame0 + frame1 で算出
+   * 未指定の場合は frame1 + frame2 で算出
    * smooth=trueでframesの要素がnumberではない場合は必須
-   * @param frame0
    * @param frame1
+   * @param frame2
    * @returns
    */
-  calcSum?: (frame0: any, frame1: any) => any;
+  calcSum?: (frame1: any, frame2: any) => any;
 
   /**
    * 規定の値補間処理でstartとendの差を算出する為の関数

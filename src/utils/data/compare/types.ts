@@ -20,16 +20,6 @@ export type CompareResult = {
   key?: string | number;
 
   /**
-   * 比較対象0
-   */
-  value0?: unknown;
-
-  /**
-   * 比較対象0の型
-   */
-  type0?: ValueType | null;
-
-  /**
    * 比較対象1
    */
   value1?: unknown;
@@ -38,6 +28,16 @@ export type CompareResult = {
    * 比較対象1の型
    */
   type1?: ValueType | null;
+
+  /**
+   * 比較対象2
+   */
+  value2?: unknown;
+
+  /**
+   * 比較対象2の型
+   */
+  type2?: ValueType | null;
 
   /**
    * 子要素の比較結果(配列、オブジェクトの場合のみ)

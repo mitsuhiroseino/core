@@ -1,7 +1,7 @@
 /**
- * 比較時の等価種別
+ * 比較方法
  */
-export const EQUALITY_TYPE = {
+export const COMPARE_MODE = {
   /**
    * `===`による比較
    */

@@ -14,10 +14,10 @@ import mapValues from 'lodash/mapValues';
 export default function editTypedValue<T = any>(
   targetValue: { [key: string]: any } | T[] | T,
   value: { [key: string]: any } | T[] | T,
-  edit: (val0: T, val1: T) => T,
+  edit: (val1: T, val2: T) => T,
   isTargetType: (value: any) => boolean,
 ): any {
-  const editFn: (val0: any, val1: any) => T = edit;
+  const editFn: (val1: any, val2: any) => T = edit;
   if (isPlainObject(targetValue)) {
     // オブジェクトの場合
     if (isTargetType(value)) {

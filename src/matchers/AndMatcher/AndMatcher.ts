@@ -10,8 +10,8 @@ class AndMatcher extends CompoundMatcherBase<AndMatchOptions, AndMatcherConfig> 
    */
   static TYPE = 'and';
 
-  protected _match(value0: any, value1: any, config: AndMatcherConfig): boolean {
-    return this._items.every((item) => item.match(value0, value1));
+  protected _match(value1: any, value2: any, config: AndMatcherConfig): boolean {
+    return this._items.every((item) => item.match(value1, value2));
   }
 }
 export default AndMatcher;

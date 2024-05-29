@@ -10,10 +10,10 @@ export type AnyMatcherConfig = MatcherConfigBase &
   AnyMatchOptions & {
     /**
      * 任意の比較関数
-     * @param value0 値0
      * @param value1 値1
+     * @param value2 値2
      * @param config コンフィグ
      * @returns 比較結果
      */
-    match?: (value0: any, value1: any, config?: AnyMatcherConfig) => boolean;
+    match?: (value1: any, value2: any, config?: AnyMatcherConfig) => boolean;
   };

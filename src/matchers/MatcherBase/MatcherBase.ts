@@ -38,24 +38,24 @@ export default abstract class MatcherBase<
 
   /**
    * 2つの値の比較
-   * @param value0 値0
    * @param value1 値1
+   * @param value2 値2
    * @param options オプション
    * @returns 比較結果
    */
-  match(value0: V, value1: V, options?: O): boolean {
+  match(value1: V, value2: V, options?: O): boolean {
     const me = this,
       config = me._withConfig(options),
-      result = me._match(value0, value1, config);
+      result = me._match(value1, value2, config);
     return config.not ? !result : result;
   }
 
   /**
    * 2つの値の比較
-   * @param value0 値0
    * @param value1 値1
+   * @param value2 値2
    * @param config コンフィグ
    * @returns 比較結果
    */
-  protected abstract _match(value0: V, value1: V, config: C): boolean;
+  protected abstract _match(value1: V, value2: V, config: C): boolean;
 }

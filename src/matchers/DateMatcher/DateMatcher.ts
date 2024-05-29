@@ -11,8 +11,8 @@ class DateMatcher extends MatcherBase<Date, DateMatchOptions, DateMatcherConfig>
    */
   static TYPE = 'date';
 
-  protected _match(value0: Date, value1: Date, config: DateMatcherConfig): boolean {
-    return match(value0, value1, config);
+  protected _match(value1: Date, value2: Date, config: DateMatcherConfig): boolean {
+    return match(value1, value2, config);
   }
 }
 export default DateMatcher;

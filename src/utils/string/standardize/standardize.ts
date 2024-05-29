@@ -13,14 +13,14 @@ export default function standardize(value: string, options: StandardizeOptions =
     const { ignoreCase, ingoreWidth, ignoreKana, ignoreDakuon, ignoreSokuon, ignoreYouon } = options,
       transformationTypes: TransformationType[] = [];
 
+    if (ingoreWidth) {
+      // 半角・全角の違いを無視する
+      transformationTypes.push(TRANSFORMATION_TYPES.TO_HALF_WIDTH);
+      transformationTypes.push(TRANSFORMATION_TYPES.TO_ZENKAKU);
+    }
     if (ignoreCase) {
       // 英字の大文字・小文字の違いを無視する
       transformationTypes.push(TRANSFORMATION_TYPES.TO_LOCALE_LOWER_CASE);
-    }
-    if (ingoreWidth) {
-      // 半角・全角の違いを無視する
-      transformationTypes.push(TRANSFORMATION_TYPES.TO_FULL_WIDTH);
-      transformationTypes.push(TRANSFORMATION_TYPES.TO_ZENKAKU);
     }
     if (ignoreKana) {
       // ひらがな・カタカナの違いを無視する
@@ -40,9 +40,12 @@ export default function standardize(value: string, options: StandardizeOptions =
     }
 
     return transform(value, transformationTypes);
-  } else if (value == null && options.nullValue !== undefined) {
-    // null,undefinedの場合は別の値に置き換え
+  } else if (value === null && 'nullValue' in options) {
+    // nullの場合は別の値に置き換え
     return options.nullValue;
+  } else if (value === undefined && 'undefinedValue' in options) {
+    // undefinedの場合は別の値に置き換え
+    return options.undefinedValue;
   } else {
     // 上記以外はそのまま返す
     return value;

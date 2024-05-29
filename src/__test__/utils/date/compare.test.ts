@@ -6,17 +6,17 @@ describe('compare', () => {
     DATE0_TIME1 = new Date(2000, 1, 2, 3, 41, 56, 789);
 
   describe('default', () => {
-    test('value0 < value1', () => {
+    test('value1 < value2', () => {
       const result = compare(DATE0_TIME0, DATE1_TIME0);
       expect(result).toBeLessThan(0);
     });
 
-    test('value0 = value1', () => {
+    test('value1 = value2', () => {
       const result = compare(DATE0_TIME0, DATE0_TIME0);
       expect(result).toBe(0);
     });
 
-    test('value0 > value1', () => {
+    test('value1 > value2', () => {
       const result = compare(DATE1_TIME0, DATE0_TIME0);
       expect(result).toBeGreaterThan(0);
     });
@@ -24,17 +24,17 @@ describe('compare', () => {
 
   describe('options', () => {
     describe('format', () => {
-      test('HHmmss(value0 < value1)', () => {
+      test('HHmmss(value1 < value2)', () => {
         const result = compare(DATE0_TIME0, DATE0_TIME1, { format: 'HHmmss' });
         expect(result).toBeLessThan(0);
       });
 
-      test('HHmmss(value0 = value1)', () => {
+      test('HHmmss(value1 = value2)', () => {
         const result = compare(DATE0_TIME0, DATE0_TIME0, { format: 'HHmmss' });
         expect(result).toBe(0);
       });
 
-      test('HHmmss(value0 > value1)', () => {
+      test('HHmmss(value1 > value2)', () => {
         const result = compare(DATE0_TIME1, DATE0_TIME0, { format: 'HHmmss' });
         expect(result).toBeGreaterThan(0);
       });

@@ -400,9 +400,9 @@ abstract class CollectionBase<
       length = sorters.length;
     let sorteredEntries;
     if (length > 0) {
-      sorteredEntries = clone(entries).sort((entry0, entry1) => {
+      sorteredEntries = clone(entries).sort((entry1, entry2) => {
         for (let i = length - 1; i > -1; i--) {
-          const result = sorters[i].compare(entry0.item, entry1.item);
+          const result = sorters[i].compare(entry1.item, entry2.item);
           if (result !== 0) {
             return result;
           }

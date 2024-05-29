@@ -5,7 +5,7 @@ import MatcherBase from '../MatcherBase/MatcherBase';
 import { RegexMatchOptions, RegexMatcherConfig } from './types';
 
 /**
- * 値0が正規表現(値1)に一致するか
+ * 値1が正規表現(値2)に一致するか
  */
 class RegexMatcher extends MatcherBase<string | RegExp, RegexMatchOptions, RegexMatcherConfig> {
   /**
@@ -18,16 +18,16 @@ class RegexMatcher extends MatcherBase<string | RegExp, RegexMatchOptions, Regex
    */
   static ALTS = ['re', 'regexp'];
 
-  protected _match(value0: string, value1: string | RegExp, config: RegexMatcherConfig): boolean {
-    if (isString(value0)) {
+  protected _match(value1: string, value2: string | RegExp, config: RegexMatcherConfig): boolean {
+    if (isString(value1)) {
       let regex: RegExp | null = null;
-      if (isRegExp(value1)) {
-        regex = value1;
-      } else if (isString(value1)) {
-        regex = new RegExp(value1, config.flags);
+      if (isRegExp(value2)) {
+        regex = value2;
+      } else if (isString(value2)) {
+        regex = new RegExp(value2, config.flags);
       }
       if (regex) {
-        return regex.test(value0);
+        return regex.test(value1);
       }
     }
     return false;

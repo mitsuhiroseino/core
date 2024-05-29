@@ -11,8 +11,8 @@ class StringComparator extends ComparatorBase<string, StringCompareOptions, Stri
    */
   static TYPE = 'string';
 
-  protected _compare(value0: string, value1: string, config: StringComparatorConfig): number {
-    return compare(value0, value1, config);
+  protected _compare(value1: string, value2: string, config: StringComparatorConfig): number {
+    return compare(value1, value2, config);
   }
 }
 export default StringComparator;

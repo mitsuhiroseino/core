@@ -1,6 +1,7 @@
-import { EqualsOptions } from '../../lang/equals';
+import { IsSameOptions } from '../../lang/isSame';
+import { PutOptions } from '../put';
 
 /**
  * update関数のオプション
  */
-export type UpdateOptions = EqualsOptions;
+export type UpdateOptions = IsSameOptions & PutOptions;

@@ -11,8 +11,8 @@ class ArrayMatcher extends MatcherBase<any[], ArrayMatchOptions, ArrayMatcherCon
    */
   static TYPE = 'array';
 
-  protected _match(value0: any[], value1: any[], config: ArrayMatcherConfig): boolean {
-    return match(value0, value1, config);
+  protected _match(value1: any[], value2: any[], config: ArrayMatcherConfig): boolean {
+    return match(value1, value2, config);
   }
 }
 export default ArrayMatcher;

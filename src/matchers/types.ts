@@ -26,10 +26,10 @@ export interface IMatcher<O extends MatchOptions = MatchOptions> extends IFactor
 
   /**
    * 2つの値を比較する
-   * @param value0 値0
    * @param value1 値1
+   * @param value2 値2
    * @param options オプション
    * @return 比較結果
    */
-  match(value0: any, value1: any, options?: O): boolean;
+  match(value1: any, value2: any, options?: O): boolean;
 }

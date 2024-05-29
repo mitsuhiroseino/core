@@ -13,32 +13,32 @@ import { CompareOptions } from './types';
 
 /**
  * 値の比較を行う
- * @param value0 比較対象0
  * @param value1 比較対象1
+ * @param value2 比較対象2
  * @param options オプション
  * @returns 比較結果
  */
-export default function compare(value0: any, value1: any, options: CompareOptions = {}): number {
+export default function compare(value1: any, value2: any, options: CompareOptions = {}): number {
   const { booleanOptions, dateOptions, numberOptions, stringOptions, ...rest } = options;
 
   // 事前にundefined,nullの為の比較を行う
-  const preResult = preCompare(value0, value1, rest);
+  const preResult = preCompare(value1, value2, rest);
   if (preResult !== undefined) {
     return preResult;
   }
 
   // null、undefined以外の比較
   switch (true) {
-    case isBoolean(value0) && isBoolean(value1):
-      return compareBoolean(value0, value1, booleanOptions);
-    case isDate(value0) && isDate(value1):
-      return compareDate(value0, value1, dateOptions);
-    case isNumber(value0) && isNumber(value1):
-      return compareNumber(value0, value1, numberOptions);
-    case isString(value0) && isString(value1):
-      return compareString(value0, value1, stringOptions);
-    case Array.isArray(value0) && Array.isArray(value1):
-      return compareArray(value0, value1, options);
+    case isBoolean(value1) && isBoolean(value2):
+      return compareBoolean(value1, value2, booleanOptions);
+    case isDate(value1) && isDate(value2):
+      return compareDate(value1, value2, dateOptions);
+    case isNumber(value1) && isNumber(value2):
+      return compareNumber(value1, value2, numberOptions);
+    case isString(value1) && isString(value2):
+      return compareString(value1, value2, stringOptions);
+    case Array.isArray(value1) && Array.isArray(value2):
+      return compareArray(value1, value2, options);
     default:
       return 0;
   }

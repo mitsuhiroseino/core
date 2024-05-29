@@ -21,26 +21,26 @@ describe('Factory', () => {
 describe('RegexMatcher', () => {
   describe('match', () => {
     describe('default', () => {
-      describe('value1 instanceof Regexp', () => {
-        test('value0 === value1', () => {
+      describe('value2 instanceof Regexp', () => {
+        test('value1 === value2', () => {
           const matcher = new RegexMatcher();
           expect(matcher.match('123', /^1.*3$/)).toBe(true);
         });
 
-        test('value0 !== value1', () => {
+        test('value1 !== value2', () => {
           const matcher = new RegexMatcher();
           expect(matcher.match('123', /^a.*3$/)).toBe(false);
         });
       });
 
-      describe('value1 instanceof String', () => {
+      describe('value2 instanceof String', () => {
         const config: RegexMatcherConfig = { flags: 'g' };
-        test('value0 === value1', () => {
+        test('value1 === value2', () => {
           const matcher = new RegexMatcher(config);
           expect(matcher.match('123', '^1.*3$')).toBe(true);
         });
 
-        test('value0 !== value1', () => {
+        test('value1 !== value2', () => {
           const matcher = new RegexMatcher(config);
           expect(matcher.match('123', '^a.*3$')).toBe(false);
         });

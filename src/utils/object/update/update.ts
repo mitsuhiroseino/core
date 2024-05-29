@@ -1,5 +1,6 @@
-import equals from '../../lang/equals';
+import isSame from '../../lang/isSame';
 import hasOwnProperty from '../hasOwnProperty';
+import put from '../put';
 import { UpdateOptions } from './types';
 
 /**
@@ -21,7 +22,7 @@ export default function update(
     if (hasOwnProperty(values, key)) {
       const value = values[key],
         oldValue = object[key];
-      if (!equals(oldValue, value, options)) {
+      if (!isSame(oldValue, value, options)) {
         updated[key] = oldValue;
         object[key] = values[key];
       }

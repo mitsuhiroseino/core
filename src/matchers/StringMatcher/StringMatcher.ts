@@ -11,8 +11,8 @@ class StringMatcher extends MatcherBase<string, StringMatchOptions, StringMatche
    */
   static TYPE = 'string';
 
-  protected _match(value0: string, value1: string, config: StringMatcherConfig): boolean {
-    return match(value0, value1, config);
+  protected _match(value1: string, value2: string, config: StringMatcherConfig): boolean {
+    return match(value1, value2, config);
   }
 }
 export default StringMatcher;

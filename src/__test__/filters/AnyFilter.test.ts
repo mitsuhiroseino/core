@@ -26,8 +26,8 @@ describe('AnyFilter', () => {
         const config: AnyFilterConfig = {
             type: AnyFilter.TYPE,
             value: 'ABC',
-            match: (value0: string, value1: string, config) => {
-              return value0.startsWith(value1);
+            match: (value1: string, value2: string, config) => {
+              return value1.startsWith(value2);
             },
           },
           filter: AnyFilter = FilterFactory.create(config),
@@ -39,8 +39,8 @@ describe('AnyFilter', () => {
         const config: AnyFilterConfig = {
             type: AnyFilter.TYPE,
             value: 'BCD',
-            match: (value0: string, value1: string, config) => {
-              return value0.startsWith(value1);
+            match: (value1: string, value2: string, config) => {
+              return value1.startsWith(value2);
             },
           },
           filter: AnyFilter = FilterFactory.create(config),

@@ -11,8 +11,8 @@ class BooleanComparator extends ComparatorBase<boolean, BooleanCompareOptions, B
    */
   static TYPE = 'boolean';
 
-  protected _compare(value0: boolean, value1: boolean, config: BooleanComparatorConfig): number {
-    return compare(value0, value1, config);
+  protected _compare(value1: boolean, value2: boolean, config: BooleanComparatorConfig): number {
+    return compare(value1, value2, config);
   }
 }
 export default BooleanComparator;

@@ -37,7 +37,7 @@ function _toString(value: any): any {
     // [key, value]の配列形式に変換
     return _toTypeValueString(
       'object',
-      map(value, (item, key) => [key, _toString(item)]).sort((item0, item1) => (item0[0] > item1[0] ? 1 : -1)),
+      map(value, (item, key) => [key, _toString(item)]).sort((item1, item2) => (item1[0] > item2[0] ? 1 : -1)),
     );
   } else if (isDate(value)) {
     // Date

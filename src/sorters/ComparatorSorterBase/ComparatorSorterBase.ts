@@ -31,7 +31,7 @@ export default abstract class ComparatorSorterBase<
    * @param value 検証対象
    * @returns 検証結果
    */
-  protected _compare(value0: V, value1: V, config: C): number {
-    return this.comparator?.compare(value0, value1) || 0;
+  protected _compare(value1: V, value2: V, config: C): number {
+    return this.comparator?.compare(value1, value2) || 0;
   }
 }

@@ -10,8 +10,8 @@ class AnyMatcher extends MatcherBase<any, AnyMatchOptions, AnyMatcherConfig> {
    */
   static TYPE = 'any';
 
-  protected _match(value0: any, value1: any, config: AnyMatcherConfig): boolean {
-    return config.match ? config.match(value0, value1, config) : false;
+  protected _match(value1: any, value2: any, config: AnyMatcherConfig): boolean {
+    return config.match ? config.match(value1, value2, config) : false;
   }
 }
 export default AnyMatcher;

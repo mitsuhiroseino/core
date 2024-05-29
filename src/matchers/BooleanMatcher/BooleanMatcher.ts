@@ -11,8 +11,8 @@ class BooleanMatcher extends MatcherBase<boolean, BooleanMatchOptions, BooleanMa
    */
   static TYPE = 'boolean';
 
-  protected _match(value0: boolean, value1: boolean, config: BooleanMatcherConfig): boolean {
-    return match(value0, value1, config);
+  protected _match(value1: boolean, value2: boolean, config: BooleanMatcherConfig): boolean {
+    return match(value1, value2, config);
   }
 }
 export default BooleanMatcher;

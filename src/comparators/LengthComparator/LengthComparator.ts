@@ -13,8 +13,8 @@ class LengthComparator extends ComparatorBase<any, LengthCompareOptions, LengthC
    */
   static TYPE = 'length';
 
-  protected _compare(value0: any, value1: any, config: LengthComparatorConfig): number {
-    return compare(size(value0), size(value1), config);
+  protected _compare(value1: any, value2: any, config: LengthComparatorConfig): number {
+    return compare(size(value1), size(value2), config);
   }
 }
 export default LengthComparator;

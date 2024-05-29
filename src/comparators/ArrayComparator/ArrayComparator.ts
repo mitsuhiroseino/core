@@ -11,8 +11,8 @@ class ArrayComparator extends ComparatorBase<any[], ArrayCompareOptions, ArrayCo
    */
   static TYPE = 'array';
 
-  protected _compare(value0: any[], value1: any[], config: ArrayComparatorConfig): number {
-    return compare(value0, value1, config);
+  protected _compare(value1: any[], value2: any[], config: ArrayComparatorConfig): number {
+    return compare(value1, value2, config);
   }
 }
 export default ArrayComparator;

@@ -25,64 +25,64 @@ type UnknownArray = unknown[];
  * 値の比較を行います。比較した結果は要素毎にObject形式で返却します。
  * 要素毎の結果の内容:
  *
- *  - value0: value0の値
- *  - type0: value0の値の型
  *  - value1: value1の値
  *  - type1: value1の値の型
+ *  - value2: value2の値
+ *  - type2: value2の値の型
  *  - result: 比較結果
  *     - null: 一致
  *     - 'value': 値の不一致
  *     - 'type': 型の不一致
  *     - 'key': キーの不一致(要素の有無)
- *     - 'size': 要素数の不一致(value0,value1がオブジェクト、配列の場合のみ)
+ *     - 'size': 要素数の不一致(value1,value2がオブジェクト、配列の場合のみ)
  *     - 'children': 子要素に不一致あり
- *  - children: 子要素の比較結果(value0,value1がオブジェクト、配列の場合のみ)
+ *  - children: 子要素の比較結果(value1,value2がオブジェクト、配列の場合のみ)
  *
- * @param value0 比較対象0
  * @param value1 比較対象1
+ * @param value2 比較対象2
  * @return 比較結果
  */
-export default function compare(value0: unknown, value1: unknown): CompareResult {
+export default function compare(value1: unknown, value2: unknown): CompareResult {
   let difference: DifferenceType = DIFFERENCE_TYPE.NO_DIFFERENCE,
     children: CompareResult[] | null = null;
-  const type0: ValueType = typeOf(value0),
-    type1: ValueType = typeOf(value1);
+  const type1: ValueType = typeOf(value1),
+    type2: ValueType = typeOf(value2);
 
-  if (value0 !== NO_VALUE && value1 !== NO_VALUE) {
+  if (value1 !== NO_VALUE && value2 !== NO_VALUE) {
     // 両方値がある場合のみ比較
-    if (type0 === type1) {
+    if (type1 === type2) {
       // 型が同じ
-      if (type0 === VALUE_TYPE.OBJECT) {
+      if (type1 === VALUE_TYPE.OBJECT) {
         // object
-        const object0 = value0 as UnknownObject,
-          object1 = value1 as UnknownObject;
-        if (size(object0) !== size(object1)) {
+        const object1 = value1 as UnknownObject,
+          object2 = value2 as UnknownObject;
+        if (size(object1) !== size(object2)) {
           // 要素数の不一致
           difference = DIFFERENCE_TYPE.SIZE;
         }
         // 子要素も比較
-        children = _compareObject(object0, object1);
-      } else if (type0 === VALUE_TYPE.ARRAY) {
+        children = _compareObject(object1, object2);
+      } else if (type1 === VALUE_TYPE.ARRAY) {
         // 配列
-        const array0 = value0 as UnknownArray,
-          array1 = value1 as UnknownArray;
-        if (array0.length !== array1.length) {
+        const array1 = value1 as UnknownArray,
+          array2 = value2 as UnknownArray;
+        if (array1.length !== array2.length) {
           // 要素数の不一致
           difference = DIFFERENCE_TYPE.SIZE;
         }
         // 子要素も比較
-        children = _compareArray(array0, array1);
-      } else if (type0 === VALUE_TYPE.DATE) {
+        children = _compareArray(array1, array2);
+      } else if (type1 === VALUE_TYPE.DATE) {
         // 日付
-        const date0 = value0 as Date,
-          date1 = value1 as Date;
-        if (date0.getTime() !== date1.getTime()) {
+        const date1 = value1 as Date,
+          date2 = value2 as Date;
+        if (date1.getTime() !== date2.getTime()) {
           // 値の不一致
           difference = DIFFERENCE_TYPE.VALUE;
         }
       } else {
         // その他はインスタンスの比較
-        if (value0 !== value1) {
+        if (value1 !== value2) {
           // 値の不一致
           difference = DIFFERENCE_TYPE.VALUE;
         }
@@ -97,10 +97,10 @@ export default function compare(value0: unknown, value1: unknown): CompareResult
   }
   // 比較結果の作成
   const compareResult: CompareResult = {
-    value0,
-    type0,
     value1,
     type1,
+    value2,
+    type2,
     difference,
   };
   if (children) {
@@ -119,75 +119,75 @@ export default function compare(value0: unknown, value1: unknown): CompareResult
 
 /**
  * オブジェクト配下の要素を比較します
- * 1. object0に存在する要素をobject1の要素と比較
- * 2. object1のみに存在する要素をobject0と比較(全てキー不一致)
+ * 1. object1に存在する要素をobject2の要素と比較
+ * 2. object2のみに存在する要素をobject1と比較(全てキー不一致)
  *
- * @param object0 比較対象0
  * @param object1 比較対象1
+ * @param object2 比較対象2
  * @return 比較結果
  */
-function _compareObject(object0: UnknownObject, object1: UnknownObject): CompareResult[] {
+function _compareObject(object1: UnknownObject, object2: UnknownObject): CompareResult[] {
   const results: CompareResult[] = [],
-    rest1 = { ...object1 };
+    rest1 = { ...object2 };
 
-  // object0 -> object1の比較
-  for (const key in object0) {
+  // object1 -> object2の比較
+  for (const key in object1) {
     // 値を取得
-    const value0 = object0[key],
-      value1 = key in object1 ? object1[key] : NO_VALUE;
+    const value1 = object1[key],
+      value2 = key in object2 ? object2[key] : NO_VALUE;
     // 比較
-    const result = compare(value0, value1);
+    const result = compare(value1, value2);
     result.key = key;
     results.push(result);
     delete rest1[key];
   }
 
-  // object1のみに存在する要素の比較
+  // object2のみに存在する要素の比較
   for (const key in rest1) {
     // 比較
-    // object0には無い要素の比較なので第一引数は必ずNO_VALUE
-    const result = compare(NO_VALUE, object1[key]);
+    // object1には無い要素の比較なので第一引数は必ずNO_VALUE
+    const result = compare(NO_VALUE, object2[key]);
     result.key = key;
     results.push(result);
   }
   // 結果をキー順にソートして返す
-  return results.sort((result0, result1) => {
-    const key0: any = result0.key,
-      key1: any = result1.key;
-    return key0 > key1 ? 1 : -1;
+  return results.sort((result1, result2) => {
+    const key1: any = result1.key,
+      key2: any = result2.key;
+    return key1 > key2 ? 1 : -1;
   });
 }
 
 /**
  * 配列配下の要素を比較します
- * 1. array0に存在する要素をarray1の要素と比較
- * 2. array1のみに存在する要素をarray0と比較(全てキー不一致)
+ * 1. array1に存在する要素をarray2の要素と比較
+ * 2. array2のみに存在する要素をarray1と比較(全てキー不一致)
  *
- * @param array0 比較対象0
  * @param array1 比較対象1
+ * @param array2 比較対象2
  * @return 比較結果
  */
-function _compareArray(array0: UnknownArray, array1: UnknownArray): CompareResult[] {
+function _compareArray(array1: UnknownArray, array2: UnknownArray): CompareResult[] {
   const results: CompareResult[] = [],
-    length0 = array0.length,
-    length1 = array1.length;
+    length1 = array1.length,
+    length2 = array2.length;
 
-  // array0 -> array1の比較
-  for (let index = 0; index < length0; index++) {
+  // array1 -> array2の比較
+  for (let index = 0; index < length1; index++) {
     // 値を取得
-    const value0 = array0[index],
-      value1 = index < length1 ? array1[index] : NO_VALUE;
+    const value1 = array1[index],
+      value2 = index < length2 ? array2[index] : NO_VALUE;
     // 比較
-    const result = compare(value0, value1);
+    const result = compare(value1, value2);
     result.key = index;
     results.push(result);
   }
 
-  // array1のみに存在する要素の比較
-  for (let index = length0; index < length1; index++) {
+  // array2のみに存在する要素の比較
+  for (let index = length1; index < length2; index++) {
     // 比較
-    // array0には無い要素の比較なので第一引数は必ずNO_PROPERTY
-    const result = compare(NO_VALUE, array1[index]);
+    // array1には無い要素の比較なので第一引数は必ずNO_PROPERTY
+    const result = compare(NO_VALUE, array2[index]);
     result.key = index;
     results.push(result);
   }

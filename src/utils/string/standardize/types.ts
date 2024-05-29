@@ -6,6 +6,10 @@ export type StandardizeOptions = {
    * 値がnullの場合に置き換える値
    */
   nullValue?: string;
+  /**
+   * 値がundefinedの場合に置き換える値
+   */
+  undefinedValue?: string;
 
   /**
    * 英字の大文字・小文字の違いを無視する

@@ -51,34 +51,34 @@ export default abstract class SorterBase<
 
   /**
    * ソート
-   * @param value0 対象0
    * @param value1 対象1
+   * @param value2 対象2
    * @param options オプション
    * @returns 結果
    */
-  compare(value0: any, value1: any, options?: O): number {
+  compare(value1: any, value2: any, options?: O): number {
     const me = this,
       config = me._withConfig(options);
 
-    let val0, val1;
+    let val1, val2;
     if (me._extractor) {
-      val0 = me._extractor.extract(value0);
       val1 = me._extractor.extract(value1);
+      val2 = me._extractor.extract(value2);
     } else {
-      val0 = value0;
       val1 = value1;
+      val2 = value2;
     }
 
-    const result = me._compare(val0, val1, config);
+    const result = me._compare(val1, val2, config);
     return config.desc ? result * -1 : result;
   }
 
   /**
    * ソートの為の比較
-   * @param value0 対象0
    * @param value1 対象1
+   * @param value2 対象2
    * @param config コンフィグ
    * @returns 結果
    */
-  protected abstract _compare(value0: V, value1: V, config: C): number;
+  protected abstract _compare(value1: V, value2: V, config: C): number;
 }

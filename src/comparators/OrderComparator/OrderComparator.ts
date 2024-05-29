@@ -10,11 +10,11 @@ class OrderComparator extends ComparatorBase<any, OrderCompareOptions, OrderComp
    */
   static TYPE = 'order';
 
-  protected _compare(value0: any, value1: any[], config: OrderComparatorConfig): number {
+  protected _compare(value1: any, value2: any[], config: OrderComparatorConfig): number {
     const { order } = config,
-      order0 = order.indexOf(value0),
-      order1 = order.indexOf(value1);
-    return order0 - order1;
+      order1 = order.indexOf(value1),
+      order2 = order.indexOf(value2);
+    return order1 - order2;
   }
 }
 export default OrderComparator;

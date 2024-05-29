@@ -68,16 +68,16 @@ class Message<C extends MessageConfig = MessageConfig> extends DestructibleBase<
 
   /**
    * メッセージを設定する
-   * @param arg0 メッセージまたはメッセージオプション
-   * @param arg1 メッセージオプション
+   * @param arg1 メッセージまたはメッセージオプション
+   * @param arg2 メッセージオプション
    */
-  set(arg0: string | MessageSetOptions, arg1?: MessageSetOptions): void {
+  set(arg1: string | MessageSetOptions, arg2?: MessageSetOptions): void {
     let message, options;
-    if (isString(arg0)) {
-      message = arg0;
-      options = arg1 || {};
+    if (isString(arg1)) {
+      message = arg1;
+      options = arg2 || {};
     } else {
-      const { message: msg, ...rest } = arg0;
+      const { message: msg, ...rest } = arg1;
       message = msg;
       options = rest;
     }

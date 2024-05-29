@@ -15,21 +15,21 @@ describe('AnyComparator', () => {
   describe('compare', () => {
     describe('default', () => {
       const config: AnyComparatorConfig = {
-        compare: (value0, value1, config) => (value0 === value1 ? 0 : value0 > value1 ? 1 : -1),
+        compare: (value1, value2, config) => (value1 === value2 ? 0 : value1 > value2 ? 1 : -1),
       };
-      test('value0 === value1', () => {
+      test('value1 === value2', () => {
         const comparator = new AnyComparator(config),
           result = comparator.compare('123', '123');
         expect(result).toBe(0);
       });
 
-      test('value0 > value1', () => {
+      test('value1 > value2', () => {
         const comparator = new AnyComparator(config),
           result = comparator.compare('abc', '123');
         expect(result).toBe(1);
       });
 
-      test('value0 < value1', () => {
+      test('value1 < value2', () => {
         const comparator = new AnyComparator(config),
           result = comparator.compare('123', 'abc');
         expect(result).toBe(-1);
@@ -39,15 +39,15 @@ describe('AnyComparator', () => {
     describe('options', () => {
       describe('compare', () => {
         const config: AnyComparatorConfig = {
-          compare: (value0, value1, config = {}) => {
-            const val0 = get(value0, config.path),
-              val1 = get(value1, config.path);
-            return val0 === val1 ? 0 : val0 > val1 ? 1 : -1;
+          compare: (value1, value2, config = {}) => {
+            const val1 = get(value1, config.path),
+              val2 = get(value2, config.path);
+            return val1 === val2 ? 0 : val1 > val2 ? 1 : -1;
           },
           path: 'source.value',
         };
 
-        test('value0 === value1', () => {
+        test('value1 === value2', () => {
           const comparator = new AnyComparator(config),
             result = comparator.compare(
               { source: { value: '123' }, property: 'value' },
@@ -56,7 +56,7 @@ describe('AnyComparator', () => {
           expect(result).toBe(0);
         });
 
-        test('value0 > value1', () => {
+        test('value1 > value2', () => {
           const comparator = new AnyComparator(config),
             result = comparator.compare(
               { source: { value: 'abc' }, property: 'value' },
@@ -65,7 +65,7 @@ describe('AnyComparator', () => {
           expect(result).toBe(1);
         });
 
-        test('value0 < value1', () => {
+        test('value1 < value2', () => {
           const comparator = new AnyComparator(config),
             result = comparator.compare(
               { source: { value: '123' }, property: 'value' },

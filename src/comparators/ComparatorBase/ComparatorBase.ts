@@ -38,23 +38,23 @@ export default abstract class ComparatorBase<
 
   /**
    * 2つの値の比較
-   * @param value0 値0
    * @param value1 値1
+   * @param value2 値2
    * @param options オプション
    * @returns 比較結果
    */
-  compare(value0: V, value1: V, options?: O): number {
+  compare(value1: V, value2: V, options?: O): number {
     const me = this,
       config = me._withConfig(options);
-    return me._compare(value0, value1, config);
+    return me._compare(value1, value2, config);
   }
 
   /**
    * 2つの値の比較
-   * @param value0 値0
    * @param value1 値1
+   * @param value2 値2
    * @param config コンフィグ
    * @returns 比較結果
    */
-  protected abstract _compare(value0: V, value1: V, config: C): number;
+  protected abstract _compare(value1: V, value2: V, config: C): number;
 }

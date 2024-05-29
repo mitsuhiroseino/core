@@ -9,34 +9,34 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(ARRAY0, ARRAY00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.ARRAY,
           type1: VALUE_TYPE.ARRAY,
-          value0: ARRAY0,
-          value1: ARRAY00,
+          type2: VALUE_TYPE.ARRAY,
+          value2: ARRAY0,
+          value2: ARRAY00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
           children: [
             {
               key: 0,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 0,
-              value1: 0,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 0,
+              value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 1,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 1,
-              value1: 1,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 1,
+              value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 2,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 2,
-              value1: 2,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 2,
+              value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
           ],
@@ -46,34 +46,34 @@ describe('compare', () => {
     test('要素数不一致', () => {
       const result = compare(ARRAY0, ARRAY_SIZE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.ARRAY,
           type1: VALUE_TYPE.ARRAY,
-          value0: ARRAY0,
-          value1: ARRAY_SIZE,
+          type2: VALUE_TYPE.ARRAY,
+          value2: ARRAY0,
+          value2: ARRAY_SIZE,
           difference: DIFFERENCE_TYPE.SIZE,
           children: [
             {
               key: 0,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 0,
-              value1: 0,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 0,
+              value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 1,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 1,
-              value1: 1,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 1,
+              value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 2,
-              type0: VALUE_TYPE.NUMBER,
-              type1: VALUE_TYPE.NO_TYPE,
-              value0: 2,
-              value1: NO_VALUE,
+              type1: VALUE_TYPE.NUMBER,
+              type2: VALUE_TYPE.NO_TYPE,
+              value2: 2,
+              value2: NO_VALUE,
               difference: DIFFERENCE_TYPE.KEY,
             },
           ],
@@ -83,34 +83,34 @@ describe('compare', () => {
     test('値不一致', () => {
       const result = compare(ARRAY0, ARRAY_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.ARRAY,
           type1: VALUE_TYPE.ARRAY,
-          value0: ARRAY0,
-          value1: ARRAY_VALUE,
+          type2: VALUE_TYPE.ARRAY,
+          value2: ARRAY0,
+          value2: ARRAY_VALUE,
           difference: DIFFERENCE_TYPE.CHILDREN,
           children: [
             {
               key: 0,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 0,
-              value1: 0,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 0,
+              value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 1,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 1,
-              value1: 2,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 1,
+              value2: 2,
               difference: DIFFERENCE_TYPE.VALUE,
             },
             {
               key: 2,
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 2,
-              value1: 2,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 2,
+              value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
           ],
@@ -127,34 +127,34 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(OBJECT0, OBJECT00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.OBJECT,
           type1: VALUE_TYPE.OBJECT,
-          value0: OBJECT0,
-          value1: OBJECT00,
+          type2: VALUE_TYPE.OBJECT,
+          value2: OBJECT0,
+          value2: OBJECT00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
           children: [
             {
               key: 'a',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 0,
-              value1: 0,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 0,
+              value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 'b',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 1,
-              value1: 1,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 1,
+              value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 'c',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 2,
-              value1: 2,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 2,
+              value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
           ],
@@ -164,34 +164,34 @@ describe('compare', () => {
     test('要素数不一致', () => {
       const result = compare(OBJECT0, OBJECT_SIZE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.OBJECT,
           type1: VALUE_TYPE.OBJECT,
-          value0: OBJECT0,
-          value1: OBJECT_SIZE,
+          type2: VALUE_TYPE.OBJECT,
+          value2: OBJECT0,
+          value2: OBJECT_SIZE,
           difference: DIFFERENCE_TYPE.SIZE,
           children: [
             {
               key: 'a',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 0,
-              value1: 0,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 0,
+              value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 'b',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 1,
-              value1: 1,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 1,
+              value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 'c',
-              type0: VALUE_TYPE.NUMBER,
-              type1: VALUE_TYPE.NO_TYPE,
-              value0: 2,
-              value1: NO_VALUE,
+              type1: VALUE_TYPE.NUMBER,
+              type2: VALUE_TYPE.NO_TYPE,
+              value2: 2,
+              value2: NO_VALUE,
               difference: DIFFERENCE_TYPE.KEY,
             },
           ],
@@ -201,34 +201,34 @@ describe('compare', () => {
     test('値不一致', () => {
       const result = compare(OBJECT0, OBJECT_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.OBJECT,
           type1: VALUE_TYPE.OBJECT,
-          value0: OBJECT0,
-          value1: OBJECT_VALUE,
+          type2: VALUE_TYPE.OBJECT,
+          value2: OBJECT0,
+          value2: OBJECT_VALUE,
           difference: DIFFERENCE_TYPE.CHILDREN,
           children: [
             {
               key: 'a',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 0,
-              value1: 0,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 0,
+              value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
             {
               key: 'b',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 1,
-              value1: 2,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 1,
+              value2: 2,
               difference: DIFFERENCE_TYPE.VALUE,
             },
             {
               key: 'c',
-              type0: VALUE_TYPE.NUMBER,
               type1: VALUE_TYPE.NUMBER,
-              value0: 2,
-              value1: 2,
+              type2: VALUE_TYPE.NUMBER,
+              value2: 2,
+              value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
           ],
@@ -244,10 +244,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(UNDEFINED0, UNDEFINED00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.UNDEFINED,
           type1: VALUE_TYPE.UNDEFINED,
-          value0: UNDEFINED0,
-          value1: UNDEFINED00,
+          type2: VALUE_TYPE.UNDEFINED,
+          value2: UNDEFINED0,
+          value2: UNDEFINED00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -255,10 +255,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(UNDEFINED0, UNDEFINED_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.UNDEFINED,
-          type1: VALUE_TYPE.NULL,
-          value0: UNDEFINED0,
-          value1: UNDEFINED_VALUE,
+          type1: VALUE_TYPE.UNDEFINED,
+          type2: VALUE_TYPE.NULL,
+          value2: UNDEFINED0,
+          value2: UNDEFINED_VALUE,
           difference: DIFFERENCE_TYPE.TYPE,
         };
       expect(result).toEqual(compareResult);
@@ -272,10 +272,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(NULL0, NULL00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.NULL,
           type1: VALUE_TYPE.NULL,
-          value0: NULL0,
-          value1: NULL00,
+          type2: VALUE_TYPE.NULL,
+          value2: NULL0,
+          value2: NULL00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -283,10 +283,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(NULL0, NULL_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.NULL,
-          type1: VALUE_TYPE.UNDEFINED,
-          value0: NULL0,
-          value1: NULL_VALUE,
+          type1: VALUE_TYPE.NULL,
+          type2: VALUE_TYPE.UNDEFINED,
+          value2: NULL0,
+          value2: NULL_VALUE,
           difference: DIFFERENCE_TYPE.TYPE,
         };
       expect(result).toEqual(compareResult);
@@ -300,10 +300,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(STRING0, STRING00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.STRING,
           type1: VALUE_TYPE.STRING,
-          value0: STRING0,
-          value1: STRING00,
+          type2: VALUE_TYPE.STRING,
+          value2: STRING0,
+          value2: STRING00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -311,10 +311,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(STRING0, STRING_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.STRING,
           type1: VALUE_TYPE.STRING,
-          value0: STRING0,
-          value1: STRING_VALUE,
+          type2: VALUE_TYPE.STRING,
+          value2: STRING0,
+          value2: STRING_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
       expect(result).toEqual(compareResult);
@@ -328,10 +328,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(NUMBER0, NUMBER00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.NUMBER,
           type1: VALUE_TYPE.NUMBER,
-          value0: NUMBER0,
-          value1: NUMBER00,
+          type2: VALUE_TYPE.NUMBER,
+          value2: NUMBER0,
+          value2: NUMBER00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -339,10 +339,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(NUMBER0, NUMBER_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.NUMBER,
           type1: VALUE_TYPE.NUMBER,
-          value0: NUMBER0,
-          value1: NUMBER_VALUE,
+          type2: VALUE_TYPE.NUMBER,
+          value2: NUMBER0,
+          value2: NUMBER_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
       expect(result).toEqual(compareResult);
@@ -356,10 +356,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(BOOLEAN0, BOOLEAN00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.BOOLEAN,
           type1: VALUE_TYPE.BOOLEAN,
-          value0: BOOLEAN0,
-          value1: BOOLEAN00,
+          type2: VALUE_TYPE.BOOLEAN,
+          value2: BOOLEAN0,
+          value2: BOOLEAN00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -367,10 +367,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(BOOLEAN0, BOOLEAN_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.BOOLEAN,
           type1: VALUE_TYPE.BOOLEAN,
-          value0: BOOLEAN0,
-          value1: BOOLEAN_VALUE,
+          type2: VALUE_TYPE.BOOLEAN,
+          value2: BOOLEAN0,
+          value2: BOOLEAN_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
       expect(result).toEqual(compareResult);
@@ -384,10 +384,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(DATE0, DATE00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.DATE,
           type1: VALUE_TYPE.DATE,
-          value0: DATE0,
-          value1: DATE00,
+          type2: VALUE_TYPE.DATE,
+          value2: DATE0,
+          value2: DATE00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -395,10 +395,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(DATE0, DATE_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.DATE,
           type1: VALUE_TYPE.DATE,
-          value0: DATE0,
-          value1: DATE_VALUE,
+          type2: VALUE_TYPE.DATE,
+          value2: DATE0,
+          value2: DATE_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
       expect(result).toEqual(compareResult);
@@ -412,10 +412,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(FUNCTION0, FUNCTION00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.FUNCTION,
           type1: VALUE_TYPE.FUNCTION,
-          value0: FUNCTION0,
-          value1: FUNCTION00,
+          type2: VALUE_TYPE.FUNCTION,
+          value2: FUNCTION0,
+          value2: FUNCTION00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -423,10 +423,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(FUNCTION0, FUNCTION_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.FUNCTION,
           type1: VALUE_TYPE.FUNCTION,
-          value0: FUNCTION0,
-          value1: FUNCTION_VALUE,
+          type2: VALUE_TYPE.FUNCTION,
+          value2: FUNCTION0,
+          value2: FUNCTION_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
       expect(result).toEqual(compareResult);
@@ -440,10 +440,10 @@ describe('compare', () => {
     test('一致', () => {
       const result = compare(UNKNOWN0, UNKNOWN00),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.UNKNOWN,
           type1: VALUE_TYPE.UNKNOWN,
-          value0: UNKNOWN0,
-          value1: UNKNOWN00,
+          type2: VALUE_TYPE.UNKNOWN,
+          value2: UNKNOWN0,
+          value2: UNKNOWN00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
       expect(result).toEqual(compareResult);
@@ -451,10 +451,10 @@ describe('compare', () => {
     test('不一致', () => {
       const result = compare(UNKNOWN0, UNKNOWN_VALUE),
         compareResult: CompareResult = {
-          type0: VALUE_TYPE.UNKNOWN,
           type1: VALUE_TYPE.UNKNOWN,
-          value0: UNKNOWN0,
-          value1: UNKNOWN_VALUE,
+          type2: VALUE_TYPE.UNKNOWN,
+          value2: UNKNOWN0,
+          value2: UNKNOWN_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
       expect(result).toEqual(compareResult);

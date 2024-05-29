@@ -10,8 +10,8 @@ class OrMatcher extends CompoundMatcherBase<OrMatchOptions, OrMatcherConfig> {
    */
   static TYPE = 'or';
 
-  protected _match(value0: any, value1: any, config: OrMatcherConfig): boolean {
-    return this._items.some((item) => item.match(value0, value1));
+  protected _match(value1: any, value2: any, config: OrMatcherConfig): boolean {
+    return this._items.some((item) => item.match(value1, value2));
   }
 }
 export default OrMatcher;

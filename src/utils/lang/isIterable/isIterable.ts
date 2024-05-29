@@ -3,6 +3,6 @@
  * @param value
  * @returns
  */
-export default function isIterable(value: any): boolean {
-  return value != null && !!value[Symbol.iterator];
+export default function isIterable(value: unknown): value is Iterable<unknown> {
+  return value != null && typeof value[Symbol.iterator] === 'function';
 }
