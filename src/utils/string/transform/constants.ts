@@ -406,6 +406,13 @@ export const KANA_YOUON = {
 } as const;
 
 /**
+ * 長音を削除する為のマップ
+ */
+export const KANA_CHOUON = {
+  ー: '',
+} as const;
+
+/**
  * 改行をHTMLの<br/>置き換える為のマップ
  */
 export const HTML_LINE_FEED = {
@@ -493,6 +500,7 @@ export const TRANSFORMATION_TYPES = {
   TO_WITHOUT_DAKUON: 'toWithoutDakuon',
   TO_WITHOUT_SOKUON: 'toWithoutSokuon',
   TO_WITHOUT_YOUON: 'toWithoutYouon',
+  TO_WITHOUT_CHOUON: 'toWithoutChouon',
   TO_HTML_LINE_FEED: 'toHtmlLineFeed',
   TO_TEXT_LINE_FEED: 'toTextLineFeed',
   ESCAPE_FOR_HTML: 'escapeForHtml',
@@ -540,6 +548,7 @@ export const TRANSFORMATIONS = [
   { map: KANA_DAKUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_DAKUON },
   { map: KANA_SOKUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_SOKUON },
   { map: KANA_YOUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_YOUON },
+  { map: KANA_CHOUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_CHOUON },
   { map: HTML_LINE_FEED, type: TRANSFORMATION_TYPES.TO_HTML_LINE_FEED },
   { map: TEXT_LINE_FEED, type: TRANSFORMATION_TYPES.TO_TEXT_LINE_FEED },
   { map: HTML, type: TRANSFORMATION_TYPES.ESCAPE_FOR_HTML, reverseType: TRANSFORMATION_TYPES.UNESCAPE_FROM_HTML },

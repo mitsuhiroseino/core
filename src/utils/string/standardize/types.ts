@@ -40,4 +40,9 @@ export type StandardizeOptions = {
    * 拗音(ゃ)と清音(や)の違いを無視する
    */
   ignoreYouon?: boolean;
+
+  /**
+   * 長音(ー)を無視する
+   */
+  ignoreChouon?: boolean;
 };
