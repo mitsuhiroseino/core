@@ -1,3 +1,5 @@
+import { ReplacementMap, TransformOptions } from '../transform';
+
 /**
  * standardize関数のオプション
  */
@@ -45,4 +47,14 @@ export type StandardizeOptions = {
    * 長音(ー)を無視する
    */
   ignoreChouon?: boolean;
+
+  /**
+   * スペースを無視する
+   */
+  ignoreSpace?: boolean;
+
+  /**
+   * 文字列変換用のオプション
+   */
+  transformOptions?: TransformOptions;
 };

@@ -1,23 +1,27 @@
 import isString from 'lodash/isString';
 import stubTrue from 'lodash/stubTrue';
 import standardize from '../../string/standardize';
-import { CreateInsensitiveObjectOptions } from './types';
+import hasOwnProperty from '../hasOwnProperty';
+import { GenericRecord, GenericRecordKey } from '../types';
+import { CreateInsensitiveObjectOptions as CreateInsensitiveRecordOptions } from './types';
+
+type InsensitiveRecord<T extends GenericRecord> = T & Record<string, unknown>;
 
 /**
- * プロパティの大文字・小文字などを無視したアクセスが可能なオブジェクトを作成する
+ * プロパティの大文字・小文字などを無視したアクセスが可能なレコードを作成する
  * @param target
  * @param options
  * @returns
  */
-export default function createInsensitiveObject<T extends object>(options: CreateInsensitiveObjectOptions<T> = {}) {
+export default function createInsensitiveRecord<T extends GenericRecord>(
+  options: CreateInsensitiveRecordOptions<T> = {},
+): InsensitiveRecord<T> {
   const { target = {} as T, ownProperty, ...standardizeOptions } = options;
-  const isTargetProperty = ownProperty
-    ? (target: T, key: string | number | symbol) => target.hasOwnProperty(key)
-    : stubTrue;
-  const standardizedObject = {} as T;
+  const isTargetProperty = ownProperty ? (target: T, key: GenericRecordKey) => hasOwnProperty(target, key) : stubTrue;
+  const standardizedObject = {} as GenericRecord;
 
   // オリジナルのキーと標準化されたキーのマッピング
-  const keyMap: { [key: string]: string } = {};
+  const keyMap: Record<string, string> = {};
   for (const key in target) {
     if (isTargetProperty(target, key)) {
       if (isString(key)) {
@@ -31,8 +35,8 @@ export default function createInsensitiveObject<T extends object>(options: Creat
     }
   }
 
-  // 標準化された形式が同じキーの取得
-  const getKey = <K extends string | number | symbol>(target: T, key: K) => {
+  // 標準化されたキーの取得
+  const getKey = <K extends GenericRecordKey>(target: T, key: K) => {
     if (key in target === false && isString(key)) {
       // キーを標準化
       if (key in keyMap) {
@@ -44,10 +48,9 @@ export default function createInsensitiveObject<T extends object>(options: Creat
     return key;
   };
 
-  return new Proxy(standardizedObject, {
+  return new Proxy(standardizedObject as InsensitiveRecord<T>, {
     // プロパティの設定時
     set(target, key, value, receiver) {
-      console.log('set', key, value);
       if (isString(key)) {
         if (key in keyMap === false) {
           // キーを標準化して保持する
@@ -59,17 +62,14 @@ export default function createInsensitiveObject<T extends object>(options: Creat
     },
     // プロパティの取得時
     get(target, key, receiver) {
-      console.log('get', key);
       return Reflect.get(target, getKey(target, key), receiver);
     },
     // プロパティの有無判定
     has(target, key) {
-      console.log('has', key);
       return Reflect.has(target, getKey(target, key));
     },
     // プロパティの削除時
     deleteProperty(target, key) {
-      console.log('deleteProperty', key);
       if (isString(key)) {
         const rawKey = key;
         key = getKey(target, rawKey);
@@ -77,18 +77,22 @@ export default function createInsensitiveObject<T extends object>(options: Creat
           // マップからキーを削除
           delete keyMap[rawKey];
           delete keyMap[key];
+          for (const orgKey in keyMap) {
+            if (keyMap[orgKey] === key) {
+              // 標準化されたキーが同じものは削除
+              delete keyMap[orgKey];
+            }
+          }
         }
       }
       return Reflect.deleteProperty(target, key);
     },
     // プロパティの定義取得時
     getOwnPropertyDescriptor(target, key) {
-      console.log('getOwnPropertyDescriptor', key);
       return Reflect.getOwnPropertyDescriptor(target, getKey(target, key));
     },
     // プロパティの定義
     defineProperty(target: T, key: string | symbol, attributes: PropertyDescriptor) {
-      console.log('defineProperty', key);
       return Reflect.defineProperty(target, getKey(target, key), attributes);
     },
   });

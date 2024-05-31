@@ -408,17 +408,22 @@ export const KANA_YOUON = {
 /**
  * 長音を削除する為のマップ
  */
-export const KANA_CHOUON = {
+export const OMIT_KANA_CHOUON = {
   ー: '',
 } as const;
+
+/**
+ * スペースを削除するためのマップ
+ */
+export const OMIT_SPACE = { ' ': '', '　': '' } as const;
 
 /**
  * 改行をHTMLの<br/>置き換える為のマップ
  */
 export const HTML_LINE_FEED = {
+  '\r\n': '<br/>',
   '\r': '<br/>',
   '\n': '<br/>',
-  '\r\n': '<br/>',
 } as const;
 
 /**
@@ -444,11 +449,24 @@ export const HTML = {
  * 複数の変換を組み合わせた変換
  */
 export const PRESETS = {
-  toHalfWidth: ['toHalfWidthAlpha', 'toHalfWidthNum', 'toHalfWidthSign', 'toHalfWidthSpace'],
-  toFullWidth: ['toFullWidthAlpha', 'toFullWidthNum', 'toFullWidthSign', 'toFullWidthSpace'],
-  // HTMLをそのままHTMLに表示するための変換
+  /**
+   * 半角に変換
+   */
+  toHalfWidth: ['toHalfWidthAlphabet', 'toHalfWidthNumber', 'toHalfWidthSign', 'toHalfWidthSpace'],
+
+  /**
+   * 全角に変換
+   */
+  toFullWidth: ['toFullWidthAlphabet', 'toFullWidthNumber', 'toFullWidthSign', 'toFullWidthSpace'],
+
+  /**
+   * HTMLの内容をHTMLで表示するための変換
+   */
   toHtmlOnHtml: ['escapeForHtml', 'toHtmlLineFeed'],
-  // 文字列をそのままHTMLに表示するための変換
+
+  /**
+   * 文字列をそのままHTMLに表示するための変換
+   */
   toTextOnHtml: ['_toEmptyString', 'toHtmlOnHtml'],
 };
 
@@ -485,10 +503,10 @@ export const FUNCTIONS = {
 
 export const TRANSFORMATION_TYPES = {
   // mapによる変換
-  TO_FULL_WIDTH_ALPHA: 'toFullWidthAlpha',
-  TO_HALF_WIDTH_ALPHA: 'toHalfWidthAlpha',
-  TO_FULL_WIDTH_NUM: 'toFullWidthNum',
-  TO_HALF_WIDTH_NUM: 'toHalfWidthNum',
+  TO_FULL_WIDTH_ALPHABET: 'toFullWidthAlphabet',
+  TO_HALF_WIDTH_ALPHABET: 'toHalfWidthAlphabet',
+  TO_FULL_WIDTH_NUMBER: 'toFullWidthNumber',
+  TO_HALF_WIDTH_NUMBER: 'toHalfWidthNumber',
   TO_FULL_WIDTH_SIGN: 'toFullWidthSign',
   TO_HALF_WIDTH_SIGN: 'toHalfWidthSign',
   TO_FULL_WIDTH_SPACE: 'toFullWidthSpace',
@@ -501,6 +519,7 @@ export const TRANSFORMATION_TYPES = {
   TO_WITHOUT_SOKUON: 'toWithoutSokuon',
   TO_WITHOUT_YOUON: 'toWithoutYouon',
   TO_WITHOUT_CHOUON: 'toWithoutChouon',
+  TO_WITHOUT_SPACE: 'toWithoutSpace',
   TO_HTML_LINE_FEED: 'toHtmlLineFeed',
   TO_TEXT_LINE_FEED: 'toTextLineFeed',
   ESCAPE_FOR_HTML: 'escapeForHtml',
@@ -525,13 +544,13 @@ export const TRANSFORMATION_TYPES = {
 export const TRANSFORMATIONS = [
   {
     map: ALPHABET_WIDTH,
-    type: TRANSFORMATION_TYPES.TO_FULL_WIDTH_ALPHA,
-    reverseType: TRANSFORMATION_TYPES.TO_HALF_WIDTH_ALPHA,
+    type: TRANSFORMATION_TYPES.TO_FULL_WIDTH_ALPHABET,
+    reverseType: TRANSFORMATION_TYPES.TO_HALF_WIDTH_ALPHABET,
   },
   {
     map: NUMBER_WIDTH,
-    type: TRANSFORMATION_TYPES.TO_FULL_WIDTH_NUM,
-    reverseType: TRANSFORMATION_TYPES.TO_HALF_WIDTH_NUM,
+    type: TRANSFORMATION_TYPES.TO_FULL_WIDTH_NUMBER,
+    reverseType: TRANSFORMATION_TYPES.TO_HALF_WIDTH_NUMBER,
   },
   {
     map: SIGN_WIDTH,
@@ -548,7 +567,8 @@ export const TRANSFORMATIONS = [
   { map: KANA_DAKUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_DAKUON },
   { map: KANA_SOKUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_SOKUON },
   { map: KANA_YOUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_YOUON },
-  { map: KANA_CHOUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_CHOUON },
+  { map: OMIT_KANA_CHOUON, type: TRANSFORMATION_TYPES.TO_WITHOUT_CHOUON },
+  { map: OMIT_SPACE, type: TRANSFORMATION_TYPES.TO_WITHOUT_SPACE },
   { map: HTML_LINE_FEED, type: TRANSFORMATION_TYPES.TO_HTML_LINE_FEED },
   { map: TEXT_LINE_FEED, type: TRANSFORMATION_TYPES.TO_TEXT_LINE_FEED },
   { map: HTML, type: TRANSFORMATION_TYPES.ESCAPE_FOR_HTML, reverseType: TRANSFORMATION_TYPES.UNESCAPE_FROM_HTML },

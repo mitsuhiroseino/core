@@ -35,28 +35,28 @@ describe('transform', () => {
     expect(result).toBe('ABCDEFGHİJKLMNOPQRSTUVWXYZＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ');
   });
 
-  test('toFullWidthAlpha', () => {
-    const result = transform('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 'toFullWidthAlpha');
+  test('toFullWidthAlphabet', () => {
+    const result = transform('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 'toFullWidthAlphabet');
     expect(result).toBe(
       'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ',
     );
   });
 
-  test('toHalfWidthAlpha', () => {
+  test('toHalfWidthAlphabet', () => {
     const result = transform(
       'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ',
-      'toHalfWidthAlpha',
+      'toHalfWidthAlphabet',
     );
     expect(result).toBe('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
   });
 
-  test('toFullWidthNum', () => {
-    const result = transform('0123456789', 'toFullWidthNum');
+  test('toFullWidthNumber', () => {
+    const result = transform('0123456789', 'toFullWidthNumber');
     expect(result).toBe('０１２３４５６７８９');
   });
 
-  test('toHalfWidthNum', () => {
-    const result = transform('０１２３４５６７８９', 'toHalfWidthNum');
+  test('toHalfWidthNumber', () => {
+    const result = transform('０１２３４５６７８９', 'toHalfWidthNumber');
     expect(result).toBe('0123456789');
   });
 
@@ -143,6 +143,16 @@ describe('transform', () => {
     expect(result).toBe('あいうえおやゆよわアイウエオヤユヨワ');
   });
 
+  test('toWithoutChouon', () => {
+    const result = transform('あーいーうーえーおー', 'toWithoutChouon');
+    expect(result).toBe('あいうえお');
+  });
+
+  test('toWithoutSpace', () => {
+    const result = transform('あ い　う え　お ', 'toWithoutSpace');
+    expect(result).toBe('あいうえお');
+  });
+
   test('toHtmlLineFeed', () => {
     const result = transform('1行目\r2行目\r\n3行目\n4行目', 'toHtmlLineFeed');
     expect(result).toBe('1行目<br/>2行目<br/>3行目<br/>4行目');
@@ -205,5 +215,27 @@ describe('transform', () => {
   test('toHalfWidth & toUpperCase & toKatakana', () => {
     const result = transform('答えはＡｂｃ１００　＆　Ｄｅｆ２００；', ['toHalfWidth', 'toUpperCase', 'toKatakana']);
     expect(result).toBe('答エハABC100 & DEF200;');
+  });
+
+  test('replacementMap', () => {
+    const result = transform('答えはＡｂｃ１００　＆　Ｄｅｆ２００；', 'toHalfWidth', {
+      replacementMap: { '０': '零', '１': '壱', '２': '弐' },
+    });
+    expect(result).toBe('答えはAbc壱零零 & Def弐零零;');
+    // キャッシュが使用されている(と思われる)ことの確認
+    const result2 = transform('答えはＡｂｃ１００　＆　Ｄｅｆ２００；', 'toHalfWidth', {
+      replacementMap: { '０': '零', '１': '壱', '２': '弐' },
+    });
+    expect(result2).toBe('答えはAbc壱零零 & Def弐零零;');
+    // キャッシュが使用されないことの確認
+    const result3 = transform('答えはＡｂｃ１００　＆　Ｄｅｆ２００；', 'toHalfWidth', {
+      replacementMap: { '０': '〇', '１': '一', '２': '二' },
+    });
+    expect(result3).toBe('答えはAbc一〇〇 & Def二〇〇;');
+    // replacementMapのみ
+    const result4 = transform('答えはＡｂｃ１００　＆　Ｄｅｆ２００；', null, {
+      replacementMap: { '０': '〇', '１': '一', '２': '二' },
+    });
+    expect(result4).toBe('答えはＡｂｃ一〇〇　＆　Ｄｅｆ二〇〇；');
   });
 });

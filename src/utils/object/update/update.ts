@@ -1,6 +1,6 @@
 import isSame from '../../lang/isSame';
 import hasOwnProperty from '../hasOwnProperty';
-import put from '../put';
+import { GenericRecord } from '../types';
 import { UpdateOptions } from './types';
 
 /**
@@ -11,12 +11,8 @@ import { UpdateOptions } from './types';
  * @param options オプション
  * @returns 更新されたキーと以前の値
  */
-export default function update(
-  object: { [key: string]: unknown },
-  values: { [key: string]: unknown },
-  options?: UpdateOptions,
-): { [key: string]: unknown } {
-  const updated: { [key: string]: unknown } = {},
+export default function update(object: GenericRecord, values: GenericRecord, options?: UpdateOptions): GenericRecord {
+  const updated: GenericRecord = {},
     keys = Object.keys(values);
   for (const key of keys) {
     if (hasOwnProperty(values, key)) {

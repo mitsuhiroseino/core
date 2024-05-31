@@ -1,5 +1,5 @@
 import invert from 'lodash/invert';
-
+import isEqual from 'lodash/isEqual';
 import asArray from '../../array/asArray';
 import replaceWithMap, { ReplacementMap, createRegExpForReplaceWidthMap } from '../replaceWithMap';
 import { ReplacementSetting, ReplacerConfig } from './types';
@@ -11,7 +11,7 @@ export default class Replacer {
   /**
    * マップのキャッシュ
    */
-  private _cache: { [type: string]: { map: ReplacementMap; regexp: RegExp } } = {};
+  private _cache: { [type: string]: { map: ReplacementMap; regexp: RegExp; additionalMap?: ReplacementMap } } = {};
 
   /**
    * 登録された順変換の全type
@@ -70,10 +70,11 @@ export default class Replacer {
    * マップを用いて変換を行う
    * @param str 変換元文字列
    * @param types 行う変換の名称を指定した配列。未指定の場合は現在登録されている全ての順変換を実施
+   * @param additionalMap 追加のマップ
    * @returns
    */
-  replace(str: string, types: string | string[] = this._types): string {
-    const { map, regexp } = this._getReplacementInfo(types);
+  replace(str: string, types: string | string[] = this._types, additionalMap?: ReplacementMap): string {
+    const { map, regexp } = this._getReplacementInfo(types, additionalMap);
     // mapを用いて置換を実行
     return replaceWithMap(str, map, regexp);
   }
@@ -81,26 +82,28 @@ export default class Replacer {
   /**
    * 置換用マップ&正規表現を取得する。
    * 対象の情報が存在しない場合は作成する
-   * @param types
+   * @param types 行う変換の名称を指定した配列。未指定の場合は現在登録されている全ての順変換を実施
+   * @param additionalMap 追加のマップ
    * @returns
    */
-  private _getReplacementInfo(types: string | string[]) {
-    const replacementType = asArray(types).join('|'),
-      cache = this._cache[replacementType];
-    if (cache) {
+  private _getReplacementInfo(types: string | string[], additionalMap?: ReplacementMap) {
+    const replacementType = asArray(types).join('|');
+    const cache = this._cache[replacementType];
+    if (cache && isEqual(cache.additionalMap, additionalMap)) {
       return cache;
     } else {
       let mergedMap = {};
       for (const type of types) {
-        let map;
         if (type in this._cache) {
-          map = this._getReplacementInfo(type).map;
-        } else {
-          map = {};
+          const map = this._getReplacementInfo(type).map;
+          mergedMap = Object.assign(mergedMap, map);
         }
-        mergedMap = Object.assign(mergedMap, map);
       }
-      const replacementInfo = { map: mergedMap, regexp: createRegExpForReplaceWidthMap(mergedMap) };
+      if (additionalMap) {
+        // additionalMapを最後にマージすることで、置換対象がと既存のマップと重複していても追加分が有効になる
+        mergedMap = Object.assign(mergedMap, additionalMap);
+      }
+      const replacementInfo = { map: mergedMap, regexp: createRegExpForReplaceWidthMap(mergedMap), additionalMap };
       this._cache[replacementType] = replacementInfo;
       return replacementInfo;
     }

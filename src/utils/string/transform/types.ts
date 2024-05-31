@@ -1,4 +1,7 @@
+import { ReplacementMap } from '../Replacer';
 import { TRANSFORMATION_TYPES } from './constants';
+
+export { ReplacementMap } from '../Replacer';
 
 export type TransformationType = (typeof TRANSFORMATION_TYPES)[keyof typeof TRANSFORMATION_TYPES];
 
@@ -21,4 +24,9 @@ export type TransformOptions = {
    * trueを指定した場合は、変換タイプが重複した場合に先に指定したものだけが有効となる
    */
   withoutDuplicates?: boolean;
+
+  /**
+   * マップを用いた置換設定
+   */
+  replacementMap?: ReplacementMap;
 };

@@ -10,7 +10,17 @@ import { StandardizeOptions } from './types';
 export default function standardize(value: string, options: StandardizeOptions = {}): string {
   if (value) {
     // 文字列あり
-    const { ignoreCase, ingoreWidth, ignoreKana, ignoreDakuon, ignoreSokuon, ignoreYouon, ignoreChouon } = options,
+    const {
+        ignoreCase,
+        ingoreWidth,
+        ignoreKana,
+        ignoreDakuon,
+        ignoreSokuon,
+        ignoreYouon,
+        ignoreChouon,
+        ignoreSpace,
+        transformOptions,
+      } = options,
       transformationTypes: TransformationType[] = [];
 
     if (ingoreWidth) {
@@ -42,8 +52,12 @@ export default function standardize(value: string, options: StandardizeOptions =
       // 長音(ー)を無視する
       transformationTypes.push(TRANSFORMATION_TYPES.TO_WITHOUT_YOUON);
     }
+    if (ignoreSpace) {
+      // スペースを無視する
+      transformationTypes.push(TRANSFORMATION_TYPES.TO_WITHOUT_SPACE);
+    }
 
-    return transform(value, transformationTypes);
+    return transform(value, transformationTypes, transformOptions);
   } else if (value === null && 'nullValue' in options) {
     // nullの場合は別の値に置き換え
     return options.nullValue;
