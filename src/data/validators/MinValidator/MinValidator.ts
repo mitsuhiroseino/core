@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js';
-
 import { i18nResources } from '../../../i18n';
 import ValidatorBase from '../ValidatorBase';
 import { MinValidatorConfig } from './types';

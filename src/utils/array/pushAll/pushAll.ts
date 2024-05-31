@@ -1,5 +1,4 @@
 import isEmpty from 'lodash/isEmpty';
-
 import asArray from '../asArray';
 
 /**

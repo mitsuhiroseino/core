@@ -1,5 +1,4 @@
 import remove from 'lodash/remove';
-
 import Evented from '../../base/Evented';
 import initFactoryable from '../../helpers/initFactoryable';
 import toId from '../../helpers/toId';

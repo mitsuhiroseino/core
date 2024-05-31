@@ -1,5 +1,4 @@
 import isString from 'lodash/isString';
-
 import { IMatcher } from '../../matchers';
 import RegexMatcher from '../../matchers/RegexMatcher';
 import MatcherFilterBase, { MatcherFilterConfigBase } from '../MatcherFilterBase';

@@ -1,5 +1,4 @@
 import identity from 'lodash/identity';
-
 import rebuild from '../rebuild';
 import { CleanOptions } from './types';
 

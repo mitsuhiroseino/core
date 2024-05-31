@@ -1,6 +1,5 @@
 import isRegExp from 'lodash/isRegExp';
 import isString from 'lodash/isString';
-
 import MatcherBase from '../MatcherBase/MatcherBase';
 import { RegexMatchOptions, RegexMatcherConfig } from './types';
 

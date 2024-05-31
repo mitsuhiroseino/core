@@ -1,6 +1,5 @@
 import isPlainObject from 'lodash/isPlainObject';
 import set from 'lodash/set';
-
 import clean from '../clean';
 import { SeparateOptions } from './types';
 

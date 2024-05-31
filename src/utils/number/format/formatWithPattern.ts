@@ -1,7 +1,6 @@
 import BigNumber from 'bignumber.js';
 import isEmpty from 'lodash/isEmpty';
 import trimEnd from 'lodash/trimEnd';
-
 import { Pattern, PatternInfo } from '../toNumberPattern';
 import { FormatWithPatternOptions } from './types';
 

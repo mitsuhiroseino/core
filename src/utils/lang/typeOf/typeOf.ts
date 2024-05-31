@@ -4,7 +4,6 @@ import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import isPlainObject from 'lodash/isPlainObject';
 import isString from 'lodash/isString';
-
 import { NO_VALUE, VALUE_TYPE } from './constants';
 import { ValueType } from './types';
 

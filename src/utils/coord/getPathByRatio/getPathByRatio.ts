@@ -1,5 +1,4 @@
 import slice from 'lodash/slice';
-
 import getPointByRatio from '../getPointByRatio';
 import { GetPathByRatioOptions, GetPathByRatioResult } from './types';
 

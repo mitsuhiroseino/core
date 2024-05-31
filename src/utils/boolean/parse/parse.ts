@@ -1,6 +1,5 @@
 import isBoolean from 'lodash/isBoolean';
 import isEqual from 'lodash/isEqual';
-
 import { ParseOptions } from './types';
 
 /**

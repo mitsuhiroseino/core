@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import slice from 'lodash/slice';
-
 import getAnyValue from '../../collection/getAnyValue';
 import clamp from '../../number/clamp';
 import getValidMinMax from '../../number/getValidMinMax';

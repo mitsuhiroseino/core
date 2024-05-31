@@ -1,5 +1,4 @@
 import isPlainObject from 'lodash/isPlainObject';
-
 import { FlattenOptions } from './types';
 
 /**

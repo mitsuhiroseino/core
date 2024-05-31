@@ -1,5 +1,4 @@
 import isPlainObject from 'lodash/isPlainObject';
-
 import Base from '../../../base/Base';
 import { FormatterConfig, FormatterFactory, IFormatter } from '../../../formatters';
 import getFactoryableType from '../../../helpers/getFactoryableType';

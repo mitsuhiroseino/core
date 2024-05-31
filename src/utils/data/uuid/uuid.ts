@@ -1,5 +1,4 @@
 import { customAlphabet } from 'nanoid';
-
 import { UuidOptions } from './types';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 16);

@@ -3,7 +3,6 @@ import isDate from 'lodash/isDate';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
 import size from 'lodash/size';
-
 import compareBoolean from '../../boolean/compare';
 import compareDate from '../../date/compare';
 import preCompare from '../../lang/preCompare';

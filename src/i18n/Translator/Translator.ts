@@ -1,5 +1,4 @@
 import isString from 'lodash/isString';
-
 import Evented from '../../base/Evented';
 import { FormatterFactory } from '../../formatters';
 import StringFormatter from '../../formatters/StringFormatter';

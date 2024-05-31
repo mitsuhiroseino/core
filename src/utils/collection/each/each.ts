@@ -1,6 +1,5 @@
 import isPlainObject from 'lodash/isPlainObject';
 import toArray from 'lodash/toArray';
-
 import isIterable from '../../lang/isIterable';
 
 /**

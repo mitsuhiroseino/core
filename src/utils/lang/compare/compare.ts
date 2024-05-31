@@ -2,7 +2,6 @@ import isBoolean from 'lodash/isBoolean';
 import isDate from 'lodash/isDate';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
-
 import compareArray from '../../array/compare';
 import compareBoolean from '../../boolean/compare';
 import compareDate from '../../date/compare';

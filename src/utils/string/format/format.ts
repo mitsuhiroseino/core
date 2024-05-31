@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
-
 import extractTokens from '../extractTokens';
 import replaceAll from '../replaceAll';
 import { FormatOptions } from './types';

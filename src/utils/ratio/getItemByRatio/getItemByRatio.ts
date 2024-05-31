@@ -1,5 +1,4 @@
 import findLastIndex from 'lodash/findLastIndex';
-
 import { GetItemByRatioOptions, GetItemByRatioResult } from './types';
 
 const CALC_SUM = (frame1: any, frame2: any) => frame1 + frame2,

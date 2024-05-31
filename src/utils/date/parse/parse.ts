@@ -3,7 +3,6 @@ import parseDateString from 'date-fns/parse';
 import isDate from 'lodash/isDate';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
-
 import asArray from '../../array/asArray';
 import toUTC from '../toUTC';
 import { ParseOptions } from './types';

@@ -1,5 +1,4 @@
 import isNumber from 'lodash/isNumber';
-
 import toPositiveNumber from '../toPositiveNumber';
 import { ToNaturalNumberOptions } from './types';
 

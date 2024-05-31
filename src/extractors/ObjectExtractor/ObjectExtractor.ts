@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import isObjectLike from 'lodash/isObjectLike';
-
 import ExtractorBase from '../ExtractorBase';
 import { ObjectExtractOptions, ObjectExtractorConfig } from './types';
 

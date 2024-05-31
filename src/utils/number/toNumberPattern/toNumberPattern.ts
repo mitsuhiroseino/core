@@ -1,5 +1,4 @@
 import last from 'lodash/last';
-
 import isEnclosedIn from '../../string/isEnclosedIn';
 import { Pattern, PatternInfo } from './types';
 

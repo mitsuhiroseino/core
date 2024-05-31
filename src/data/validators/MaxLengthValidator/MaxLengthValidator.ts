@@ -1,5 +1,4 @@
 import size from 'lodash/size';
-
 import { i18nResources } from '../../../i18n';
 import ValidatorBase from '../ValidatorBase';
 import { MaxLengthValidatorConfig } from './types';

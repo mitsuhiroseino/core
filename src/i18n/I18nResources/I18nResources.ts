@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
-
 import Evented from '../../base/Evented';
 import { I18nResourcesEvents } from './constants';
 import { I18nResource, I18nResourcesConfig, I18nResourcesEventHandlers } from './types';

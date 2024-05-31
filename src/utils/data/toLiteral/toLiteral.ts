@@ -4,7 +4,6 @@ import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import isPlainObject from 'lodash/isPlainObject';
 import isString from 'lodash/isString';
-
 import formatDate from '../../date/format';
 import isIterable from '../../lang/isIterable';
 import { ToLiteralInternalOptions, ToLiteralOptions } from './types';

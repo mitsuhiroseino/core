@@ -1,5 +1,4 @@
 import * as geolib from 'geolib';
-
 import { GetDistance2DOptions } from '../../coord/getDistance2D';
 import getPointByRatio from '../../coord/getPointByRatio';
 import { GetGeoPointByRatioOptions, GetGeoPointByRatioResult } from './types';

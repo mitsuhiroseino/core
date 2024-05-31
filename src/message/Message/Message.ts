@@ -1,6 +1,5 @@
 import isString from 'lodash/isString';
 import remove from 'lodash/remove';
-
 import DestructibleBase from '../../base/DestructibleBase';
 import { t } from '../../i18n';
 import asArray from '../../utils/array/asArray';

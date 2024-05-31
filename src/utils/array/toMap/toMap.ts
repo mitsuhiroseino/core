@@ -1,5 +1,4 @@
 import _set from 'lodash/set';
-
 import asArray from '../asArray';
 
 /**

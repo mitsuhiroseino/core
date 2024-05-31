@@ -1,5 +1,4 @@
 import isObject from 'lodash/isObject';
-
 import { ToOptionItemOptions } from './types';
 
 /**

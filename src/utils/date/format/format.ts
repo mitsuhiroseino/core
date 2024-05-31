@@ -1,5 +1,4 @@
 import formatDate from 'date-fns/format';
-
 import fromUTC from '../fromUTC';
 import { FormatOptions } from './types';
 

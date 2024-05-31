@@ -1,5 +1,4 @@
 import isPlainObject from 'lodash/isPlainObject';
-
 import MatcherBase from '../MatcherBase/MatcherBase';
 import { ListMatchOptions, ListMatcherConfig } from './types';
 

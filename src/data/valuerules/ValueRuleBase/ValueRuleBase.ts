@@ -1,5 +1,4 @@
 import isBoolean from 'lodash/isBoolean';
-
 import DestructibleBase from '../../../base/DestructibleBase';
 import initFactoryable from '../../../helpers/initFactoryable';
 import { MESSAGE_LEVEL, MESSAGE_TYPE, Message } from '../../../message';

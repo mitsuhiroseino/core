@@ -6,7 +6,7 @@ import { WithPromiseOptions } from './types';
  * @returns
  */
 export default function withPromise<R = any[]>(
-  execute: (callback: (...args: any[]) => any) => void,
+  execute: (callback: (...args: any[]) => void) => void,
   options: WithPromiseOptions = {},
 ): Promise<R> {
   const { argIndex } = options;

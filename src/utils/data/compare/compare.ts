@@ -5,7 +5,6 @@ import isNumber from 'lodash/isNumber';
 import isPlainObject from 'lodash/isPlainObject';
 import isString from 'lodash/isString';
 import size from 'lodash/size';
-
 import { DIFFERENCE_TYPE, NO_VALUE, VALUE_TYPE } from './constants';
 import { CompareResult, DifferenceType, ValueType } from './types';
 
