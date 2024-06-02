@@ -11,7 +11,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.ARRAY,
           type2: VALUE_TYPE.ARRAY,
-          value2: ARRAY0,
+          value1: ARRAY0,
           value2: ARRAY00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
           children: [
@@ -19,7 +19,7 @@ describe('compare', () => {
               key: 0,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 0,
+              value1: 0,
               value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -27,7 +27,7 @@ describe('compare', () => {
               key: 1,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 1,
+              value1: 1,
               value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -35,7 +35,7 @@ describe('compare', () => {
               key: 2,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 2,
+              value1: 2,
               value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -48,7 +48,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.ARRAY,
           type2: VALUE_TYPE.ARRAY,
-          value2: ARRAY0,
+          value1: ARRAY0,
           value2: ARRAY_SIZE,
           difference: DIFFERENCE_TYPE.SIZE,
           children: [
@@ -56,7 +56,7 @@ describe('compare', () => {
               key: 0,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 0,
+              value1: 0,
               value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -64,7 +64,7 @@ describe('compare', () => {
               key: 1,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 1,
+              value1: 1,
               value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -72,7 +72,7 @@ describe('compare', () => {
               key: 2,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NO_TYPE,
-              value2: 2,
+              value1: 2,
               value2: NO_VALUE,
               difference: DIFFERENCE_TYPE.KEY,
             },
@@ -85,7 +85,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.ARRAY,
           type2: VALUE_TYPE.ARRAY,
-          value2: ARRAY0,
+          value1: ARRAY0,
           value2: ARRAY_VALUE,
           difference: DIFFERENCE_TYPE.CHILDREN,
           children: [
@@ -93,7 +93,7 @@ describe('compare', () => {
               key: 0,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 0,
+              value1: 0,
               value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -101,7 +101,7 @@ describe('compare', () => {
               key: 1,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 1,
+              value1: 1,
               value2: 2,
               difference: DIFFERENCE_TYPE.VALUE,
             },
@@ -109,7 +109,7 @@ describe('compare', () => {
               key: 2,
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 2,
+              value1: 2,
               value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -129,7 +129,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.OBJECT,
           type2: VALUE_TYPE.OBJECT,
-          value2: OBJECT0,
+          value1: OBJECT0,
           value2: OBJECT00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
           children: [
@@ -137,7 +137,7 @@ describe('compare', () => {
               key: 'a',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 0,
+              value1: 0,
               value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -145,7 +145,7 @@ describe('compare', () => {
               key: 'b',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 1,
+              value1: 1,
               value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -153,7 +153,7 @@ describe('compare', () => {
               key: 'c',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 2,
+              value1: 2,
               value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -166,7 +166,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.OBJECT,
           type2: VALUE_TYPE.OBJECT,
-          value2: OBJECT0,
+          value1: OBJECT0,
           value2: OBJECT_SIZE,
           difference: DIFFERENCE_TYPE.SIZE,
           children: [
@@ -174,7 +174,7 @@ describe('compare', () => {
               key: 'a',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 0,
+              value1: 0,
               value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -182,7 +182,7 @@ describe('compare', () => {
               key: 'b',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 1,
+              value1: 1,
               value2: 1,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -190,7 +190,7 @@ describe('compare', () => {
               key: 'c',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NO_TYPE,
-              value2: 2,
+              value1: 2,
               value2: NO_VALUE,
               difference: DIFFERENCE_TYPE.KEY,
             },
@@ -203,7 +203,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.OBJECT,
           type2: VALUE_TYPE.OBJECT,
-          value2: OBJECT0,
+          value1: OBJECT0,
           value2: OBJECT_VALUE,
           difference: DIFFERENCE_TYPE.CHILDREN,
           children: [
@@ -211,7 +211,7 @@ describe('compare', () => {
               key: 'a',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 0,
+              value1: 0,
               value2: 0,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -219,7 +219,7 @@ describe('compare', () => {
               key: 'b',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 1,
+              value1: 1,
               value2: 2,
               difference: DIFFERENCE_TYPE.VALUE,
             },
@@ -227,7 +227,7 @@ describe('compare', () => {
               key: 'c',
               type1: VALUE_TYPE.NUMBER,
               type2: VALUE_TYPE.NUMBER,
-              value2: 2,
+              value1: 2,
               value2: 2,
               difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
             },
@@ -246,7 +246,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.UNDEFINED,
           type2: VALUE_TYPE.UNDEFINED,
-          value2: UNDEFINED0,
+          value1: UNDEFINED0,
           value2: UNDEFINED00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -257,7 +257,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.UNDEFINED,
           type2: VALUE_TYPE.NULL,
-          value2: UNDEFINED0,
+          value1: UNDEFINED0,
           value2: UNDEFINED_VALUE,
           difference: DIFFERENCE_TYPE.TYPE,
         };
@@ -274,7 +274,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.NULL,
           type2: VALUE_TYPE.NULL,
-          value2: NULL0,
+          value1: NULL0,
           value2: NULL00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -285,7 +285,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.NULL,
           type2: VALUE_TYPE.UNDEFINED,
-          value2: NULL0,
+          value1: NULL0,
           value2: NULL_VALUE,
           difference: DIFFERENCE_TYPE.TYPE,
         };
@@ -302,7 +302,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.STRING,
           type2: VALUE_TYPE.STRING,
-          value2: STRING0,
+          value1: STRING0,
           value2: STRING00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -313,7 +313,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.STRING,
           type2: VALUE_TYPE.STRING,
-          value2: STRING0,
+          value1: STRING0,
           value2: STRING_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
@@ -330,7 +330,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.NUMBER,
           type2: VALUE_TYPE.NUMBER,
-          value2: NUMBER0,
+          value1: NUMBER0,
           value2: NUMBER00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -341,7 +341,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.NUMBER,
           type2: VALUE_TYPE.NUMBER,
-          value2: NUMBER0,
+          value1: NUMBER0,
           value2: NUMBER_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
@@ -358,7 +358,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.BOOLEAN,
           type2: VALUE_TYPE.BOOLEAN,
-          value2: BOOLEAN0,
+          value1: BOOLEAN0,
           value2: BOOLEAN00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -369,7 +369,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.BOOLEAN,
           type2: VALUE_TYPE.BOOLEAN,
-          value2: BOOLEAN0,
+          value1: BOOLEAN0,
           value2: BOOLEAN_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
@@ -386,7 +386,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.DATE,
           type2: VALUE_TYPE.DATE,
-          value2: DATE0,
+          value1: DATE0,
           value2: DATE00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -397,7 +397,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.DATE,
           type2: VALUE_TYPE.DATE,
-          value2: DATE0,
+          value1: DATE0,
           value2: DATE_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
@@ -414,7 +414,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.FUNCTION,
           type2: VALUE_TYPE.FUNCTION,
-          value2: FUNCTION0,
+          value1: FUNCTION0,
           value2: FUNCTION00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -425,7 +425,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.FUNCTION,
           type2: VALUE_TYPE.FUNCTION,
-          value2: FUNCTION0,
+          value1: FUNCTION0,
           value2: FUNCTION_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };
@@ -442,7 +442,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.UNKNOWN,
           type2: VALUE_TYPE.UNKNOWN,
-          value2: UNKNOWN0,
+          value1: UNKNOWN0,
           value2: UNKNOWN00,
           difference: DIFFERENCE_TYPE.NO_DIFFERENCE,
         };
@@ -453,7 +453,7 @@ describe('compare', () => {
         compareResult: CompareResult = {
           type1: VALUE_TYPE.UNKNOWN,
           type2: VALUE_TYPE.UNKNOWN,
-          value2: UNKNOWN0,
+          value1: UNKNOWN0,
           value2: UNKNOWN_VALUE,
           difference: DIFFERENCE_TYPE.VALUE,
         };

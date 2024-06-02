@@ -2,7 +2,7 @@ import applyIf from 'src/utils/function/applyIf';
 
 describe('applyIf', () => {
   test('fnあり', () => {
-    const fn = jest.fn(() => true),
+    const fn = jest.fn((arg0: string, arg1: string, arg2: string) => true),
       result = applyIf(fn, ['arg0', 'arg1', 'arg2']);
     expect(result).toBe(true);
     expect(fn).toBeCalledTimes(1);

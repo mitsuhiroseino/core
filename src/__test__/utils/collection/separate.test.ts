@@ -1,7 +1,7 @@
 import isBoolean from 'lodash/isBoolean';
 import isPlainObject from 'lodash/isPlainObject';
 import isString from 'lodash/isString';
-import separate from 'src/utils/collections/separate';
+import separate from 'src/utils/collection/separate';
 
 describe('separate', () => {
   describe('default', () => {

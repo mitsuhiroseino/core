@@ -1,4 +1,4 @@
-import update, { EQUALITY_TYPE } from 'src/utils/object/update';
+import update, { COMPARE_MODE } from 'src/utils/object/update';
 
 describe('update', () => {
   const getValue = () => ({
@@ -59,7 +59,7 @@ describe('update', () => {
   describe('options', () => {
     test('equalityType', () => {
       const value = getValue(),
-        result = update(value, { number: '1' }, { equalityType: EQUALITY_TYPE.LOOSE });
+        result = update(value, { number: '1' }, { compareMode: COMPARE_MODE.LOOSE });
       expect(result).toEqual({});
       expect(value).toEqual({
         string: 'あ',

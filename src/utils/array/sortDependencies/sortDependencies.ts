@@ -86,9 +86,6 @@ function sort<I>(
     reverseLookupMap = makeReverseLookupMap(distinctArray, getId),
     visit = createVisit(itemsMap, dependenciesMap, reverseLookupMap, getId, ignoreNoSubstance);
 
-  console.log('itemsMap', itemsMap);
-  console.log('distinctArray', distinctArray);
-
   for (let i = 0; i < length; i++) {
     if (!visited[i]) {
       visit(distinctArray[i], i, new Set<I>(), sorted, visited);

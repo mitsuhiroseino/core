@@ -14,7 +14,7 @@ export default [
   },
   ...tsPlugin.configs.recommended,
   jsPlugin.configs.recommended,
-  // prettierと競合するlint対応
+  // prettierと競合するlintを無効にする
   prettierPlugin,
   // コンフィグファイルはlintから除外
   { ignores: ['*.config.{js,mjs,ts}'] },

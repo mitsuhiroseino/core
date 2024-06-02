@@ -2,8 +2,8 @@ import isPlainObject from 'lodash/isPlainObject';
 import { RebuildOptions } from './types';
 
 /**
- * 判定用関数の返したundefined以外の値を元にオブジェクトまたは配列を作成します。
- * 判定用関数が未指定の場合は値がundefinedの要素以外でオブジェクトまたは配列をを作成します。
+ * 編集用関数の返したundefined以外の値を元にオブジェクトまたは配列を作成する。
+ * 編集用関数が未指定の場合は値がundefinedの要素以外でオブジェクトまたは配列をを作成する。
  * @param source オブジェクトまたは配列
  * @param fn 値の編集用関数
  * @param options オプション

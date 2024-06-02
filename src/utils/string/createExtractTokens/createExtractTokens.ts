@@ -6,15 +6,18 @@ import { ExtractTokensFn } from './types';
  * @param bracket プレイスホルダーの開始・終了を示す文字列
  * @returns
  */
-export default function createExtractTokens(bracket: [string, string] = ['{{', '}}']): ExtractTokensFn {
+export default function createExtractTokens(bracket: string | [string, string] = ['{{', '}}']): ExtractTokensFn {
+  if (!Array.isArray(bracket)) {
+    bracket = [bracket, bracket];
+  }
+  const [prefix, suffix] = bracket;
+  const escapedPrefix = escapeForRegex(prefix);
+  const escapedSuffix = escapeForRegex(suffix);
   // デフォルトの場合: /\{\{([^{}]+)\}\}/g
-  const [prefix, suffix] = bracket,
-    escapedPrefix = escapeForRegex(prefix),
-    escapedSuffix = escapeForRegex(suffix),
-    pattern = `${escapedPrefix}([^${escapedPrefix}${escapedSuffix}]+)${escapedSuffix}`,
-    regex = new RegExp(pattern, 'g'),
-    prefixLength = prefix.length,
-    suffixLength = suffix.length;
+  const pattern = `${escapedPrefix}([^${escapedPrefix}${escapedSuffix}]+)${escapedSuffix}`;
+  const regex = new RegExp(pattern, 'g');
+  const prefixLength = prefix.length;
+  const suffixLength = suffix.length;
 
   const fn = (str: string, stripEnclosures = false): string[] => {
     // tokenを抽出

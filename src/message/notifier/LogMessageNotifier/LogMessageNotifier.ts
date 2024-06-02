@@ -1,4 +1,4 @@
-import { MessageLevel } from 'src/message/types';
+import { MessageLevel } from '../../../message/types';
 import { MESSAGE_LEVEL } from '../../constants';
 import MessageNotifierBase from '../MessageNotifierBase';
 import { IMessageNotifier } from '../types';

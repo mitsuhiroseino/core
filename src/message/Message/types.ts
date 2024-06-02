@@ -1,4 +1,4 @@
-import { TranslateOptions } from 'src/i18n/Translator';
+import { TranslateOptions } from '../../i18n/Translator';
 import { MessageType, SetOptions } from '../types';
 
 /**
