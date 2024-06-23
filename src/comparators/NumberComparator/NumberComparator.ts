@@ -1,4 +1,4 @@
-import compare from '../../utils/number/compare';
+import compare from '@visue/utils/number/compare';
 import ComparatorBase from '../ComparatorBase';
 import { NumberComparatorConfig, NumberCompareOptions } from './types';
 

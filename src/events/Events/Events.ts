@@ -1,7 +1,7 @@
+import asArray from '@visue/utils/array/asArray';
 import isFunction from 'lodash/isFunction';
 import remove from 'lodash/remove';
 import DestructibleBase from '../../base/DestructibleBase';
-import asArray from '../../utils/array/asArray';
 import {
   EventHandler,
   EventHandlerOptions,

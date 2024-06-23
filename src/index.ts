@@ -19,5 +19,4 @@ export * as relationaloperators from './relationaloperators';
 export * as selections from './selections';
 export * as sorters from './sorters';
 export type * from './types';
-export * as utils from './utils';
 export * as writers from './writers';

@@ -1,4 +1,4 @@
-import { FormatOptions } from '../../utils/date/format';
+import { FormatOptions } from '@visue/utils/date/format';
 import { ExtractOptionsBase, ExtractorConfigBase } from '../ExtractorBase';
 
 /**

@@ -1,4 +1,4 @@
-import parse from '../../utils/object/parse';
+import parse from '@visue/utils/object/parse';
 import ParserBase from '../ParserBase';
 import { ObjectParseOptions, ObjectParserConfig } from './types';
 

@@ -1,4 +1,4 @@
-import { ParseOptions } from '../../utils/date/parse';
+import { ParseOptions } from '@visue/utils/date/parse';
 import { ParseOptionsBase, ParserConfigBase } from '../ParserBase';
 
 /**

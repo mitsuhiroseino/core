@@ -1,4 +1,4 @@
-import compare from '../../utils/string/compare';
+import compare from '@visue/utils/string/compare';
 import ComparatorBase from '../ComparatorBase';
 import { StringComparatorConfig, StringCompareOptions } from './types';
 

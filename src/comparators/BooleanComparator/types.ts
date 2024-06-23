@@ -1,4 +1,4 @@
-import { CompareOptions } from '../../utils/boolean/compare';
+import { CompareOptions } from '@visue/utils/boolean/compare';
 import { ComparatorConfigBase, CompareOptionsBase } from '../ComparatorBase';
 
 /**

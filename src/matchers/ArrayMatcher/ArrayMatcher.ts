@@ -1,4 +1,4 @@
-import match from '../../utils/array/match';
+import match from '@visue/utils/array/match';
 import MatcherBase from '../MatcherBase';
 import { ArrayMatchOptions, ArrayMatcherConfig } from './types';
 

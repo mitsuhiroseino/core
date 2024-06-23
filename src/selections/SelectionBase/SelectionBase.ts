@@ -1,10 +1,10 @@
+import asArray from '@visue/utils/array/asArray';
 import remove from 'lodash/remove';
 import Evented from '../../base/Evented';
 import initFactoryable from '../../helpers/initFactoryable';
 import toId from '../../helpers/toId';
 import toIds from '../../helpers/toIds';
 import { IdentifiableItem } from '../../types';
-import asArray from '../../utils/array/asArray';
 import { ISelection } from '../types';
 import { SelectionEventsBase } from './constants';
 import { SelectionConfigBase, SelectionEventHandlersBase } from './types';

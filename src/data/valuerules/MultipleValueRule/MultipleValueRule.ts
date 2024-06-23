@@ -1,4 +1,4 @@
-import asArray from '../../../utils/array/asArray';
+import asArray from '@visue/utils/array/asArray';
 import TypedValueRule from '../TypedValueRule';
 import { MultipleValueRuleConfig } from './types';
 

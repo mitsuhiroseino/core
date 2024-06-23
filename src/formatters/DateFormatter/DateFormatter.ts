@@ -1,4 +1,4 @@
-import format from '../../utils/date/format';
+import format from '@visue/utils/date/format';
 import FormatterBase from '../FormatterBase';
 import { DateFormatOptions, DateFormatterConfig } from './types';
 

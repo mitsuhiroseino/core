@@ -1,4 +1,4 @@
-import parse from '../../utils/boolean/parse';
+import parse from '@visue/utils/boolean/parse';
 import ParserBase from '../ParserBase';
 import { BooleanParseOptions, BooleanParserConfig } from './types';
 

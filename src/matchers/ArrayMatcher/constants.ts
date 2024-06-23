@@ -1,1 +1,1 @@
-export { RELATIONAL_OPERATOR } from '../../utils/array/match';
+export { RELATIONAL_OPERATOR } from '@visue/utils/array/match';

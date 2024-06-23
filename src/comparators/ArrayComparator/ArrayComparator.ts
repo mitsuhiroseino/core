@@ -1,4 +1,4 @@
-import compare from '../../utils/array/compare';
+import compare from '@visue/utils/array/compare';
 import ComparatorBase from '../ComparatorBase';
 import { ArrayComparatorConfig, ArrayCompareOptions } from './types';
 

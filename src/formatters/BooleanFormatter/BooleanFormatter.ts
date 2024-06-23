@@ -1,4 +1,4 @@
-import format from '../../utils/boolean/format';
+import format from '@visue/utils/boolean/format';
 import FormatterBase from '../FormatterBase';
 import { BooleanFormatOptions, BooleanFormatterConfig } from './types';
 

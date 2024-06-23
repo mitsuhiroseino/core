@@ -1,7 +1,7 @@
+import asArray from '@visue/utils/array/asArray';
 import cloneDeep from 'lodash/cloneDeep';
 import Base from '../../base/Base';
 import initFactoryable from '../../helpers/initFactoryable';
-import asArray from '../../utils/array/asArray';
 import { IReader } from '../types';
 import { ReadOptionsBase, ReaderConfigBase } from './types';
 

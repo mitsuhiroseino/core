@@ -1,4 +1,4 @@
-import match from '../../utils/boolean/match';
+import match from '@visue/utils/boolean/match';
 import MatcherBase from '../MatcherBase';
 import { BooleanMatchOptions, BooleanMatcherConfig } from './types';
 

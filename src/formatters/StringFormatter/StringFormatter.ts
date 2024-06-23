@@ -1,5 +1,5 @@
-import createExtractTokens, { ExtractTokensFn } from '../../utils/string/createExtractTokens';
-import formatString from '../../utils/string/format';
+import createExtractTokens, { ExtractTokensFn } from '@visue/utils/string/createExtractTokens';
+import formatString from '@visue/utils/string/format';
 import FormatterBase from '../FormatterBase';
 import { StringFormatOptions, StringFormatterConfig } from './types';
 

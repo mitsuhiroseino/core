@@ -1,6 +1,6 @@
 import isPlainObject from 'lodash/isPlainObject';
 
-import asArray from '../../../utils/array/asArray';
+import asArray from '@visue/utils/array/asArray';
 import { TypedValueRuleConfig } from '../../valuerules/TypedValueRule';
 import TypedField from '../TypedField';
 import { ValidateValueOptions } from '../types';

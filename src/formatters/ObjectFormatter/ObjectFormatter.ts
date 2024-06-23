@@ -1,4 +1,4 @@
-import format from '../../utils/object/format';
+import format from '@visue/utils/object/format';
 import FormatterBase from '../FormatterBase';
 import { ObjectFormatOptions, ObjectFormatterConfig } from './types';
 

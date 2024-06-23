@@ -1,5 +1,5 @@
-import formatDate from '../../utils/date/format';
-import isVaidDate from '../../utils/date/isValidDate';
+import formatDate from '@visue/utils/date/format';
+import isVaidDate from '@visue/utils/date/isValidDate';
 import ExtractorBase from '../ExtractorBase';
 import { DateExtractOptions, DateExtractorConfig } from './types';
 

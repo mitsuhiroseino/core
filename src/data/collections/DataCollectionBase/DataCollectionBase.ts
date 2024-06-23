@@ -1,9 +1,9 @@
 import remove from 'lodash/remove';
 
+import asArray from '@visue/utils/array/asArray';
+import clear from '@visue/utils/array/clear';
 import { EventsConfig } from '../../../events/Events';
 import toIds from '../../../helpers/toIds';
-import asArray from '../../../utils/array/asArray';
-import clear from '../../../utils/array/clear';
 import { EntryItem, IEntry } from '../../entries';
 import DataEntry from '../../entries/DataEntry';
 import { IValueRule, ValueRuleFactory } from '../../valuerules';

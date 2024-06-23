@@ -1,5 +1,5 @@
+import match from '@visue/utils/number/match';
 import size from 'lodash/size';
-import match from '../../utils/number/match';
 import MatcherBase from '../MatcherBase';
 import { LengthMatchOptions, LengthMatcherConfig } from './types';
 

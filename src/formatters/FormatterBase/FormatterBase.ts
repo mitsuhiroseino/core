@@ -1,6 +1,6 @@
+import toValidValue from '@visue/utils/lang/toValidValue';
 import Base from '../../base/Base';
 import initFactoryable from '../../helpers/initFactoryable';
-import toValidValue from '../../utils/lang/toValidValue';
 import { IFormatter } from '../types';
 import { FormatOptionsBase, FormatterConfigBase } from './types';
 

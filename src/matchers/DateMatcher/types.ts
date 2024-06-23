@@ -1,4 +1,4 @@
-import { MatchOptions } from '../../utils/date/match';
+import { MatchOptions } from '@visue/utils/date/match';
 import { MatchOptionsBase, MatcherConfigBase } from '../MatcherBase';
 
 /**

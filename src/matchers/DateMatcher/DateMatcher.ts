@@ -1,4 +1,4 @@
-import match from '../../utils/date/match';
+import match from '@visue/utils/date/match';
 import MatcherBase from '../MatcherBase';
 import { DateMatchOptions, DateMatcherConfig } from './types';
 

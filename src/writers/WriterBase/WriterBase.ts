@@ -1,6 +1,6 @@
+import asArray from '@visue/utils/array/asArray';
 import Base from '../../base/Base';
 import initFactoryable from '../../helpers/initFactoryable';
-import asArray from '../../utils/array/asArray';
 import { IWriter } from '../types';
 import { WriteOptionsBase, WriterConfigBase } from './types';
 

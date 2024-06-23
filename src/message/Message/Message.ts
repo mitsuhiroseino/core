@@ -1,9 +1,9 @@
+import asArray from '@visue/utils/array/asArray';
+import pushUnique from '@visue/utils/array/pushUnique';
 import isString from 'lodash/isString';
 import remove from 'lodash/remove';
 import DestructibleBase from '../../base/DestructibleBase';
 import { t } from '../../i18n';
-import asArray from '../../utils/array/asArray';
-import pushUnique from '../../utils/array/pushUnique';
 import { MESSAGE_LEVEL, MESSAGE_LEVEL_ORDER, MESSAGE_TYPE } from '../constants';
 import MessageNotifierFactory from '../notifier/MessageNotifierFactory';
 import { IMessageNotifier, MessageNotifierConfig } from '../notifier/types';

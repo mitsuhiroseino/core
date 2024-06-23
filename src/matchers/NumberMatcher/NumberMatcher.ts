@@ -1,4 +1,4 @@
-import match from '../../utils/number/match';
+import match from '@visue/utils/number/match';
 import MatcherBase from '../MatcherBase';
 import { NumberMatchOptions, NumberMatcherConfig } from './types';
 

@@ -1,4 +1,4 @@
-import { CompareOptions } from '../../utils/number/compare';
+import { CompareOptions } from '@visue/utils/number/compare';
 import { CompareOptionsBase, SorterConfigBase } from '../SorterBase';
 
 /**

@@ -1,4 +1,4 @@
-import parse from '../../utils/number/parse';
+import parse from '@visue/utils/number/parse';
 import ParserBase from '../ParserBase';
 import { NumberParseOptions, NumberParserConfig } from './types';
 

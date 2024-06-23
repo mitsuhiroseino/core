@@ -1,5 +1,5 @@
+import isEmptyValue from '@visue/utils/lang/isEmptyValue';
 import { i18nResources } from '../../../i18n';
-import isEmptyValue from '../../../utils/lang/isEmptyValue';
 import ValidatorBase from '../ValidatorBase';
 import { RequiredValidatorConfig } from './types';
 

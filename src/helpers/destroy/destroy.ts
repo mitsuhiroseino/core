@@ -1,5 +1,5 @@
+import asArray from '@visue/utils/array/asArray';
 import DestructibleBase from '../../base/DestructibleBase';
-import asArray from '../../utils/array/asArray';
 
 /**
  * DestructibleBaseインスタンスの破棄を行う

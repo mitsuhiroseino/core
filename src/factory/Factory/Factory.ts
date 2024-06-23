@@ -1,8 +1,8 @@
+import asArray from '@visue/utils/array/asArray';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isPlainObject from 'lodash/isPlainObject';
 import isString from 'lodash/isString';
-import asArray from '../../utils/array/asArray';
 import { FactoryConfig, FactoryableConfig, FactoryableConstructor, IFactoryable } from './types';
 
 /**

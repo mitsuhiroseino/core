@@ -1,1 +1,1 @@
-export { RELATIONAL_OPERATOR } from '../../utils/boolean/match';
+export { RELATIONAL_OPERATOR } from '@visue/utils/boolean/match';

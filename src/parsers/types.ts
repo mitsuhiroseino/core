@@ -1,5 +1,5 @@
+import { ToValidValueOptions } from '@visue/utils/lang/toValidValue';
 import { FactoryableConfig, IFactoryable } from '../factory/Factory';
-import { ToValidValueOptions } from '../utils/lang/toValidValue';
 
 /**
  * parseメソッドのオプション

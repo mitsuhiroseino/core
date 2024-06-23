@@ -1,7 +1,7 @@
 /**
  * コンフィグ
  */
-export type ConfigBase = {};
+export type ConfigBase = Record<string, unknown>;
 
 /**
  * インターフェイス

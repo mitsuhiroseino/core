@@ -1,12 +1,12 @@
 import clone from 'lodash/clone';
 
+import asArray from '@visue/utils/array/asArray';
+import remove from '@visue/utils/array/remove';
 import Evented from '../../../base/Evented';
 import { FilterConfig, FilterFactory, IFilter } from '../../../filters';
 import initFactoryable from '../../../helpers/initFactoryable';
 import { ISelection, SelectionFactory } from '../../../selections';
 import { ISorter, SorterConfig, SorterFactory } from '../../../sorters';
-import asArray from '../../../utils/array/asArray';
-import remove from '../../../utils/array/remove';
 import { EntryItem, IEntry } from '../../entries';
 import { ICollection } from '../types';
 import { CollectionBaseEvents } from './constants';

@@ -1,4 +1,4 @@
-import uuid from '../../../utils/data/uuid';
+import uuid from '@visue/utils/data/uuid';
 import { TypedValueRuleConfig } from '../../valuerules/TypedValueRule';
 import FieldBase from '../FieldBase';
 import { TypedFieldConfig, TypedFieldEventHandlers } from './types';

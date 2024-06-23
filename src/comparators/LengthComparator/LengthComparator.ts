@@ -1,6 +1,6 @@
 import size from 'lodash/size';
 
-import compare from '../../utils/number/compare';
+import compare from '@visue/utils/number/compare';
 import ComparatorBase from '../ComparatorBase';
 import { LengthComparatorConfig, LengthCompareOptions } from './types';
 

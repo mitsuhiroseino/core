@@ -1,6 +1,6 @@
+import uuid from '@visue/utils/data/uuid';
 import { ConfigBase, IBase } from '../../base/Base';
 import { Constructor, IdentifiableItem } from '../../types';
-import uuid from '../../utils/data/uuid';
 import { IdentifiableConfig } from './types';
 
 /**

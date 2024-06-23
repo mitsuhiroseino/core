@@ -1,4 +1,4 @@
-import { FormatOptions } from '../../utils/number/format';
+import { FormatOptions } from '@visue/utils/number/format';
 import { FormatOptionsBase, FormatterConfigBase } from '../FormatterBase';
 
 /**

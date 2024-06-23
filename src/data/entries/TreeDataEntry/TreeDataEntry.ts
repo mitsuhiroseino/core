@@ -1,7 +1,7 @@
+import asArray from '@visue/utils/array/asArray';
+import remove from '@visue/utils/array/remove';
 import toId from '../../../helpers/toId';
 import toIds from '../../../helpers/toIds';
-import asArray from '../../../utils/array/asArray';
-import remove from '../../../utils/array/remove';
 import DataEntryBase from '../DataEntryBase';
 import { EntryItem } from '../types';
 import { TreeDataEntryConfig, TreeDataEntryEventHandlers } from './types';

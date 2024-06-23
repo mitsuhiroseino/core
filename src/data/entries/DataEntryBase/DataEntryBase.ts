@@ -1,4 +1,4 @@
-import toMap from '../../../utils/array/toMap';
+import toMap from '@visue/utils/array/toMap';
 import { IValueRule, ValueRuleFactory } from '../../valuerules';
 import EntryBase from '../EntryBase';
 import { EntryItem } from '../types';
