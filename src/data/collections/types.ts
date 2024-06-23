@@ -4,13 +4,13 @@ import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
 import { FilterConfig, IFilter } from '../../filters';
 import { ISelection, SelectionConfig } from '../../selections';
 import { ISorter, SorterConfig } from '../../sorters';
-import { EntryItem, IEntry } from '../entries';
+import { EntityItem, IEntity } from '../entities';
 import { IValueRule, ValueRuleConfig } from '../valuerules';
 
 /**
  * コレクションのコンフィグ
  */
-export type CollectionConfig<I extends EntryItem = EntryItem, S = any[]> = FactoryableConfig & {
+export type CollectionConfig<I extends EntityItem = EntityItem, S = any[]> = FactoryableConfig & {
   /**
    * データソース
    */
@@ -29,13 +29,13 @@ export type CollectionConfig<I extends EntryItem = EntryItem, S = any[]> = Facto
   /**
    * 選択
    */
-  selection?: ISelection<IEntry<I>> | SelectionConfig;
+  selection?: ISelection<IEntity<I>> | SelectionConfig;
 };
 
 /**
  * オブジェクト要素のコレクション
  */
-export interface ICollection<I extends EntryItem = EntryItem, S = any, H = EventHandlers>
+export interface ICollection<I extends EntityItem = EntityItem, S = any, H = EventHandlers>
   extends IObservable<H>,
     IFactoryable,
     IDestructible {
@@ -57,7 +57,7 @@ export interface ICollection<I extends EntryItem = EntryItem, S = any, H = Event
   /**
    * 元レコード配列の取得
    */
-  getSourceEntries(): IEntry<I>[];
+  getSourceEntities(): IEntity<I>[];
 
   /**
    * 元データの件数
@@ -72,7 +72,7 @@ export interface ICollection<I extends EntryItem = EntryItem, S = any, H = Event
   /**
    * フィルター、ソートが適用されたレコード配列の取得
    */
-  getEntries(): IEntry<I>[];
+  getEntities(): IEntity<I>[];
 
   /**
    * フィルター、ソートが適用されたデータの件数
@@ -83,13 +83,13 @@ export interface ICollection<I extends EntryItem = EntryItem, S = any, H = Event
    * IDの一致する要素を1件取得
    * @param id ID
    */
-  get(id: string): IEntry<I> | undefined;
+  get(id: string): IEntity<I> | undefined;
 
   /**
    * 条件に一致する要素を全て取得する
    * @param filter 条件
    */
-  select(filter: IFilter | FilterConfig): IEntry<I>[];
+  select(filter: IFilter | FilterConfig): IEntity<I>[];
 
   /**
    * フィルターの追加
@@ -129,7 +129,7 @@ export interface ICollection<I extends EntryItem = EntryItem, S = any, H = Event
 /**
  * 編集可能なコレクションのコンフィグ
  */
-export type EditableCollectionConfig<I extends EntryItem = EntryItem, S = any[]> = CollectionConfig<I, S> & {
+export type EditableCollectionConfig<I extends EntityItem = EntityItem, S = any[]> = CollectionConfig<I, S> & {
   /**
    * 値規定
    */
@@ -139,30 +139,30 @@ export type EditableCollectionConfig<I extends EntryItem = EntryItem, S = any[]>
 /**
  * 編集可能なオブジェクト要素のコレクション
  */
-export interface IEditableCollection<I extends EntryItem = EntryItem, S = any, H = EventHandlers>
+export interface IEditableCollection<I extends EntityItem = EntityItem, S = any, H = EventHandlers>
   extends ICollection<I, S, H> {
   /**
    * 要素の追加
    * @param items
    * @returns 追加した要素
    */
-  add(items: I | I[]): IEntry<I>[];
+  add(items: I | I[]): IEntity<I>[];
 
   /**
    * 要素の追加
    * @param items
    */
-  update(items: I | I[]): IEntry<I>[];
+  update(items: I | I[]): IEntity<I>[];
 
   /**
    * 要素の追加
    * @returns 削除した要素
    */
-  remove(items: string | I | (string | I)[]): IEntry<I>[];
+  remove(items: string | I | (string | I)[]): IEntity<I>[];
 
   /**
    * 要素の追加
    * @returns 削除した要素
    */
-  claer(): IEntry<I>[];
+  claer(): IEntity<I>[];
 }

@@ -1,12 +1,12 @@
-import { EntryItem } from '../../entries';
+import { EntityItem } from '../../entities';
 import DataCollectionBase from '../DataCollectionBase';
 import { DataCollectionConfig, DataCollectionEventHandlers } from './types';
 
 /**
- * EntryItemのインスタンスをレコードに持つコレクション
+ * EntityItemのインスタンスをレコードに持つコレクション
  */
 class DataCollection<
-  I extends EntryItem = EntryItem,
+  I extends EntityItem = EntityItem,
   S extends I[] = I[],
   H extends DataCollectionEventHandlers<I> = DataCollectionEventHandlers<I>,
   C extends DataCollectionConfig<I, S, H> = DataCollectionConfig<I, S, H>,

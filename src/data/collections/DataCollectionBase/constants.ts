@@ -5,8 +5,8 @@ import { CollectionBaseEvents } from '../CollectionBase';
  */
 export const DataCollectionBaseEvents = {
   ...CollectionBaseEvents,
-  entriesadd: 'entriesadd',
-  entriesupdate: 'entriesupdate',
-  entriesremove: 'entriesremove',
-  entriesclear: 'entriesclear',
+  entitiesadd: 'entitiesadd',
+  entitiesupdate: 'entitiesupdate',
+  entitiesremove: 'entitiesremove',
+  entitiesclear: 'entitiesclear',
 } as const;

@@ -1,5 +1,5 @@
 import { EventInfo } from '../../../events/Observable';
-import { EntryItem, IEntry } from '../../entries';
+import { EntityItem, IEntity } from '../../entities';
 import { CollectionBaseConfig, CollectionBaseEventHandlers } from '../CollectionBase';
 import { EditableCollectionConfig } from '../types';
 import { DataCollectionBaseEvents } from './constants';
@@ -7,18 +7,18 @@ import { DataCollectionBaseEvents } from './constants';
 /**
  * イベントハンドラー
  */
-export type DataCollectionBaseEventHandlers<I extends EntryItem = EntryItem> = CollectionBaseEventHandlers<I> & {
-  [DataCollectionBaseEvents.entriesadd]?: (event: EventInfo<{ entries: IEntry<I>[] }>) => void;
-  [DataCollectionBaseEvents.entriesupdate]?: (event: EventInfo<{ entries: IEntry<I>[] }>) => void;
-  [DataCollectionBaseEvents.entriesremove]?: (event: EventInfo<{ entries: IEntry<I>[] }>) => void;
-  [DataCollectionBaseEvents.entriesclear]?: (event: EventInfo<{ entries: IEntry<I>[] }>) => void;
+export type DataCollectionBaseEventHandlers<I extends EntityItem = EntityItem> = CollectionBaseEventHandlers<I> & {
+  [DataCollectionBaseEvents.entitiesadd]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesupdate]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesremove]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesclear]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
 };
 
 /**
  * コンフィグ
  */
 export type DataCollectionBaseConfig<
-  I extends EntryItem = EntryItem,
+  I extends EntityItem = EntityItem,
   S = any[],
   H extends DataCollectionBaseEventHandlers<I> = DataCollectionBaseEventHandlers<I>,
 > = CollectionBaseConfig<I, S, H> & EditableCollectionConfig<I, S>;

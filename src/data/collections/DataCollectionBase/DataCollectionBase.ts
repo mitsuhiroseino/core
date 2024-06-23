@@ -4,8 +4,8 @@ import asArray from '@visue/utils/array/asArray';
 import clear from '@visue/utils/array/clear';
 import { EventsConfig } from '../../../events/Events';
 import toIds from '../../../helpers/toIds';
-import { EntryItem, IEntry } from '../../entries';
-import DataEntry from '../../entries/DataEntry';
+import { EntityItem, IEntity } from '../../entities';
+import DataEntity from '../../entities/DataEntity';
 import { IValueRule, ValueRuleFactory } from '../../valuerules';
 import CollectionBase from '../CollectionBase';
 import { IEditableCollection } from '../types';
@@ -16,7 +16,7 @@ import { DataCollectionBaseConfig, DataCollectionBaseEventHandlers } from './typ
  * 配列をソースとするコレクションの抽象クラス
  */
 abstract class DataCollectionBase<
-    I extends EntryItem = EntryItem,
+    I extends EntityItem = EntityItem,
     S = I[],
     H extends DataCollectionBaseEventHandlers<I> = DataCollectionBaseEventHandlers<I>,
     C extends DataCollectionBaseConfig<I, S, H> = DataCollectionBaseConfig<I, S, H>,
@@ -39,10 +39,10 @@ abstract class DataCollectionBase<
   protected _getEventsConfig(): EventsConfig<H> {
     return {
       eventTransformation: {
-        // Entryの発火するupdateイベントはentriesupdateに移譲
+        // Entityの発火するupdateイベントはentitiesupdateに移譲
         update: {
-          type: DataCollectionBaseEvents.entriesupdate,
-          convertParams: ({ entry, ...rest }) => ({ entries: [entry], ...rest }),
+          type: DataCollectionBaseEvents.entitiesupdate,
+          convertParams: ({ entity, ...rest }) => ({ entities: [entity], ...rest }),
           target: this,
         },
       },
@@ -54,87 +54,87 @@ abstract class DataCollectionBase<
     me._source = source || ([] as S);
   }
 
-  protected _toSourceEntries(source: S = this._source): IEntry<I>[] {
-    return this._toEntries(source as I[]) as unknown as IEntry<I>[];
+  protected _toSourceEntities(source: S = this._source): IEntity<I>[] {
+    return this._toEntities(source as I[]) as unknown as IEntity<I>[];
   }
 
   /**
-   * itemsをentriesに変換
+   * itemsをentitiesに変換
    * @param items
    * @returns
    */
-  protected _toEntries(items: I | I[]): IEntry<I>[] {
-    return asArray(items).map((item) => this._toEntry(item));
+  protected _toEntities(items: I | I[]): IEntity<I>[] {
+    return asArray(items).map((item) => this._toEntity(item));
   }
 
   /**
-   * itemをentryに変換
+   * itemをentityに変換
    * @param items
    * @returns
    */
-  protected _toEntry(item: I): IEntry<I> {
-    return new DataEntry({
+  protected _toEntity(item: I): IEntity<I> {
+    return new DataEntity({
       item,
       events: this._events as any,
       valueRules: this._valueRules,
     });
   }
 
-  add(items: I | I[]): IEntry<I>[] {
+  add(items: I | I[]): IEntity<I>[] {
     const me = this,
-      entries = me._toEntries(items);
-    me._sourceEntries.push(...entries);
-    me.fire(DataCollectionBaseEvents.entriesadd, { entries });
-    me._applyEntries();
-    return entries;
+      entities = me._toEntities(items);
+    me._sourceEntities.push(...entities);
+    me.fire(DataCollectionBaseEvents.entitiesadd, { entities });
+    me._applyEntities();
+    return entities;
   }
 
-  update(updates: Partial<I> | Partial<I>[]): IEntry<I>[] {
+  update(updates: Partial<I> | Partial<I>[]): IEntity<I>[] {
     const items = asArray(updates),
-      entries: IEntry<I>[] = [];
+      entities: IEntity<I>[] = [];
     for (const item of items) {
-      const entry = this.get(item.$id as string);
-      if (entry) {
-        entry.update(item, true);
-        entries.push(entry);
+      const entity = this.get(item.$id as string);
+      if (entity) {
+        entity.update(item, true);
+        entities.push(entity);
       }
     }
-    this.fire(DataCollectionBaseEvents.entriesupdate, { entries });
-    this._applyEntries();
-    return entries;
+    this.fire(DataCollectionBaseEvents.entitiesupdate, { entities });
+    this._applyEntities();
+    return entities;
   }
 
-  remove(targets: string | I | (string | I)[]): IEntry<I>[] {
+  remove(targets: string | I | (string | I)[]): IEntity<I>[] {
     const me = this,
       ids = toIds(targets).reduce((result, id) => {
         result[id] = true;
         return result;
       }, {});
     // 対象を削除
-    const removed = remove(me._sourceEntries, (entry) => ids[entry.$id]),
-      entries = removed.map(me._releaseEntry);
-    me.fire(DataCollectionBaseEvents.entriesremove, { entries });
-    me._applyEntries();
-    return entries;
+    const removed = remove(me._sourceEntities, (entity) => ids[entity.$id]),
+      entities = removed.map(me._releaseEntity);
+    me.fire(DataCollectionBaseEvents.entitiesremove, { entities });
+    me._applyEntities();
+    return entities;
   }
 
-  claer(): IEntry<I>[] {
+  claer(): IEntity<I>[] {
     const me = this,
-      entries = me._sourceEntries.map(me._releaseEntry);
-    clear(me._sourceEntries);
-    me.fire(DataCollectionBaseEvents.entriesclear, { entries });
-    me._applyEntries();
-    return entries;
+      entities = me._sourceEntities.map(me._releaseEntity);
+    clear(me._sourceEntities);
+    me.fire(DataCollectionBaseEvents.entitiesclear, { entities });
+    me._applyEntities();
+    return entities;
   }
 
   /**
-   * Entryを管理対象から外す際の処理
-   * @param entry
+   * Entityを管理対象から外す際の処理
+   * @param entity
    * @returns
    */
-  private _releaseEntry(entry: IEntry<I>): IEntry<I> {
-    entry.initEvents();
-    return entry;
+  private _releaseEntity(entity: IEntity<I>): IEntity<I> {
+    entity.initEvents();
+    return entity;
   }
 }
 export default DataCollectionBase;

@@ -30,17 +30,17 @@ export type EventTransformationConfig<T = any> = {
  * イベントの変換設定
  * オリジナルのイベントを別のイベント名で発火しなおすための設定
  *
- * Entryの`update`イベントをCollectionの`entryupdate`イベントとして発火しなおしたい場合に、
- * EntryのEventsへ渡すEventTransformationConfigsの例
+ * Entityの`update`イベントをCollectionの`entityupdate`イベントとして発火しなおしたい場合に、
+ * EntityのEventsへ渡すEventTransformationConfigsの例
  *
  *     {
  *         update: {
- *             type: 'entryupdate',
+ *             type: 'entityupdate',
  *             // イベントハンドラーに渡すパラメーターの加工
  *             convertParams: (params: any) => {
- *                 // entryは配列に入れentriesとしてparamsに設定
- *                 const { entry, ...rest } = params;
- *                 return { entries: [entry], ...rest  };
+ *                 // entityは配列に入れentitiesとしてparamsに設定
+ *                 const { entity, ...rest } = params;
+ *                 return { entities: [entity], ...rest  };
  *             },
  *             // updateイベントは発火しない
  *             omitOriginal: true,

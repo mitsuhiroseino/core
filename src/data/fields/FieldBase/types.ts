@@ -8,7 +8,7 @@ import { FieldBaseEvents } from './constants';
  * イベントハンドラー
  */
 export type FieldBaseEventHandlers<V = any> = EventedEventHandlers & {
-  [FieldBaseEvents.change]?: (event: EventInfo<{ entry: FieldBase<V>; value: V }>) => void;
+  [FieldBaseEvents.change]?: (event: EventInfo<{ entity: FieldBase<V>; value: V }>) => void;
 };
 
 /**

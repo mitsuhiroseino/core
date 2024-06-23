@@ -1,12 +1,12 @@
 import { EventedEvents } from '../../../base/Evented';
-import { EntryBaseEvents } from '../../entries/EntryBase';
+import { EntityBaseEvents } from '../../entities/EntityBase';
 
 /**
  * イベント
  */
 export const CollectionBaseEvents = {
   ...EventedEvents,
-  ...EntryBaseEvents,
+  ...EntityBaseEvents,
   sourcechange: 'sourcechange',
   datachange: 'datachange',
   filterchange: 'filterchange',

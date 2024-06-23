@@ -1,12 +1,12 @@
-import { EntryItem, IEntry } from '../../entries';
+import { EntityItem, IEntity } from '../../entities';
 import CollectionBase from '../CollectionBase';
 import { NoopCollectionConfig, NoopCollectionEventHandlers } from './types';
 
 /**
- * 常にエントリーが0件のコレクション
+ * 常にエンティティが0件のコレクション
  */
 class NoopCollection<
-  I extends EntryItem = EntryItem,
+  I extends EntityItem = EntityItem,
   S = any,
   H extends NoopCollectionEventHandlers<I> = NoopCollectionEventHandlers<I>,
   C extends NoopCollectionConfig<I, S, H> = NoopCollectionConfig<I, S, H>,
@@ -18,7 +18,7 @@ class NoopCollection<
 
   protected _setSource(source: S): void {}
 
-  protected _toSourceEntries(source: S): IEntry<I>[] {
+  protected _toSourceEntities(source: S): IEntity<I>[] {
     return [];
   }
 
@@ -30,7 +30,7 @@ class NoopCollection<
     return [];
   }
 
-  getSourceEntries(): IEntry<I>[] {
+  getSourceEntities(): IEntity<I>[] {
     return [];
   }
 

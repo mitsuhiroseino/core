@@ -7,7 +7,7 @@ import { FilterConfig, FilterFactory, IFilter } from '../../../filters';
 import initFactoryable from '../../../helpers/initFactoryable';
 import { ISelection, SelectionFactory } from '../../../selections';
 import { ISorter, SorterConfig, SorterFactory } from '../../../sorters';
-import { EntryItem, IEntry } from '../../entries';
+import { EntityItem, IEntity } from '../../entities';
 import { ICollection } from '../types';
 import { CollectionBaseEvents } from './constants';
 import { CollectionBaseConfig, CollectionBaseEventHandlers } from './types';
@@ -20,11 +20,11 @@ import { CollectionBaseConfig, CollectionBaseEventHandlers } from './types';
  *   - source: フィルタやソートが適用されていない配列または配列の持ち主
  *   - data: フィルタやソートが適用された配列
  *   - item,items: 素のオブジェクトまたはオブジェクト配列
- *   - entry,entries: EntryインスタンスまたはEntryインスタンスの配列
+ *   - entity,entities: EntityインスタンスまたはEntityインスタンスの配列
  *
  */
 abstract class CollectionBase<
-    I extends EntryItem = EntryItem,
+    I extends EntityItem = EntityItem,
     S = any,
     H extends CollectionBaseEventHandlers<I> = CollectionBaseEventHandlers<I>,
     C extends CollectionBaseConfig<I, S, H> = CollectionBaseConfig<I, S, H>,
@@ -55,19 +55,19 @@ abstract class CollectionBase<
   protected _source!: S;
 
   /**
-   * 元エントリー配列
+   * 元エンティティ配列
    */
-  protected _sourceEntries: IEntry<I>[] = [];
+  protected _sourceEntities: IEntity<I>[] = [];
 
   /**
    * ソートやフィルタリングが反映されたデータ
    */
-  protected _entries: IEntry<I>[] = [];
+  protected _entities: IEntity<I>[] = [];
 
   /**
-   * Entryのマップ
+   * Entityのマップ
    */
-  protected _entryMap: { [$id: string]: IEntry<I> } = {};
+  protected _entityMap: { [$id: string]: IEntity<I> } = {};
 
   /**
    * フィルター
@@ -108,18 +108,18 @@ abstract class CollectionBase<
   setSource(source: S): void {
     const me = this;
     me._setSource(source);
-    me._setSourceEntries(me._toSourceEntries());
+    me._setSourceEntities(me._toSourceEntities());
   }
 
   /**
-   * ソースエントリーの差し替え(イベント発火、dataへの適用あり)
-   * @param entries
+   * ソースエンティティの差し替え(イベント発火、dataへの適用あり)
+   * @param entities
    */
-  protected _setSourceEntries(entries: IEntry<I>[]) {
-    this._sourceEntries = entries;
-    this.fire(CollectionBaseEvents.sourcechange, { source: entries });
+  protected _setSourceEntities(entities: IEntity<I>[]) {
+    this._sourceEntities = entities;
+    this.fire(CollectionBaseEvents.sourcechange, { source: entities });
     // sourceが差し替えられたらdataも更新する
-    this._applyEntries(entries);
+    this._applyEntities(entities);
   }
 
   /**
@@ -129,8 +129,8 @@ abstract class CollectionBase<
   protected _setSource_(source: S): void {
     const me = this;
     me._setSource(source as S);
-    me._sourceEntries = me._toSourceEntries();
-    me._applyEntries_();
+    me._sourceEntities = me._toSourceEntities();
+    me._applyEntities_();
   }
 
   /**
@@ -140,73 +140,73 @@ abstract class CollectionBase<
   protected abstract _setSource(source: S): void;
 
   /**
-   * sourceを_sourceEntryに変換する
+   * sourceを_sourceEntityに変換する
    * @param source
    */
-  protected abstract _toSourceEntries(source?: S): IEntry<I>[];
+  protected abstract _toSourceEntities(source?: S): IEntity<I>[];
 
   getSourceItems(): I[] {
-    return this._toItems(this.getSourceEntries());
+    return this._toItems(this.getSourceEntities());
   }
 
-  getSourceEntries(): IEntry<I>[] {
-    return this._sourceEntries;
+  getSourceEntities(): IEntity<I>[] {
+    return this._sourceEntities;
   }
 
   getSourceSize(): number {
-    return this.getSourceEntries().length;
+    return this.getSourceEntities().length;
   }
 
   getItems(): I[] {
-    return this._toItems(this._entries);
+    return this._toItems(this._entities);
   }
 
-  getEntries(): IEntry<I>[] {
-    return this._entries;
+  getEntities(): IEntity<I>[] {
+    return this._entities;
   }
 
   getSize(): number {
-    return this._entries.length;
+    return this._entities.length;
   }
 
   /**
-   * entriesをitemsに変換
-   * @param entries
+   * entitiesをitemsに変換
+   * @param entities
    * @returns
    */
-  protected _toItems(entries: IEntry<I> | IEntry<I>[]): I[] {
-    return asArray(entries).map((entry) => this._toItem(entry));
+  protected _toItems(entities: IEntity<I> | IEntity<I>[]): I[] {
+    return asArray(entities).map((entity) => this._toItem(entity));
   }
 
   /**
-   * entryをitemに変換
-   * @param entries
+   * entityをitemに変換
+   * @param entity
    * @returns
    */
-  protected _toItem(entry: IEntry<I>): I {
-    return entry.item;
+  protected _toItem(entity: IEntity<I>): I {
+    return entity.item;
   }
 
   /**
-   * entriesの差し替え(イベント発火あり)
-   * @param item
+   * entitiesの差し替え(イベント発火あり)
+   * @param entities
    */
-  protected _setEntries(entries: IEntry<I>[]) {
+  protected _setEntities(entities: IEntity<I>[]) {
     const me = this;
-    me._setEntries_(entries);
-    me.fire(CollectionBaseEvents.datachange, { data: entries });
+    me._setEntities_(entities);
+    me.fire(CollectionBaseEvents.datachange, { data: entities });
   }
 
   /**
-   * entriesの差し替え
+   * entitiesの差し替え
    * @param item
    */
-  protected _setEntries_(entries: IEntry<I>[]) {
+  protected _setEntities_(entities: IEntity<I>[]) {
     const me = this;
-    me._entries = entries;
-    me._entryMap = {};
-    for (const entry of me._entries) {
-      me._entryMap[entry.$id] = entry;
+    me._entities = entities;
+    me._entityMap = {};
+    for (const entity of me._entities) {
+      me._entityMap[entity.$id] = entity;
     }
   }
 
@@ -290,22 +290,22 @@ abstract class CollectionBase<
   private _afterFilterChange() {
     this.fire(CollectionBaseEvents.filterchange, { filters: this._filters });
     // フィルターの適用
-    this._applyEntries();
+    this._applyEntities();
   }
 
   /**
    * フィルターを適用する
    */
-  protected _applyFilter(entries: IEntry<I>[] = this.getSourceEntries()): IEntry<I>[] {
+  protected _applyFilter(entities: IEntity<I>[] = this.getSourceEntities()): IEntity<I>[] {
     const me = this,
       filters = me._filters;
-    let filteredEntries;
+    let filteredEntities;
     if (filters.length) {
-      filteredEntries = entries.filter((entry) => me._filters.every((filter) => filter.match(entry.item)));
+      filteredEntities = entities.filter((entity) => me._filters.every((filter) => filter.match(entity.item)));
     } else {
-      filteredEntries = clone(entries);
+      filteredEntities = clone(entities);
     }
-    return filteredEntries;
+    return filteredEntities;
   }
 
   /**
@@ -388,21 +388,21 @@ abstract class CollectionBase<
   private _afterSorterChange() {
     this.fire(CollectionBaseEvents.sortchange, { sorters: this._sorters });
     // ソート状態の適用
-    this._applyEntries();
+    this._applyEntities();
   }
 
   /**
    * ソート状態を適用する
    */
-  protected _applySort(entries: IEntry<I>[] = this.getSourceEntries()): IEntry<I>[] {
+  protected _applySort(entities: IEntity<I>[] = this.getSourceEntities()): IEntity<I>[] {
     const me = this,
       sorters = me._sorters,
       length = sorters.length;
-    let sorteredEntries;
+    let sorteredEntities;
     if (length > 0) {
-      sorteredEntries = clone(entries).sort((entry1, entry2) => {
+      sorteredEntities = clone(entities).sort((entity1, entity2) => {
         for (let i = length - 1; i > -1; i--) {
-          const result = sorters[i].compare(entry1.item, entry2.item);
+          const result = sorters[i].compare(entity1.item, entity2.item);
           if (result !== 0) {
             return result;
           }
@@ -410,45 +410,43 @@ abstract class CollectionBase<
         return 0;
       });
     } else {
-      sorteredEntries = clone(entries);
+      sorteredEntities = clone(entities);
     }
-    return sorteredEntries;
+    return sorteredEntities;
   }
 
   /**
-   * フィルタ、ソートなどを適用しentriesへ反映する(イベント発火あり)
-   * @param entries
+   * フィルタ、ソートなどを適用しentitiesへ反映する(イベント発火あり)
+   * @param entities
    */
-  protected _applyEntries(entries: IEntry<I>[] = this.getSourceEntries()) {
-    const me = this,
-      filteredEntries = me._applyFilter(entries),
-      sortedEntries = me._applySort(filteredEntries);
-    me._setEntries(sortedEntries);
+  protected _applyEntities(entities: IEntity<I>[] = this.getSourceEntities()) {
+    const filteredEntities = this._applyFilter(entities);
+    const sortedEntities = this._applySort(filteredEntities);
+    this._setEntities(sortedEntities);
   }
 
   /**
-   * フィルタ、ソートなどを適用しentriesへ反映する
-   * @param entries
+   * フィルタ、ソートなどを適用しentitiesへ反映する
+   * @param entities
    */
-  protected _applyEntries_(entries: IEntry<I>[] = this.getSourceEntries()) {
-    const me = this,
-      filteredEntries = me._applyFilter(entries),
-      sortedEntries = me._applySort(filteredEntries);
-    me._setEntries_(sortedEntries);
+  protected _applyEntities_(entities: IEntity<I>[] = this.getSourceEntities()) {
+    const filteredEntities = this._applyFilter(entities);
+    const sortedEntities = this._applySort(filteredEntities);
+    this._setEntities_(sortedEntities);
   }
 
-  get(id: string): IEntry<I> | undefined {
-    return this._entryMap[id];
+  get(id: string): IEntity<I> | undefined {
+    return this._entityMap[id];
   }
 
-  select(condition: IFilter | FilterConfig): IEntry<I>[] {
+  select(condition: IFilter | FilterConfig): IEntity<I>[] {
     const filter = this._toFilter(condition);
-    return this._entries.filter((entry) => filter.match(entry.item));
+    return this._entities.filter((entity) => filter.match(entity.item));
   }
 
   destructor(): void {
     const me = this;
-    me._deleteProperties(['_source', '_sourceEntries', '_entries', '_idMap', '_filters', '_sorters', '_selection']);
+    me._deleteProperties(['_source', '_sourceEntities', '_entities', '_idMap', '_filters', '_sorters', '_selection']);
     super.destructor();
   }
 }

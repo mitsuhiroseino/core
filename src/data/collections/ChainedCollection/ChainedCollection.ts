@@ -1,6 +1,6 @@
 import clone from 'lodash/clone';
 
-import { EntryItem, IEntry } from '../../entries';
+import { EntityItem, IEntity } from '../../entities';
 import CollectionBase, { CollectionBaseEvents } from '../CollectionBase';
 import NoopCollection from '../NoopCollection';
 import { ICollection } from '../types';
@@ -10,7 +10,7 @@ import { ChainedCollectionConfig, ChainedCollectionEventHandlers } from './types
  * 他のコレクションと連動するコレクション
  */
 class ChainedCollection<
-  I extends EntryItem = EntryItem,
+  I extends EntityItem = EntityItem,
   S extends ICollection<I> = ICollection<I>,
   H extends ChainedCollectionEventHandlers<I> = ChainedCollectionEventHandlers<I>,
   C extends ChainedCollectionConfig<I, S, H> = ChainedCollectionConfig<I, S, H>,
@@ -32,7 +32,7 @@ class ChainedCollection<
       source.on(
         CollectionBaseEvents.datachange,
         ({ params }) => {
-          me._setSourceEntries(params.data);
+          me._setSourceEntities(params.data);
         },
         { owner: me },
       );
@@ -42,8 +42,8 @@ class ChainedCollection<
     me._source = source;
   }
 
-  protected _toSourceEntries(source: S = this._source): IEntry<I>[] {
-    return clone(source.getEntries());
+  protected _toSourceEntities(source: S = this._source): IEntity<I>[] {
+    return clone(source.getEntities());
   }
 
   destructor(): void {

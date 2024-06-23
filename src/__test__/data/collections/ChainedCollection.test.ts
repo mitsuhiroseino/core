@@ -26,13 +26,13 @@ describe('ChainedCollection', () => {
     ITEM4 = { $id: 'ID4', field0: 4, field1: 0, field2: 0, field3: '!' },
     ITEM5 = { $id: 'ID5', field0: 5, field1: 5, field2: 5, field3: '!!!!!' },
     SOURCE = [ITEM0, ITEM1, ITEM2, ITEM3, ITEM4],
-    EXPECTED_ENTRY0 = { item: ITEM0 },
-    EXPECTED_ENTRY1 = { item: ITEM1 },
-    EXPECTED_ENTRY2 = { item: ITEM2 },
-    EXPECTED_ENTRY3 = { item: ITEM3 },
-    EXPECTED_ENTRY4 = { item: ITEM4 },
-    EXPECTED_ENTRY5 = { item: ITEM5 },
-    EXPECTED_ENTRIES = [EXPECTED_ENTRY0, EXPECTED_ENTRY1, EXPECTED_ENTRY2, EXPECTED_ENTRY3, EXPECTED_ENTRY4];
+    EXPECTED_ENTITY0 = { item: ITEM0 },
+    EXPECTED_ENTITY1 = { item: ITEM1 },
+    EXPECTED_ENTITY2 = { item: ITEM2 },
+    EXPECTED_ENTITY3 = { item: ITEM3 },
+    EXPECTED_ENTITY4 = { item: ITEM4 },
+    EXPECTED_ENTITY5 = { item: ITEM5 },
+    EXPECTED_ENTITIES = [EXPECTED_ENTITY0, EXPECTED_ENTITY1, EXPECTED_ENTITY2, EXPECTED_ENTITY3, EXPECTED_ENTITY4];
 
   describe('source側の操作', () => {
     test('初期状態', () => {
@@ -42,22 +42,22 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY4,
+      expect(collection.getSourceEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY4,
       ]);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual(SOURCE);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY4,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY4,
       ]);
     });
 
@@ -68,11 +68,11 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getSourceEntities()).toMatchObject(EXPECTED_ENTITIES);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual(SOURCE);
-      expect(collection.getEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getEntities()).toMatchObject(EXPECTED_ENTITIES);
     });
 
     test('フィルタリング', () => {
@@ -85,20 +85,20 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(4);
       expect(collection.getSourceItems()).toEqual([ITEM0, ITEM1, ITEM3, ITEM4]);
-      expect(collection.getSourceEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY4,
+      expect(collection.getSourceEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY4,
       ]);
       // dataの状態
       expect(collection.getSize()).toBe(4);
       expect(collection.getItems()).toEqual([ITEM0, ITEM1, ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY4,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY4,
       ]);
 
       const filter1: NumberFilterConfig = {
@@ -113,11 +113,11 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(2);
       expect(collection.getSourceItems()).toEqual([ITEM3, ITEM4]);
-      expect(collection.getSourceEntries()).toMatchObject([EXPECTED_ENTRY3, EXPECTED_ENTRY4]);
+      expect(collection.getSourceEntities()).toMatchObject([EXPECTED_ENTITY3, EXPECTED_ENTITY4]);
       // dataの状態
       expect(collection.getSize()).toBe(2);
       expect(collection.getItems()).toEqual([ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([EXPECTED_ENTRY3, EXPECTED_ENTRY4]);
+      expect(collection.getEntities()).toMatchObject([EXPECTED_ENTITY3, EXPECTED_ENTITY4]);
     });
 
     test('ソーティング', () => {
@@ -130,22 +130,22 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual([ITEM0, ITEM2, ITEM4, ITEM1, ITEM3]);
-      expect(collection.getSourceEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
+      expect(collection.getSourceEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
       ]);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM0, ITEM2, ITEM4, ITEM1, ITEM3]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
       ]);
 
       const sorter1: LengthSorterConfig = { $id: 'sorter1', type: 'length', path: 'field3' };
@@ -154,22 +154,22 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual([ITEM2, ITEM4, ITEM3, ITEM0, ITEM1]);
-      expect(collection.getSourceEntries()).toMatchObject([
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
+      expect(collection.getSourceEntities()).toMatchObject([
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
       ]);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM2, ITEM4, ITEM3, ITEM0, ITEM1]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
       ]);
     });
   });
@@ -188,15 +188,15 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getSourceEntities()).toMatchObject(EXPECTED_ENTITIES);
       // dataの状態
       expect(collection.getSize()).toBe(4);
       expect(collection.getItems()).toEqual([ITEM0, ITEM4, ITEM1, ITEM3]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
       ]);
     });
 
@@ -210,15 +210,15 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getSourceEntities()).toMatchObject(EXPECTED_ENTITIES);
       // dataの状態
       expect(collection.getSize()).toBe(4);
       expect(collection.getItems()).toEqual([ITEM0, ITEM1, ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY4,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY4,
       ]);
 
       const filter1: NumberFilterConfig = {
@@ -233,11 +233,11 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getSourceEntities()).toMatchObject(EXPECTED_ENTITIES);
       // dataの状態
       expect(collection.getSize()).toBe(2);
       expect(collection.getItems()).toEqual([ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([EXPECTED_ENTRY3, EXPECTED_ENTRY4]);
+      expect(collection.getEntities()).toMatchObject([EXPECTED_ENTITY3, EXPECTED_ENTITY4]);
     });
 
     test('ソーティング', () => {
@@ -250,16 +250,16 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getSourceEntities()).toMatchObject(EXPECTED_ENTITIES);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM0, ITEM2, ITEM4, ITEM1, ITEM3]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY1,
-        EXPECTED_ENTRY3,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY1,
+        EXPECTED_ENTITY3,
       ]);
 
       const sorter1: ValueSorterConfig = { $id: 'sorter1', type: 'length', path: 'field3' };
@@ -268,16 +268,16 @@ describe('ChainedCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE);
-      expect(collection.getSourceEntries()).toMatchObject(EXPECTED_ENTRIES);
+      expect(collection.getSourceEntities()).toMatchObject(EXPECTED_ENTITIES);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM2, ITEM4, ITEM3, ITEM0, ITEM1]);
-      expect(collection.getEntries()).toMatchObject([
-        EXPECTED_ENTRY2,
-        EXPECTED_ENTRY4,
-        EXPECTED_ENTRY3,
-        EXPECTED_ENTRY0,
-        EXPECTED_ENTRY1,
+      expect(collection.getEntities()).toMatchObject([
+        EXPECTED_ENTITY2,
+        EXPECTED_ENTITY4,
+        EXPECTED_ENTITY3,
+        EXPECTED_ENTITY0,
+        EXPECTED_ENTITY1,
       ]);
     });
   });

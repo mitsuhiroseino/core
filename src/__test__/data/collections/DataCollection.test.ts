@@ -20,14 +20,14 @@ const getData = () => {
     SOURCE5 = [ITEM0, ITEM1, ITEM2, ITEM3, ITEM4],
     SOURCE3 = [ITEM0, ITEM1, ITEM2],
     SOURCE0 = [],
-    EXPECTED_ENTRY0 = { item: ITEM0 },
-    EXPECTED_ENTRY1 = { item: ITEM1 },
-    EXPECTED_ENTRY2 = { item: ITEM2 },
-    EXPECTED_ENTRY3 = { item: ITEM3 },
-    EXPECTED_ENTRY4 = { item: ITEM4 },
-    EXPECTED_ENTRIES5 = [EXPECTED_ENTRY0, EXPECTED_ENTRY1, EXPECTED_ENTRY2, EXPECTED_ENTRY3, EXPECTED_ENTRY4],
-    EXPECTED_ENTRIES3 = [EXPECTED_ENTRY0, EXPECTED_ENTRY1, EXPECTED_ENTRY2],
-    EXPECTED_ENTRIES0 = [];
+    EXPECTED_ENTITY0 = { item: ITEM0 },
+    EXPECTED_ENTITY1 = { item: ITEM1 },
+    EXPECTED_ENTITY2 = { item: ITEM2 },
+    EXPECTED_ENTITY3 = { item: ITEM3 },
+    EXPECTED_ENTITY4 = { item: ITEM4 },
+    EXPECTED_ENTITIES5 = [EXPECTED_ENTITY0, EXPECTED_ENTITY1, EXPECTED_ENTITY2, EXPECTED_ENTITY3, EXPECTED_ENTITY4],
+    EXPECTED_ENTITIES3 = [EXPECTED_ENTITY0, EXPECTED_ENTITY1, EXPECTED_ENTITY2],
+    EXPECTED_ENTITIES0 = [];
   return {
     VALUE_RULES,
     ITEM0,
@@ -38,14 +38,14 @@ const getData = () => {
     SOURCE5,
     SOURCE3,
     SOURCE0,
-    ENTRY0: EXPECTED_ENTRY0,
-    ENTRY1: EXPECTED_ENTRY1,
-    ENTRY2: EXPECTED_ENTRY2,
-    ENTRY3: EXPECTED_ENTRY3,
-    ENTRY4: EXPECTED_ENTRY4,
-    ENTRIES5: EXPECTED_ENTRIES5,
-    ENTRIES3: EXPECTED_ENTRIES3,
-    ENTRIES0: EXPECTED_ENTRIES0,
+    ENTITY0: EXPECTED_ENTITY0,
+    ENTITY1: EXPECTED_ENTITY1,
+    ENTITY2: EXPECTED_ENTITY2,
+    ENTITY3: EXPECTED_ENTITY3,
+    ENTITY4: EXPECTED_ENTITY4,
+    ENTITIES5: EXPECTED_ENTITIES5,
+    ENTITIES3: EXPECTED_ENTITIES3,
+    ENTITIES0: EXPECTED_ENTITIES0,
   };
 };
 
@@ -59,7 +59,7 @@ describe('DataCollection', () => {
 
   describe('コレクションの操作', () => {
     test('初期状態', () => {
-      const { VALUE_RULES, SOURCE5, ENTRIES5 } = getData();
+      const { VALUE_RULES, SOURCE5, ENTITIES5 } = getData();
       const collection = new DataCollection({
         source: SOURCE5,
         valueRules: VALUE_RULES,
@@ -68,11 +68,11 @@ describe('DataCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual(SOURCE5);
-      expect(collection.getEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getEntities()).toMatchObject(ENTITIES5);
     });
 
     test('フィルタリング', () => {
@@ -84,12 +84,12 @@ describe('DataCollection', () => {
         ITEM3,
         ITEM4,
         SOURCE5,
-        ENTRY0,
-        ENTRY1,
-        ENTRY2,
-        ENTRY3,
-        ENTRY4,
-        ENTRIES5,
+        ENTITY0,
+        ENTITY1,
+        ENTITY2,
+        ENTITY3,
+        ENTITY4,
+        ENTITIES5,
       } = getData();
 
       const filters: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'field1', not: true, value: 2 },
@@ -102,11 +102,11 @@ describe('DataCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(4);
       expect(collection.getItems()).toEqual([ITEM0, ITEM1, ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([ENTRY0, ENTRY1, ENTRY3, ENTRY4]);
+      expect(collection.getEntities()).toMatchObject([ENTITY0, ENTITY1, ENTITY3, ENTITY4]);
 
       const filter: NumberFilterConfig = {
         $id: 'filter1',
@@ -120,22 +120,22 @@ describe('DataCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(2);
       expect(collection.getItems()).toEqual([ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([ENTRY3, ENTRY4]);
+      expect(collection.getEntities()).toMatchObject([ENTITY3, ENTITY4]);
 
       collection.removeFilters('filter0');
 
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(3);
       expect(collection.getItems()).toEqual([ITEM2, ITEM3, ITEM4]);
-      expect(collection.getEntries()).toMatchObject([ENTRY2, ENTRY3, ENTRY4]);
+      expect(collection.getEntities()).toMatchObject([ENTITY2, ENTITY3, ENTITY4]);
     });
 
     test('ソーティング', () => {
@@ -147,12 +147,12 @@ describe('DataCollection', () => {
         ITEM3,
         ITEM4,
         SOURCE5,
-        ENTRY0,
-        ENTRY1,
-        ENTRY2,
-        ENTRY3,
-        ENTRY4,
-        ENTRIES5,
+        ENTITY0,
+        ENTITY1,
+        ENTITY2,
+        ENTITY3,
+        ENTITY4,
+        ENTITIES5,
       } = getData();
 
       const sorters: NumberSorterConfig = { $id: 'sort0', type: 'number', path: 'field2' },
@@ -165,11 +165,11 @@ describe('DataCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM0, ITEM2, ITEM4, ITEM1, ITEM3]);
-      expect(collection.getEntries()).toMatchObject([ENTRY0, ENTRY2, ENTRY4, ENTRY1, ENTRY3]);
+      expect(collection.getEntities()).toMatchObject([ENTITY0, ENTITY2, ENTITY4, ENTITY1, ENTITY3]);
 
       const sorter: LengthSorterConfig = { $id: 'sort1', type: 'length', path: 'field3' };
       collection.addSorters(sorter);
@@ -177,28 +177,28 @@ describe('DataCollection', () => {
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM2, ITEM4, ITEM3, ITEM0, ITEM1]);
-      expect(collection.getEntries()).toMatchObject([ENTRY2, ENTRY4, ENTRY3, ENTRY0, ENTRY1]);
+      expect(collection.getEntities()).toMatchObject([ENTITY2, ENTITY4, ENTITY3, ENTITY0, ENTITY1]);
 
       collection.removeSorters('sort0');
 
       // sourceの状態
       expect(collection.getSourceSize()).toBe(5);
       expect(collection.getSourceItems()).toEqual(SOURCE5);
-      expect(collection.getSourceEntries()).toMatchObject(ENTRIES5);
+      expect(collection.getSourceEntities()).toMatchObject(ENTITIES5);
       // dataの状態
       expect(collection.getSize()).toBe(5);
       expect(collection.getItems()).toEqual([ITEM2, ITEM3, ITEM4, ITEM0, ITEM1]);
-      expect(collection.getEntries()).toMatchObject([ENTRY2, ENTRY3, ENTRY4, ENTRY0, ENTRY1]);
+      expect(collection.getEntities()).toMatchObject([ENTITY2, ENTITY3, ENTITY4, ENTITY0, ENTITY1]);
     });
   });
 
   describe('events', () => {
     test('constructer', () => {
-      const { VALUE_RULES, SOURCE5, SOURCE3, ENTRIES3, ITEM0, ITEM1, ITEM2 } = getData();
+      const { VALUE_RULES, SOURCE5, SOURCE3, ENTITIES3, ITEM0, ITEM1, ITEM2 } = getData();
 
       const onSourceChange = jest.fn(),
         onDataChange = jest.fn(),
@@ -238,12 +238,12 @@ describe('DataCollection', () => {
       expect(onDataChange).toBeCalledTimes(1);
       expect(onDataChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.datachange,
-        params: { data: ENTRIES3 },
+        params: { data: ENTITIES3 },
       });
     });
 
     test('sourcechange & datachange', () => {
-      const { VALUE_RULES, SOURCE5, SOURCE0, ENTRIES5 } = getData();
+      const { VALUE_RULES, SOURCE5, SOURCE0, ENTITIES5 } = getData();
 
       const onSourceChange = jest.fn(),
         onDataChange = jest.fn(),
@@ -267,17 +267,17 @@ describe('DataCollection', () => {
       expect(onSourceChange).toBeCalledTimes(1);
       expect(onSourceChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.sourcechange,
-        params: { source: ENTRIES5 },
+        params: { source: ENTITIES5 },
       });
       expect(onDataChange).toBeCalledTimes(1);
       expect(onDataChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.datachange,
-        params: { data: ENTRIES5 },
+        params: { data: ENTITIES5 },
       });
     });
 
     test('filterchange & datachange', () => {
-      const { VALUE_RULES, SOURCE5, ENTRY1, ENTRY2, ENTRY3, ENTRY4 } = getData();
+      const { VALUE_RULES, SOURCE5, ENTITY1, ENTITY2, ENTITY3, ENTITY4 } = getData();
 
       const onFilterChange = jest.fn(),
         onDataChange = jest.fn(),
@@ -321,7 +321,7 @@ describe('DataCollection', () => {
       expect(onDataChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.datachange,
         params: {
-          data: [ENTRY1, ENTRY2, ENTRY3],
+          data: [ENTITY1, ENTITY2, ENTITY3],
         },
       });
 
@@ -337,13 +337,13 @@ describe('DataCollection', () => {
       expect(onDataChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.datachange,
         params: {
-          data: [ENTRY1, ENTRY2, ENTRY3, ENTRY4],
+          data: [ENTITY1, ENTITY2, ENTITY3, ENTITY4],
         },
       });
     });
 
     test('sortchange & datachange', () => {
-      const { VALUE_RULES, SOURCE5, ENTRY0, ENTRY1, ENTRY2, ENTRY3, ENTRY4 } = getData();
+      const { VALUE_RULES, SOURCE5, ENTITY0, ENTITY1, ENTITY2, ENTITY3, ENTITY4 } = getData();
 
       const onSortChange = jest.fn(),
         onDataChange = jest.fn(),
@@ -375,7 +375,7 @@ describe('DataCollection', () => {
       expect(onDataChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.datachange,
         params: {
-          data: [ENTRY2, ENTRY4, ENTRY3, ENTRY0, ENTRY1],
+          data: [ENTITY2, ENTITY4, ENTITY3, ENTITY0, ENTITY1],
         },
       });
 
@@ -391,7 +391,7 @@ describe('DataCollection', () => {
       expect(onDataChange.mock.calls[0][0]).toMatchObject({
         type: DataCollectionEvents.datachange,
         params: {
-          data: [ENTRY2, ENTRY3, ENTRY4, ENTRY0, ENTRY1],
+          data: [ENTITY2, ENTITY3, ENTITY4, ENTITY0, ENTITY1],
         },
       });
     });
@@ -403,7 +403,7 @@ describe('DataCollection', () => {
         collection = new DataCollection({
           source: SOURCE5,
           handlers: {
-            [DataCollectionEvents.entriesupdate]: onUpdate,
+            [DataCollectionEvents.entitiesupdate]: onUpdate,
           },
           valueRules: VALUE_RULES,
         });
@@ -413,18 +413,18 @@ describe('DataCollection', () => {
 
       onUpdate.mockReset();
 
-      // entryを更新
-      const entry = collection.get(ITEM2.$id);
-      entry?.update({ field0: 20 });
+      // entityを更新
+      const entity = collection.get(ITEM2.$id);
+      entity?.update({ field0: 20 });
 
       // 更新状況
-      expect(entry?.get('field0')).toBe(20);
+      expect(entity?.get('field0')).toBe(20);
       // イベントの発火状況
       expect(onUpdate).toBeCalledTimes(1);
       expect(onUpdate.mock.calls[0][0]).toMatchObject({
-        type: DataCollectionEvents.entriesupdate,
+        type: DataCollectionEvents.entitiesupdate,
         params: {
-          entries: [entry],
+          entities: [entity],
         },
       });
     });
