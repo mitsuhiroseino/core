@@ -1,4 +1,4 @@
-import { AnyOptions } from '../../types';
+import { AnyOptions } from '@visue/utils/types';
 import { ParseOptionsBase, ParserConfigBase } from '../ParserBase';
 
 /**

@@ -1,5 +1,5 @@
 import mapFrom from '@visue/utils/array/mapFrom';
-import { AnyObject } from '../../types';
+import { AnyObject } from '@visue/utils/types';
 import WriterBase from '../WriterBase';
 import { ArrayWriteOptions, ArrayWriterConfig } from './types';
 

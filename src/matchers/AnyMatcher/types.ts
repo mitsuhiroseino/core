@@ -1,4 +1,4 @@
-import { AnyOptions } from '../../types';
+import { AnyOptions } from '@visue/utils/types';
 import { MatchOptionsBase, MatcherConfigBase } from '../MatcherBase';
 
 export type AnyMatchOptions = MatchOptionsBase & AnyOptions;

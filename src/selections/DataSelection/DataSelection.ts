@@ -1,4 +1,4 @@
-import { IdentifiableItem } from '../../types';
+import { IdentifiableItem } from '@visue/utils/types';
 import SelectionBase from '../SelectionBase';
 import { DataSelectionConfig, DataSelectionEventHandlers } from './types';
 

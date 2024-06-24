@@ -1,4 +1,4 @@
-import { AnyOptions } from '../../types';
+import { AnyOptions } from '@visue/utils/types';
 import { ComparatorConfigBase, CompareOptionsBase } from '../ComparatorBase';
 
 export type AnyCompareOptions = CompareOptionsBase & AnyOptions;

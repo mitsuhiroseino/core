@@ -1,6 +1,6 @@
+import { IdentifiableItem } from '@visue/utils/types';
 import Evented from '../../../base/Evented';
 import assignId from '../../../helpers/assignId';
-import { IdentifiableItem } from '../../../types';
 import { EntityItem } from '../types';
 import { EntityBaseEvents } from './constants';
 import { EntityBaseConfig, EntityBaseEventHandlers } from './types';

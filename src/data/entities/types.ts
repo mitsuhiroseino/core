@@ -1,6 +1,6 @@
+import { IdentifiableItem } from '@visue/utils/types';
 import { IEvented } from '../../base/Evented';
 import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { IdentifiableItem } from '../../types';
 import { IValueRule, ValueRuleConfig } from '../valuerules';
 
 /**

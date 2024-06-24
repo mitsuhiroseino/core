@@ -1,4 +1,4 @@
-import { Constructor, IdentifiableItem } from '../../types';
+import { Constructor, IdentifiableItem } from '@visue/utils/types';
 
 /**
  * Factoryableのコンフィグ

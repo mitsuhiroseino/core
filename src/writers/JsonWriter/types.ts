@@ -1,4 +1,4 @@
-import { JsonStringifyOptions } from '../../types';
+import { JsonStringifyOptions } from '@visue/utils/types';
 import { WriteOptionsBase, WriterConfigBase } from '../WriterBase';
 
 /**

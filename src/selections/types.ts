@@ -1,7 +1,7 @@
+import { IdentifiableItem } from '@visue/utils/types';
 import { IDestructible } from '../base/DestructibleBase';
 import { EventHandlers, IObservable } from '../events/Observable';
 import { FactoryableConfig, IFactoryable } from '../factory/Factory';
-import { IdentifiableItem } from '../types';
 
 /**
  * コンフィグ

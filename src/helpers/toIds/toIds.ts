@@ -1,5 +1,5 @@
 import asArray from '@visue/utils/array/asArray';
-import { IdentifiableItem } from '../../types';
+import { IdentifiableItem } from '@visue/utils/types';
 import toId from '../toId';
 
 const toIds = (targets: string | IdentifiableItem | (string | IdentifiableItem)[]): string[] => {

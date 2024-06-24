@@ -1,6 +1,6 @@
+import { IdentifiableItem } from '@visue/utils/types';
 import { EventedConfig, EventedEventHandlers } from '../../base/Evented';
 import { EventInfo } from '../../events/Observable';
-import { IdentifiableItem } from '../../types';
 import { SelectionConfig } from '../types';
 import { SelectionEventsBase } from './constants';
 
