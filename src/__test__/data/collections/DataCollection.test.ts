@@ -1,9 +1,9 @@
+import { NumberFilterConfig, RELATIONAL_OPERATOR } from '@visue/datakit/filters/NumberFilter';
+import { LengthSorterConfig } from '@visue/datakit/sorters/LengthSorter';
+import { NumberSorterConfig } from '@visue/datakit/sorters/NumberSorter';
+import { ValueSorterConfig } from '@visue/datakit/sorters/ValueSorter';
 import { CollectionFactory } from 'src/data/collections';
 import DataCollection, { DataCollectionEvents } from 'src/data/collections/DataCollection';
-import { NumberFilterConfig, RELATIONAL_OPERATOR } from 'src/filters/NumberFilter';
-import { LengthSorterConfig } from 'src/sorters/LengthSorter';
-import { NumberSorterConfig } from 'src/sorters/NumberSorter';
-import { ValueSorterConfig } from 'src/sorters/ValueSorter';
 
 const getData = () => {
   const VALUE_RULES = [

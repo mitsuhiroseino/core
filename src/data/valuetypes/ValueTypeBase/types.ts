@@ -1,6 +1,6 @@
+import { FormatterConfig } from '@visue/datakit/formatters';
+import { ParserConfig } from '@visue/datakit/parsers';
 import { ConfigBase } from '../../../base/Base';
-import { FormatterConfig } from '../../../formatters';
-import { ParserConfig } from '../../../parsers';
 import { ValueTypeConfig } from '../types';
 
 /**

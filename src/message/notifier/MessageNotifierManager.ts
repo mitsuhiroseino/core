@@ -1,11 +1,11 @@
-import ProductionManager from '../../factory/ProductionManager';
+import FactoryManager from '../../factory/FactoryManager';
 import GlobalMessageNotifier from './GlobalMessageNotifier';
 import LogMessageNotifier from './LogMessageNotifier';
 import factory from './MessageNotifierFactory';
 import TargetMessageNotifier from './TargetMessageNotifier';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [GlobalMessageNotifier, TargetMessageNotifier, new LogMessageNotifier()],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

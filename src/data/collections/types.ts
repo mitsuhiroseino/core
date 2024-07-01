@@ -1,9 +1,9 @@
+import { FilterConfig, IFilter } from '@visue/datakit/filters';
+import { ISorter, SorterConfig } from '@visue/datakit/sorters';
 import { IDestructible } from '../../base/DestructibleBase';
 import { EventHandlers, IObservable } from '../../events/Observable';
 import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { FilterConfig, IFilter } from '../../filters';
 import { ISelection, SelectionConfig } from '../../selections';
-import { ISorter, SorterConfig } from '../../sorters';
 import { EntityItem, IEntity } from '../entities';
 import { IValueRule, ValueRuleConfig } from '../valuerules';
 

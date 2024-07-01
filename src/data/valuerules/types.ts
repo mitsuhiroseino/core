@@ -1,7 +1,7 @@
+import { FormatterConfig, IFormatter } from '@visue/datakit/formatters';
+import { IParser, ParserConfig } from '@visue/datakit/parsers';
 import { IDestructible } from '../../base/DestructibleBase';
 import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { FormatterConfig, IFormatter } from '../../formatters';
-import { IParser, ParserConfig } from '../../parsers';
 import { IValidator, ValidatorConfig } from '../validators';
 import RequiredValidator, { RequiredValidatorConfig } from '../validators/RequiredValidator';
 

@@ -1,10 +1,10 @@
+import { FormatterConfig, FormatterFactory, IFormatter } from '@visue/datakit/formatters';
+import { IParser, ParserConfig, ParserFactory } from '@visue/datakit/parsers';
 import toValidValue from '@visue/utils/lang/toValidValue';
 import isPlainObject from 'lodash/isPlainObject';
 import Base from '../../../base/Base';
-import { FormatterConfig, FormatterFactory, IFormatter } from '../../../formatters';
 import getFactoryableType from '../../../helpers/getFactoryableType';
 import initFactoryable from '../../../helpers/initFactoryable';
-import { IParser, ParserConfig, ParserFactory } from '../../../parsers';
 import { IValueType } from '../types';
 import { ValueTypeBaseConfig } from './types';
 

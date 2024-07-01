@@ -1,9 +1,9 @@
+import { NumberFilterConfig, RELATIONAL_OPERATOR } from '@visue/datakit/filters/NumberFilter';
+import { LengthSorterConfig } from '@visue/datakit/sorters/LengthSorter';
+import { ValueSorterConfig } from '@visue/datakit/sorters/ValueSorter';
 import { CollectionFactory } from 'src/data/collections';
 import ChainedCollection from 'src/data/collections/ChainedCollection';
 import DataCollection from 'src/data/collections/DataCollection';
-import { NumberFilterConfig, RELATIONAL_OPERATOR } from 'src/filters/NumberFilter';
-import { LengthSorterConfig } from 'src/sorters/LengthSorter';
-import { ValueSorterConfig } from 'src/sorters/ValueSorter';
 
 describe('ChainedCollection', () => {
   describe('Factory', () => {

@@ -1,5 +1,5 @@
+import { StringFormatterConfig } from '@visue/datakit/formatters/StringFormatter';
 import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { StringFormatterConfig } from '../../formatters/StringFormatter';
 
 /**
  * コンフィグ

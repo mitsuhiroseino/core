@@ -1,4 +1,4 @@
-import ProductionManager from '../../factory/ProductionManager';
+import FactoryManager from '../../factory/FactoryManager';
 import LengthRangeValidator from './LengthRangeValidator';
 import MaxLengthValidator from './MaxLengthValidator';
 import MaxValidator from './MaxValidator';
@@ -8,7 +8,7 @@ import RangeValidator from './RangeValidator';
 import RequiredValidator from './RequiredValidator';
 import factory from './ValidatorFactory';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [
     LengthRangeValidator,
@@ -20,4 +20,4 @@ const PRODUCTION_MANAGER = new ProductionManager({
     RequiredValidator,
   ],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

@@ -1,5 +1,5 @@
-import { DateFormatterConfig } from '../../../formatters/DateFormatter';
-import { DateParserConfig } from '../../../parsers/DateParser';
+import { DateFormatterConfig } from '@visue/datakit/formatters/DateFormatter';
+import { DateParserConfig } from '@visue/datakit/parsers/DateParser';
 import { ValueTypeBaseConfig } from '../ValueTypeBase';
 
 /**

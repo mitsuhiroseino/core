@@ -1,9 +1,9 @@
-import ProductionManager from '../factory/ProductionManager';
+import FactoryManager from '../factory/FactoryManager';
 import DataSelection from './DataSelection';
 import factory from './SelectionFactory';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [DataSelection],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

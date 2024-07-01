@@ -1,10 +1,10 @@
-import ProductionManager from '../factory/ProductionManager';
+import FactoryManager from '../factory/FactoryManager';
 import AnyDataSource from './AnyDataSource';
 import factory from './DataSourceFactory';
 import MemoryDataSource from './MemoryDataSource';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [AnyDataSource, MemoryDataSource],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

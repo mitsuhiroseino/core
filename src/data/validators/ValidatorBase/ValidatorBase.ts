@@ -1,5 +1,5 @@
+import StringFormatter from '@visue/datakit/formatters/StringFormatter';
 import Base from '../../../base/Base';
-import StringFormatter from '../../../formatters/StringFormatter';
 import initFactoryable from '../../../helpers/initFactoryable';
 import { IValidator } from '../types';
 import { ValidatorBaseConfig } from './types';

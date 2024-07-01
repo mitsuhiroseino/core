@@ -1,5 +1,5 @@
-import { StringFormatterConfig } from '../../../formatters/StringFormatter';
-import { StringParserConfig } from '../../../parsers/StringParser';
+import { StringFormatterConfig } from '@visue/datakit/formatters/StringFormatter';
+import { StringParserConfig } from '@visue/datakit/parsers/StringParser';
 import { ValueTypeBaseConfig } from '../ValueTypeBase';
 
 /**

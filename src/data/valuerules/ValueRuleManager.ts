@@ -1,11 +1,11 @@
-import ProductionManager from '../../factory/ProductionManager';
+import FactoryManager from '../../factory/FactoryManager';
 import AnyValueRule from './AnyValueRule';
 import MultipleValueRule from './MultipleValueRule';
 import TypedValueRule from './TypedValueRule';
 import factory from './ValueRuleFactory';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [AnyValueRule, MultipleValueRule, TypedValueRule],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

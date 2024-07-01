@@ -1,7 +1,7 @@
+import { FormatterFactory } from '@visue/datakit/formatters';
+import StringFormatter from '@visue/datakit/formatters/StringFormatter';
 import isString from 'lodash/isString';
 import Evented from '../../base/Evented';
-import { FormatterFactory } from '../../formatters';
-import StringFormatter from '../../formatters/StringFormatter';
 import I18nResources, { I18nResource } from '../I18nResources';
 import { TranslatorEvents } from './constants';
 import { TranslateOptions, TranslatorConfig, TranslatorEventHandlers, TranslatorInitializeConfig } from './types';

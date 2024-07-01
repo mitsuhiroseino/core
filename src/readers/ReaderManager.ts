@@ -1,11 +1,11 @@
-import ProductionManager from '../factory/ProductionManager';
+import FactoryManager from '../factory/FactoryManager';
 import ArrayReader from './ArrayReader';
 import JsonReader from './JsonReader';
 import ObjectReader from './ObjectReader';
 import factory from './ReaderFactory';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [ArrayReader, JsonReader, ObjectReader],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

@@ -1,5 +1,5 @@
-import { BooleanFormatterConfig } from '../../../formatters/BooleanFormatter';
-import { BooleanParserConfig } from '../../../parsers/BooleanParser';
+import { BooleanFormatterConfig } from '@visue/datakit/formatters/BooleanFormatter';
+import { BooleanParserConfig } from '@visue/datakit/parsers/BooleanParser';
 import { ValueTypeBaseConfig } from '../ValueTypeBase';
 
 /**

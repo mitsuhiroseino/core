@@ -1,7 +1,7 @@
+import { StringFormatterConfig } from '@visue/datakit/formatters/StringFormatter';
 import { FormatOptions } from '@visue/utils/string/format';
 import { EventedConfig, EventedEventHandlers } from '../../base/Evented';
 import { EventInfo } from '../../events/Observable';
-import { StringFormatterConfig } from '../../formatters/StringFormatter';
 import I18nResources, { I18nResource } from '../I18nResources';
 import { TranslatorEvents } from './constants';
 

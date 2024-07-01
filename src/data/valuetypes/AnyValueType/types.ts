@@ -1,5 +1,5 @@
-import { AnyFormatterConfig } from '../../../formatters/AnyFormatter';
-import { AnyParserConfig } from '../../../parsers/AnyParser';
+import { AnyFormatterConfig } from '@visue/datakit/formatters/AnyFormatter';
+import { AnyParserConfig } from '@visue/datakit/parsers/AnyParser';
 import { ValueTypeBaseConfig } from '../ValueTypeBase';
 
 /**

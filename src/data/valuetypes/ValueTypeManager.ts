@@ -1,4 +1,4 @@
-import ProductionManager from '../../factory/ProductionManager';
+import FactoryManager from '../../factory/FactoryManager';
 import AnyValueType from './AnyValueType';
 import BooleanValueType from './BooleanValueType';
 import DateValueType from './DateValueType';
@@ -7,8 +7,8 @@ import ObjectValueType from './ObjectValueType';
 import StringValueType from './StringValueType';
 import factory from './ValueTypeFactory';
 
-const PRODUCTION_MANAGER = new ProductionManager({
+const FACTORY_MANAGER = new FactoryManager({
   factory,
   products: [AnyValueType, BooleanValueType, DateValueType, NumberValueType, ObjectValueType, StringValueType],
 });
-export default PRODUCTION_MANAGER;
+export default FACTORY_MANAGER;

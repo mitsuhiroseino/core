@@ -1,7 +1,7 @@
+import { IFilter } from '@visue/datakit/filters';
+import { ISorter } from '@visue/datakit/sorters';
 import { EventedConfig, EventedEventHandlers } from '../../../base/Evented';
 import { EventInfo, FireParams } from '../../../events/Observable';
-import { IFilter } from '../../../filters';
-import { ISorter } from '../../../sorters';
 import { EntityItem, IEntity } from '../../entities';
 import { CollectionConfig } from '../types';
 import { CollectionBaseEvents } from './constants';
