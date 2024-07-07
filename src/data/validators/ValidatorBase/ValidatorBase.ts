@@ -1,22 +1,17 @@
 import StringFormatter from '@visue/datakit/formatters/StringFormatter';
-import Base from '../../../base/Base';
-import initFactoryable from '../../../helpers/initFactoryable';
-import { IValidator } from '../types';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
+import ConfigurableBase from '../../../base/ConfigurableBase';
+import { Validator } from '../types';
 import { ValidatorBaseConfig } from './types';
 
 /**
  * バリデーター
  */
 abstract class ValidatorBase<V = any, C extends ValidatorBaseConfig = ValidatorBaseConfig>
-  extends Base<C>
-  implements IValidator<V>
+  extends ConfigurableBase<C>
+  implements Validator<V>
 {
   readonly isValidator = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'validator';
 
   /**
    * ID
@@ -24,14 +19,9 @@ abstract class ValidatorBase<V = any, C extends ValidatorBaseConfig = ValidatorB
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
-
-  /**
-   * バリデーション毎の既定のメッセージ
-   */
-  protected abstract _defaultMessage: string;
+  readonly $idName?: string;
 
   /**
    * メッセージ
@@ -42,13 +32,16 @@ abstract class ValidatorBase<V = any, C extends ValidatorBaseConfig = ValidatorB
 
   constructor(config?: C) {
     super(config);
-    const me = this,
-      cfg = me.config,
-      { message = me._defaultMessage, ...rest } = cfg;
-    initFactoryable(me, cfg);
-    me._message = message;
-    me._formatter = new StringFormatter(rest);
+    assignIdentifier(this, this.config);
+    const { message = this._getDefaultMessage(), ...rest } = this.config;
+    this._message = message;
+    this._formatter = new StringFormatter(rest);
   }
+
+  /**
+   * バリデーション毎の既定のメッセージを取得する
+   */
+  protected abstract _getDefaultMessage(): string;
 
   validate(target: V): string | null {
     const me = this;

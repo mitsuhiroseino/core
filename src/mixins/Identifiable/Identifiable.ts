@@ -1,17 +1,17 @@
+import { Constructor, Identifiable } from '@visue/utils';
 import uuid from '@visue/utils/data/uuid';
-import { Constructor, IdentifiableItem } from '@visue/utils/types';
-import { ConfigBase, IBase } from '../../base/Base';
+import { Configurable, ConfigurableConfigBase } from '../../base/ConfigurableBase';
 import { IdentifiableConfig } from './types';
 
 /**
  * IDを持つクラスのmixin
  */
 function Identifiable<
-  C extends ConfigBase = ConfigBase,
-  T extends Constructor<IBase<C & IdentifiableConfig>> = Constructor<IBase<C & IdentifiableConfig>>,
-  R = Constructor<IBase<C & IdentifiableConfig>>,
+  C extends ConfigurableConfigBase = ConfigurableConfigBase,
+  T extends Constructor<Configurable<C & IdentifiableConfig>> = Constructor<Configurable<C & IdentifiableConfig>>,
+  R = Constructor<Configurable<C & IdentifiableConfig>>,
 >(TargetClass: T | any): R {
-  abstract class IdentifiableClass extends (TargetClass as T) implements IdentifiableItem {
+  abstract class IdentifiableClass extends (TargetClass as T) implements Identifiable {
     /**
      * ID
      */

@@ -1,37 +1,43 @@
-import { IdentifiableItem } from '@visue/utils/types';
-import { IEvented } from '../../base/Evented';
-import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { IValueRule, ValueRuleConfig } from '../valuerules';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
+import { Evented } from '../../base/EventedBase';
+import { ValueRule, ValueRuleConfig } from '../valuerules';
 
 /**
  * Entityに設定可能な要素
  */
-export type EntityItem = IdentifiableItem & {
-  /**
-   * 任意の項目
-   */
-  [key: string]: any;
-};
+export type EntityItem = Partial<Identifiable> & Record<string, any>;
 
 /**
  * コンフィグ
  */
-export type EntityConfig<I extends EntityItem = EntityItem> = FactoryableConfig & {
+export type EntityConfig<I extends EntityItem = EntityItem> = IdentifiableConfig & {
   /**
    * 対象の要素
    */
-  item: Omit<I, keyof IdentifiableItem> & Partial<IdentifiableItem>;
+  item: I;
 
   /**
    * 値規定
    */
-  valueRules: (IValueRule | ValueRuleConfig)[];
+  valueRules: (ValueRule | ValueRuleConfig)[];
+
+  /**
+   * IDとして扱うitemのプロパティ
+   * デフォルトは$id
+   */
+  idProperty?: string;
+
+  /**
+   * 識別名として扱うitemのプロパティ
+   * デフォルトは$idName
+   */
+  idNameProperty?: string;
 };
 
 /**
  * エンティティインターフェイス
  */
-export interface IEntity<I extends EntityItem = EntityItem> extends IFactoryable, IEvented {
+export interface Entity<I extends EntityItem = EntityItem> extends Identifiable, Evented {
   /**
    * エンティティのインスタンスであるか
    */

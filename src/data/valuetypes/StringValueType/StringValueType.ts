@@ -1,13 +1,11 @@
 import ValueTypeBase from '../ValueTypeBase';
+import { VALUE_TYPE_TYPES } from '../constants';
 import { StringValueTypeConfig } from './types';
 
 /**
  * string
  */
 class StringValueType<C extends StringValueTypeConfig = StringValueTypeConfig> extends ValueTypeBase<string, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'string';
+  protected _type = VALUE_TYPE_TYPES.STRING;
 }
 export default StringValueType;

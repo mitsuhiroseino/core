@@ -1,21 +1,16 @@
 import DataEntityBase, { DataEntityBaseEvents } from '../DataEntityBase';
 import NoopEntity from '../NoopEntity';
-import { IEntity } from '../types';
+import { Entity } from '../types';
 import { ChainedEntityConfig, ChainedEntityEventHandlers } from './types';
 
 /**
  * 他のエンティティと連動するエンティティ
  */
 class ChainedEntity<
-  I extends IEntity = IEntity,
+  I extends Entity = Entity,
   H extends ChainedEntityEventHandlers<I> = ChainedEntityEventHandlers<I>,
   C extends ChainedEntityConfig<I, H> = ChainedEntityConfig<I, H>,
 > extends DataEntityBase<I, H, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'chained';
-
   protected _setItem(item: I): void {
     const me = this,
       oldItem = me._item;

@@ -1,11 +1,11 @@
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
 import isBoolean from 'lodash/isBoolean';
 import DestructibleBase from '../../../base/DestructibleBase';
-import initFactoryable from '../../../helpers/initFactoryable';
 import { MESSAGE_LEVEL, MESSAGE_TYPE, Message } from '../../../message';
 import { TargetSetOptions } from '../../../message/notifier/TargetMessageNotifier';
-import { IValidator, ValidatorConfig, ValidatorFactory } from '../../validators';
+import { Validator, ValidatorConfig, ValidatorFactory } from '../../validators';
 import RequiredValidator from '../../validators/RequiredValidator';
-import { IValueRule, ValidateOptions } from '../types';
+import { ValidateOptions, ValueRule } from '../types';
 import { ValueRuleBaseConfig } from './types';
 
 /**
@@ -13,14 +13,9 @@ import { ValueRuleBaseConfig } from './types';
  */
 abstract class ValueRuleBase<V = any, F = string, C extends ValueRuleBaseConfig = ValueRuleBaseConfig>
   extends DestructibleBase<C>
-  implements IValueRule<V, F>
+  implements ValueRule<V, F>
 {
   readonly isValueRule = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'valuerule';
 
   /**
    * ID
@@ -28,9 +23,9 @@ abstract class ValueRuleBase<V = any, F = string, C extends ValueRuleBaseConfig 
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   /**
    * フィールド名
@@ -50,26 +45,25 @@ abstract class ValueRuleBase<V = any, F = string, C extends ValueRuleBaseConfig 
   /**
    * バリデーター
    */
-  protected _validators!: IValidator[];
+  protected _validators!: Validator[];
 
   constructor(config?: C) {
     super(config);
+    assignIdentifier(this, this.config);
     this.name = this.config.name;
-    const me = this,
-      cfg = me.config,
-      { required = false, validators = [] } = cfg;
-    initFactoryable(me, cfg);
+    const cfg = this.config;
+    const { required = false, validators = [] } = cfg;
     // 必須チェック用バリデーターの設定
-    me._isRequired = !!required;
-    me._required = me._getRequiredValidator(required);
+    this._isRequired = !!required;
+    this._required = this._getRequiredValidator(required);
     // その他のバリデーターの設定
-    me._validators = validators.map((validator) => ValidatorFactory.get(validator));
+    this._validators = validators.map((validator) => ValidatorFactory.get(validator));
   }
 
   /**
    * 必須チェックのバリデーターを取得する
    */
-  protected _getRequiredValidator(required: boolean | IValidator | ValidatorConfig) {
+  protected _getRequiredValidator(required: boolean | Validator | ValidatorConfig) {
     return ValidatorFactory.get<RequiredValidator>(isBoolean(required) ? 'required' : required);
   }
 

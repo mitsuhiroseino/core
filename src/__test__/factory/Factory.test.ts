@@ -1,4 +1,4 @@
-import Base from 'src/base/Base';
+import ConfigurableBase from 'src/base/ConfigurableBase';
 import Factory, { IFactoryable } from 'src/factory/Factory';
 import initFactoryable from 'src/helpers/initFactoryable';
 
@@ -9,7 +9,7 @@ interface ITestProduct extends IFactoryable {
 }
 
 // productの抽象クラス
-export default abstract class TestProductBase extends Base<any> implements ITestProduct {
+export default abstract class TestProductBase extends ConfigurableBase<any> implements ITestProduct {
   /**
    * カテゴリー
    */

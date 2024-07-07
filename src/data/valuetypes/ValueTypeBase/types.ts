@@ -1,6 +1,6 @@
 import { FormatterConfig } from '@visue/datakit/formatters';
 import { ParserConfig } from '@visue/datakit/parsers';
-import { ConfigBase } from '../../../base/Base';
+import { ConfigurableConfigBase } from '../../../base/ConfigurableBase';
 import { ValueTypeConfig } from '../types';
 
 /**
@@ -9,4 +9,4 @@ import { ValueTypeConfig } from '../types';
 export type ValueTypeBaseConfig<
   P extends ParserConfig = ParserConfig,
   F extends FormatterConfig = FormatterConfig,
-> = ConfigBase & ValueTypeConfig<P, F>;
+> = ConfigurableConfigBase & ValueTypeConfig<P, F>;

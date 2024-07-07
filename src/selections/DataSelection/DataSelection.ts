@@ -1,14 +1,9 @@
-import { IdentifiableItem } from '@visue/utils/types';
+import { Identifiable } from '@visue/utils';
 import SelectionBase from '../SelectionBase';
 import { DataSelectionConfig, DataSelectionEventHandlers } from './types';
 
 /**
- * 選択状態クラス
+ * データ用の選択状態
  */
-class DataSelection extends SelectionBase<IdentifiableItem, DataSelectionEventHandlers, DataSelectionConfig> {
-  /**
-   * 種別
-   */
-  static TYPE = 'data';
-}
+class DataSelection extends SelectionBase<Identifiable, DataSelectionEventHandlers, DataSelectionConfig> {}
 export default DataSelection;

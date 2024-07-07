@@ -1,4 +1,4 @@
-import { IValueType, ValueTypeConfig } from '../../valuetypes';
+import { ValueType, ValueTypeConfig } from '../../valuetypes';
 import { ValueRuleBaseConfig } from '../ValueRuleBase';
 
 /**
@@ -8,5 +8,5 @@ export type TypedValueRuleConfig = ValueRuleBaseConfig & {
   /**
    * 値型
    */
-  valueType: string | IValueType | ValueTypeConfig;
+  valueType: string | ValueType | ValueTypeConfig;
 };

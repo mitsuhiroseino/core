@@ -15,18 +15,15 @@ class MinValidator<C extends MinValidatorConfig = MinValidatorConfig> extends Va
   number | string | BigNumber,
   C
 > {
-  /**
-   * 種別
-   */
-  static TYPE = 'min';
-
-  protected _defaultMessage: string = DEFAULT_MESSAGE;
-
   protected _min: BigNumber;
 
   constructor(config: C) {
     super(config);
     this._min = new BigNumber(this.config.min);
+  }
+
+  protected _getDefaultMessage() {
+    return DEFAULT_MESSAGE;
   }
 
   protected _validate(target: number | string | BigNumber): boolean {

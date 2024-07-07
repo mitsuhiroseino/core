@@ -1,4 +1,4 @@
-import { EntityItem, IEntity } from '../../entities';
+import { Entity, EntityItem } from '../../entities';
 import CollectionBase from '../CollectionBase';
 import { NoopCollectionConfig, NoopCollectionEventHandlers } from './types';
 
@@ -11,14 +11,9 @@ class NoopCollection<
   H extends NoopCollectionEventHandlers<I> = NoopCollectionEventHandlers<I>,
   C extends NoopCollectionConfig<I, S, H> = NoopCollectionConfig<I, S, H>,
 > extends CollectionBase<I, S, H, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'noop';
-
   protected _setSource(source: S): void {}
 
-  protected _toSourceEntities(source: S): IEntity<I>[] {
+  protected _toSourceEntities(source: S): Entity<I>[] {
     return [];
   }
 
@@ -30,7 +25,7 @@ class NoopCollection<
     return [];
   }
 
-  getSourceEntities(): IEntity<I>[] {
+  getSourceEntities(): Entity<I>[] {
     return [];
   }
 

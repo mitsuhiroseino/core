@@ -1,14 +1,14 @@
-import { ConfigBase } from '../Base';
+import { ConfigurableConfigBase } from '../ConfigurableBase';
 
 /**
  * コンフィグ
  */
-export type DestructibleConfigBase = ConfigBase;
+export type DestructibleConfigBase = ConfigurableConfigBase;
 
 /**
  * インターフェイス
  */
-export interface IDestructible {
+export interface Destructible {
   /**
    * 破棄されているか
    */

@@ -4,9 +4,9 @@ import asArray from '@visue/utils/array/asArray';
 import clear from '@visue/utils/array/clear';
 import { EventsConfig } from '../../../events/Events';
 import toIds from '../../../helpers/toIds';
-import { EntityItem, IEntity } from '../../entities';
+import { Entity, EntityItem } from '../../entities';
 import DataEntity from '../../entities/DataEntity';
-import { IValueRule, ValueRuleFactory } from '../../valuerules';
+import { ValueRule, ValueRuleFactory } from '../../valuerules';
 import CollectionBase from '../CollectionBase';
 import { IEditableCollection } from '../types';
 import { DataCollectionBaseEvents } from './constants';
@@ -27,7 +27,7 @@ abstract class DataCollectionBase<
   /**
    * 値規定
    */
-  private _valueRules!: IValueRule[];
+  private _valueRules!: ValueRule[];
 
   constructor(config?: C) {
     super(config);
@@ -54,8 +54,8 @@ abstract class DataCollectionBase<
     me._source = source || ([] as S);
   }
 
-  protected _toSourceEntities(source: S = this._source): IEntity<I>[] {
-    return this._toEntities(source as I[]) as unknown as IEntity<I>[];
+  protected _toSourceEntities(source: S = this._source): Entity<I>[] {
+    return this._toEntities(source as I[]) as unknown as Entity<I>[];
   }
 
   /**
@@ -63,7 +63,7 @@ abstract class DataCollectionBase<
    * @param items
    * @returns
    */
-  protected _toEntities(items: I | I[]): IEntity<I>[] {
+  protected _toEntities(items: I | I[]): Entity<I>[] {
     return asArray(items).map((item) => this._toEntity(item));
   }
 
@@ -72,7 +72,7 @@ abstract class DataCollectionBase<
    * @param items
    * @returns
    */
-  protected _toEntity(item: I): IEntity<I> {
+  protected _toEntity(item: I): Entity<I> {
     return new DataEntity({
       item,
       events: this._events as any,
@@ -80,7 +80,7 @@ abstract class DataCollectionBase<
     });
   }
 
-  add(items: I | I[]): IEntity<I>[] {
+  add(items: I | I[]): Entity<I>[] {
     const me = this,
       entities = me._toEntities(items);
     me._sourceEntities.push(...entities);
@@ -89,9 +89,9 @@ abstract class DataCollectionBase<
     return entities;
   }
 
-  update(updates: Partial<I> | Partial<I>[]): IEntity<I>[] {
+  update(updates: Partial<I> | Partial<I>[]): Entity<I>[] {
     const items = asArray(updates),
-      entities: IEntity<I>[] = [];
+      entities: Entity<I>[] = [];
     for (const item of items) {
       const entity = this.get(item.$id as string);
       if (entity) {
@@ -104,7 +104,7 @@ abstract class DataCollectionBase<
     return entities;
   }
 
-  remove(targets: string | I | (string | I)[]): IEntity<I>[] {
+  remove(targets: string | I | (string | I)[]): Entity<I>[] {
     const me = this,
       ids = toIds(targets).reduce((result, id) => {
         result[id] = true;
@@ -118,7 +118,7 @@ abstract class DataCollectionBase<
     return entities;
   }
 
-  claer(): IEntity<I>[] {
+  claer(): Entity<I>[] {
     const me = this,
       entities = me._sourceEntities.map(me._releaseEntity);
     clear(me._sourceEntities);
@@ -132,7 +132,7 @@ abstract class DataCollectionBase<
    * @param entity
    * @returns
    */
-  private _releaseEntity(entity: IEntity<I>): IEntity<I> {
+  private _releaseEntity(entity: Entity<I>): Entity<I> {
     entity.initEvents();
     return entity;
   }

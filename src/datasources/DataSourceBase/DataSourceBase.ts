@@ -1,7 +1,7 @@
-import Evented from '../../base/Evented';
-import { IReader, ReaderFactory } from '../../readers';
-import { IWriter, WriterFactory } from '../../writers';
-import { CreateOptions, DeleteOptions, IDataSource, ReadOptions, UpdateOptions } from '../types';
+import EventedBase from '../../base/EventedBase';
+import { Reader, ReaderFactory } from '../../readers';
+import { Writer, WriterFactory } from '../../writers';
+import { CreateOptions, DataSource, DeleteOptions, ReadOptions, UpdateOptions } from '../types';
 import { DataSourceEventsBase } from './constants';
 import { DataSourceConfigBase, DataSourceEventHandlersBase } from './types';
 
@@ -13,15 +13,10 @@ abstract class DataSourceBase<
     H extends DataSourceEventHandlersBase<D> = DataSourceEventHandlersBase<D>,
     C extends DataSourceConfigBase<D, H> = DataSourceConfigBase<D, H>,
   >
-  extends Evented<H, C>
-  implements IDataSource<D, H>
+  extends EventedBase<H, C>
+  implements DataSource<D, H>
 {
   readonly isDataSource = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'resource';
 
   /**
    * ID
@@ -29,19 +24,19 @@ abstract class DataSourceBase<
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   /**
    * read時に取得したデータを変換するreader
    */
-  protected _reader?: IReader;
+  protected _reader?: Reader;
 
   /**
    * create,update時に渡されたデータを変換するwriter
    */
-  protected _writer?: IWriter;
+  protected _writer?: Writer;
 
   constructor(config?: C) {
     super(config);

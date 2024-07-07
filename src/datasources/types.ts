@@ -1,6 +1,6 @@
-import { IDestructible } from '../base/DestructibleBase';
-import { EventHandlers, IObservable } from '../events/Observable';
-import { FactoryableConfig, IFactoryable } from '../factory/Factory';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
+import { Destructible } from '../base/DestructibleBase';
+import { EventHandlers, Observable } from '../events';
 
 /**
  * createメソッドのオプション
@@ -25,12 +25,12 @@ export type DeleteOptions = {};
 /**
  * コンフィグ
  */
-export type DataSourceConfig = FactoryableConfig & CreateOptions & ReadOptions & UpdateOptions & DeleteOptions;
+export type DataSourceConfig = IdentifiableConfig & CreateOptions & ReadOptions & UpdateOptions & DeleteOptions;
 
 /**
  * リソース
  */
-export interface IDataSource<D = any, H = EventHandlers> extends IObservable<H>, IFactoryable, IDestructible {
+export interface DataSource<D = any, H = EventHandlers> extends Observable<H>, Identifiable, Destructible {
   /**
    * DataSourceのインスタンスであるか
    */

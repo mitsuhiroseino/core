@@ -1,7 +1,7 @@
 import { StringFormatterConfig } from '@visue/datakit/formatters/StringFormatter';
 import { FormatOptions } from '@visue/utils/string/format';
-import { EventedConfig, EventedEventHandlers } from '../../base/Evented';
-import { EventInfo } from '../../events/Observable';
+import { EventedConfig, EventedEventHandlers } from '../../base/EventedBase';
+import { EventInfo } from '../../events';
 import I18nResources, { I18nResource } from '../I18nResources';
 import { TranslatorEvents } from './constants';
 
@@ -21,7 +21,7 @@ export type TranslatorEventHandlers = EventedEventHandlers & {
  * コンフィグ
  */
 export type TranslatorInitializeConfig<H extends TranslatorEventHandlers = TranslatorEventHandlers> = EventedConfig<H> &
-  Pick<StringFormatterConfig, 'tokenBracket'> & {
+  Partial<Pick<StringFormatterConfig, 'tokenBracket'>> & {
     /**
      * 初期の言語
      */

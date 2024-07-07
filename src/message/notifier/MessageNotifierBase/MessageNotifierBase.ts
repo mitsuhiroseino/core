@@ -1,8 +1,8 @@
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
 import DestructibleBase from '../../../base/DestructibleBase';
-import initFactoryable from '../../../helpers/initFactoryable';
 import { MESSAGE_LEVEL, MESSAGE_LEVEL_ORDER, MESSAGE_TYPE } from '../../constants';
 import { MessageLevel } from '../../types';
-import { IMessageNotifier } from '../types';
+import { MessageNotifier } from '../types';
 import { MessageNotifierConfigBase, SetOptionsBase } from './types';
 
 /**
@@ -13,14 +13,9 @@ abstract class MessageNotifierBase<
     C extends MessageNotifierConfigBase = MessageNotifierConfigBase,
   >
   extends DestructibleBase<C>
-  implements IMessageNotifier<O>
+  implements MessageNotifier<O>
 {
   readonly isMessageNotifier = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'messagenotifier';
 
   /**
    * ID
@@ -28,9 +23,9 @@ abstract class MessageNotifierBase<
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   /**
    * 出力するメッセージレベル
@@ -39,7 +34,7 @@ abstract class MessageNotifierBase<
 
   constructor(config?: C) {
     super(config);
-    initFactoryable(this, this.config);
+    assignIdentifier(this, this.config);
   }
 
   /**

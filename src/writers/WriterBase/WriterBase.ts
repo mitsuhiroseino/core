@@ -1,7 +1,7 @@
 import asArray from '@visue/utils/array/asArray';
-import Base from '../../base/Base';
-import initFactoryable from '../../helpers/initFactoryable';
-import { IWriter } from '../types';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
+import ConfigurableBase from '../../base/ConfigurableBase';
+import { Writer } from '../types';
 import { WriteOptionsBase, WriterConfigBase } from './types';
 
 /**
@@ -12,15 +12,10 @@ abstract class WriterBase<
     O extends WriteOptionsBase = WriteOptionsBase,
     C extends WriterConfigBase = WriterConfigBase,
   >
-  extends Base<C>
-  implements IWriter<D, O>
+  extends ConfigurableBase<C>
+  implements Writer<D, O>
 {
   readonly isWriter = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'writer';
 
   /**
    * ID
@@ -28,13 +23,13 @@ abstract class WriterBase<
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   constructor(config?: C) {
     super(config);
-    initFactoryable(this, this.config);
+    assignIdentifier(this, this.config);
   }
 
   write<R = unknown>(data: D, options?: O): R {

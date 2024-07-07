@@ -2,21 +2,21 @@ import { NumberFilterConfig, RELATIONAL_OPERATOR } from '@visue/datakit/filters/
 import { LengthSorterConfig } from '@visue/datakit/sorters/LengthSorter';
 import { NumberSorterConfig } from '@visue/datakit/sorters/NumberSorter';
 import { ValueSorterConfig } from '@visue/datakit/sorters/ValueSorter';
-import { CollectionFactory } from 'src/data/collections';
+import { COLLECTION_TYPES, CollectionFactory } from 'src/data/collections';
 import DataCollection, { DataCollectionEvents } from 'src/data/collections/DataCollection';
 
 const getData = () => {
   const VALUE_RULES = [
-      { type: 'typed', name: 'field0', valueType: 'number' },
-      { type: 'typed', name: 'field1', valueType: 'number' },
-      { type: 'typed', name: 'field2', valueType: 'number' },
-      { type: 'typed', name: 'field3', valueType: 'string' },
+      { type: 'typed', name: 'property0', valueType: 'number' },
+      { type: 'typed', name: 'property1', valueType: 'number' },
+      { type: 'typed', name: 'property2', valueType: 'number' },
+      { type: 'typed', name: 'property3', valueType: 'string' },
     ],
-    ITEM0 = { $id: 'ID0', field0: 0, field1: 4, field2: 0, field3: '!!' },
-    ITEM1 = { $id: 'ID1', field0: 1, field1: 3, field2: 1, field3: '!!' },
-    ITEM2 = { $id: 'ID2', field0: 2, field1: 2, field2: 0, field3: '!' },
-    ITEM3 = { $id: 'ID3', field0: 3, field1: 1, field2: 1, field3: '!' },
-    ITEM4 = { $id: 'ID4', field0: 4, field1: 0, field2: 0, field3: '!' },
+    ITEM0 = { $id: 'ID0', property0: 0, property1: 4, property2: 0, property3: '!!' },
+    ITEM1 = { $id: 'ID1', property0: 1, property1: 3, property2: 1, property3: '!!' },
+    ITEM2 = { $id: 'ID2', property0: 2, property1: 2, property2: 0, property3: '!' },
+    ITEM3 = { $id: 'ID3', property0: 3, property1: 1, property2: 1, property3: '!' },
+    ITEM4 = { $id: 'ID4', property0: 4, property1: 0, property2: 0, property3: '!' },
     SOURCE5 = [ITEM0, ITEM1, ITEM2, ITEM3, ITEM4],
     SOURCE3 = [ITEM0, ITEM1, ITEM2],
     SOURCE0 = [],
@@ -52,7 +52,7 @@ const getData = () => {
 describe('DataCollection', () => {
   describe('Factory', () => {
     test('create', () => {
-      const result: DataCollection = CollectionFactory.create(DataCollection.TYPE);
+      const result: DataCollection = CollectionFactory.create(COLLECTION_TYPES.DATA);
       expect(result).toBeInstanceOf(DataCollection);
     });
   });
@@ -92,7 +92,7 @@ describe('DataCollection', () => {
         ENTITIES5,
       } = getData();
 
-      const filters: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'field1', not: true, value: 2 },
+      const filters: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'property1', not: true, value: 2 },
         collection = new DataCollection({
           source: SOURCE5,
           filters,
@@ -111,7 +111,7 @@ describe('DataCollection', () => {
       const filter: NumberFilterConfig = {
         $id: 'filter1',
         type: 'number',
-        path: 'field0',
+        path: 'property0',
         value: 1,
         operator: RELATIONAL_OPERATOR.GT,
       };
@@ -155,7 +155,7 @@ describe('DataCollection', () => {
         ENTITIES5,
       } = getData();
 
-      const sorters: NumberSorterConfig = { $id: 'sort0', type: 'number', path: 'field2' },
+      const sorters: NumberSorterConfig = { $id: 'sort0', type: 'number', path: 'property2' },
         collection = new DataCollection({
           source: SOURCE5,
           sorters,
@@ -171,7 +171,7 @@ describe('DataCollection', () => {
       expect(collection.getItems()).toEqual([ITEM0, ITEM2, ITEM4, ITEM1, ITEM3]);
       expect(collection.getEntities()).toMatchObject([ENTITY0, ENTITY2, ENTITY4, ENTITY1, ENTITY3]);
 
-      const sorter: LengthSorterConfig = { $id: 'sort1', type: 'length', path: 'field3' };
+      const sorter: LengthSorterConfig = { $id: 'sort1', type: 'length', path: 'property3' };
       collection.addSorters(sorter);
 
       // sourceの状態
@@ -284,7 +284,7 @@ describe('DataCollection', () => {
         filters: NumberFilterConfig = {
           $id: 'filter0',
           type: 'number',
-          path: 'field0',
+          path: 'property0',
           value: 4,
           operator: RELATIONAL_OPERATOR.LT,
         },
@@ -309,7 +309,7 @@ describe('DataCollection', () => {
       const filter: NumberFilterConfig = {
         $id: 'filter1',
         type: 'number',
-        path: 'field0',
+        path: 'property0',
         value: 0,
         operator: RELATIONAL_OPERATOR.GT,
       };
@@ -347,7 +347,7 @@ describe('DataCollection', () => {
 
       const onSortChange = jest.fn(),
         onDataChange = jest.fn(),
-        sorters: ValueSorterConfig = { $id: 'sort0', type: 'value', path: 'field2' },
+        sorters: ValueSorterConfig = { $id: 'sort0', type: 'value', path: 'property2' },
         collection = new DataCollection({
           source: SOURCE5,
           sorters,
@@ -366,7 +366,7 @@ describe('DataCollection', () => {
       onDataChange.mockReset();
 
       // ソーターの追加
-      const sorter: ValueSorterConfig = { $id: 'sort1', type: 'value', path: 'field3' };
+      const sorter: ValueSorterConfig = { $id: 'sort1', type: 'value', path: 'property3' };
       collection.addSorters(sorter);
 
       // イベントの発火状況
@@ -415,10 +415,10 @@ describe('DataCollection', () => {
 
       // entityを更新
       const entity = collection.get(ITEM2.$id);
-      entity?.update({ field0: 20 });
+      entity?.update({ property0: 20 });
 
       // 更新状況
-      expect(entity?.get('field0')).toBe(20);
+      expect(entity?.get('property0')).toBe(20);
       // イベントの発火状況
       expect(onUpdate).toBeCalledTimes(1);
       expect(onUpdate.mock.calls[0][0]).toMatchObject({

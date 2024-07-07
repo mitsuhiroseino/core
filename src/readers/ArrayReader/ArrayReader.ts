@@ -2,14 +2,9 @@ import ReaderBase from '../ReaderBase';
 import { ArrayReadOptions, ArrayReaderConfig } from './types';
 
 /**
- * オブジェクト要素のラッパー
+ * 配列のリーダー
  */
 class ArrayReader<I extends any[] = any[]> extends ReaderBase<I, ArrayReadOptions, ArrayReaderConfig> {
-  /**
-   * 種別
-   */
-  static TYPE = 'array';
-
   /**
    * indexと項目名のマッピング
    */

@@ -1,5 +1,5 @@
 import toMap from '@visue/utils/array/toMap';
-import { IValueRule, ValueRuleFactory } from '../../valuerules';
+import { ValueRule, ValueRuleFactory } from '../../valuerules';
 import EntityBase from '../EntityBase';
 import { EntityItem } from '../types';
 import { DataEntityBaseEvents } from './constants';
@@ -16,12 +16,12 @@ abstract class DataEntityBase<
   /**
    * 値規定
    */
-  protected _valueRules!: IValueRule[];
+  protected _valueRules!: ValueRule[];
 
   /**
    * 値規定のマップ
    */
-  protected _valueRuleMap!: { [name: string]: IValueRule };
+  protected _valueRuleMap!: { [name: string]: ValueRule };
 
   constructor(config?: C) {
     super(config);

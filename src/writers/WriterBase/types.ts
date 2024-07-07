@@ -1,4 +1,4 @@
-import { ConfigBase } from '../../base/Base';
+import { ConfigurableConfigBase } from '../../base/ConfigurableBase';
 import { WriteOptions, WriterConfig } from '../types';
 
 /**
@@ -9,4 +9,4 @@ export type WriteOptionsBase = WriteOptions;
 /**
  * コンフィグ
  */
-export type WriterConfigBase = ConfigBase & WriterConfig & WriteOptionsBase;
+export type WriterConfigBase = ConfigurableConfigBase & WriterConfig & WriteOptionsBase;

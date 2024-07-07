@@ -1,11 +1,11 @@
+import { Identifiable } from '@visue/utils';
 import asArray from '@visue/utils/array/asArray';
-import { IdentifiableItem } from '@visue/utils/types';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
 import remove from 'lodash/remove';
-import Evented from '../../base/Evented';
-import initFactoryable from '../../helpers/initFactoryable';
+import EventedBase from '../../base/EventedBase';
 import toId from '../../helpers/toId';
 import toIds from '../../helpers/toIds';
-import { ISelection } from '../types';
+import { Selection } from '../types';
 import { SelectionEventsBase } from './constants';
 import { SelectionConfigBase, SelectionEventHandlersBase } from './types';
 
@@ -13,19 +13,14 @@ import { SelectionConfigBase, SelectionEventHandlersBase } from './types';
  * 選択状態の抽象クラス
  */
 abstract class SelectionBase<
-    I extends IdentifiableItem = IdentifiableItem,
+    I extends Identifiable = Identifiable,
     H extends SelectionEventHandlersBase<I> = SelectionEventHandlersBase<I>,
     C extends SelectionConfigBase<I, H> = SelectionConfigBase<I, H>,
   >
-  extends Evented<H, C>
-  implements ISelection<I, H>
+  extends EventedBase<H, C>
+  implements Selection<I, H>
 {
   readonly isSelection = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'selection';
 
   /**
    * ID
@@ -33,9 +28,9 @@ abstract class SelectionBase<
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   /**
    * 選択された要素(順序あり)
@@ -49,14 +44,14 @@ abstract class SelectionBase<
 
   constructor(config?: C) {
     super(config);
-    initFactoryable(this, this.config);
+    assignIdentifier(this, this.config);
   }
 
   select(target: I | I[]): void {
     const me = this,
       selected: I[] = [];
     let items = asArray(target);
-    if (!me.config.multiple) {
+    if (!me.config.multi) {
       // 複数選択ではない場合
       // 選択済みのものを削除
       me.clear();

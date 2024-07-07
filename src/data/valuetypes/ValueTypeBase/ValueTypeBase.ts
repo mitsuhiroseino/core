@@ -1,26 +1,22 @@
 import { FormatterConfig, FormatterFactory, IFormatter } from '@visue/datakit/formatters';
 import { IParser, ParserConfig, ParserFactory } from '@visue/datakit/parsers';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
 import toValidValue from '@visue/utils/lang/toValidValue';
 import isPlainObject from 'lodash/isPlainObject';
-import Base from '../../../base/Base';
-import getFactoryableType from '../../../helpers/getFactoryableType';
-import initFactoryable from '../../../helpers/initFactoryable';
-import { IValueType } from '../types';
+import ConfigurableBase from '../../../base/ConfigurableBase';
+import { ValueType } from '../types';
 import { ValueTypeBaseConfig } from './types';
 
 /**
  * 値
  */
 abstract class ValueTypeBase<V = any, C extends ValueTypeBaseConfig = ValueTypeBaseConfig>
-  extends Base<C>
-  implements IValueType<V>
+  extends ConfigurableBase<C>
+  implements ValueType<V>
 {
   readonly isValueType = true;
 
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'valuetype';
+  protected abstract _type: string;
 
   /**
    * ID
@@ -28,9 +24,9 @@ abstract class ValueTypeBase<V = any, C extends ValueTypeBaseConfig = ValueTypeB
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   /**
    * パーサー
@@ -44,12 +40,10 @@ abstract class ValueTypeBase<V = any, C extends ValueTypeBaseConfig = ValueTypeB
 
   constructor(config?: C) {
     super(config);
-    const me = this,
-      cfg = me.config;
-    initFactoryable(me, cfg);
-    const { parser, formatter } = cfg;
-    me._parser = ParserFactory.get(me._getParserCfg(parser));
-    me._formatter = FormatterFactory.get(me._getFormatterCfg(formatter));
+    assignIdentifier(this, this.config);
+    const { parser, formatter } = this.config;
+    this._parser = ParserFactory.get(this._getParserCfg(parser));
+    this._formatter = FormatterFactory.get(this._getFormatterCfg(formatter));
   }
 
   private _getParserCfg(parser: string | ParserConfig | IParser | undefined): string | ParserConfig | IParser {
@@ -63,7 +57,7 @@ abstract class ValueTypeBase<V = any, C extends ValueTypeBaseConfig = ValueTypeB
   }
 
   protected _getParserConfig(parser: ParserConfig | undefined): string | ParserConfig {
-    return { type: getFactoryableType(this), ...parser };
+    return { type: this._type, ...parser };
   }
 
   protected _getFormatterCfg(
@@ -79,7 +73,7 @@ abstract class ValueTypeBase<V = any, C extends ValueTypeBaseConfig = ValueTypeB
   }
 
   protected _getFormatterConfig(formatter: FormatterConfig | undefined): string | FormatterConfig {
-    return { type: getFactoryableType(this), ...formatter };
+    return { type: this._type, ...formatter };
   }
 
   /**

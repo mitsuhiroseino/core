@@ -9,10 +9,5 @@ class NoopEntity<
   I extends EntityItem = EntityItem,
   H extends NoopEntityEventHandlers = NoopEntityEventHandlers,
   C extends NoopEntityConfig<I, H> = NoopEntityConfig<I, H>,
-> extends EntityBase<I, H, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'noop';
-}
+> extends EntityBase<I, H, C> {}
 export default NoopEntity;

@@ -15,10 +15,8 @@ class TreeDataEntity<
   C extends TreeDataEntityConfig<I, H> = TreeDataEntityConfig<I, H>,
 > extends DataEntityBase<I, H, C> {
   /**
-   * 種別
+   * 子要素
    */
-  static TYPE = 'treedata';
-
   private _children?: TreeDataEntity[];
 
   constructor(config?: C) {

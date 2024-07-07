@@ -1,4 +1,4 @@
-import { FactoryableConfig, IFactoryable } from '../factory/Factory';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
 
 /**
  * readメソッドのオプション
@@ -12,7 +12,7 @@ export type ReaderConfig<
   I = any,
   R = any,
   C extends ReaderConfig<I, R, any> = ReaderConfig<I, R, any>,
-> = FactoryableConfig &
+> = IdentifiableConfig &
   ReadOptions & {
     /**
      * 読み込みができなかった場合に返す値を作る関数
@@ -34,7 +34,7 @@ export type ReaderConfig<
 /**
  * データを読み込む
  */
-export interface IReader<D = any, O extends ReadOptions = ReadOptions> extends IFactoryable {
+export interface Reader<D = any, O extends ReadOptions = ReadOptions> extends Identifiable {
   /**
    * dataを読み込む
    */

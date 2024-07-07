@@ -23,6 +23,8 @@
     "tsc": "rimraf dist && tsc"
   },
   "dependencies": {
+    "@visue/datakit": "^0.1.0",
+    "@visue/factory": "^0.1.0",
     "@visue/utils": "^0.1.0",
     "bignumber.js": "^9.1.1",
     "date-fns": "^2.29.3",

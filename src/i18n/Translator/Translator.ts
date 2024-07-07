@@ -1,12 +1,12 @@
 import { FormatterFactory } from '@visue/datakit/formatters';
 import StringFormatter from '@visue/datakit/formatters/StringFormatter';
 import isString from 'lodash/isString';
-import Evented from '../../base/Evented';
+import EventedBase from '../../base/EventedBase';
 import I18nResources, { I18nResource } from '../I18nResources';
 import { TranslatorEvents } from './constants';
 import { TranslateOptions, TranslatorConfig, TranslatorEventHandlers, TranslatorInitializeConfig } from './types';
 
-class Translator extends Evented<TranslatorEventHandlers, TranslatorConfig> {
+class Translator extends EventedBase<TranslatorEventHandlers, TranslatorConfig> {
   /**
    * 現在の言語
    */

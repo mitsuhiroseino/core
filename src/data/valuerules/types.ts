@@ -1,14 +1,14 @@
 import { FormatterConfig, IFormatter } from '@visue/datakit/formatters';
 import { IParser, ParserConfig } from '@visue/datakit/parsers';
-import { IDestructible } from '../../base/DestructibleBase';
-import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { IValidator, ValidatorConfig } from '../validators';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
+import { Destructible } from '../../base/DestructibleBase';
+import { Validator, ValidatorConfig } from '../validators';
 import RequiredValidator, { RequiredValidatorConfig } from '../validators/RequiredValidator';
 
 /**
  * コンフィグ
  */
-export type ValueRuleConfig = FactoryableConfig & {
+export type ValueRuleConfig = IdentifiableConfig & {
   /**
    * フィールド名
    */
@@ -22,7 +22,7 @@ export type ValueRuleConfig = FactoryableConfig & {
   /**
    * バリデーター
    */
-  validators?: (IValidator | ValidatorConfig)[];
+  validators?: (Validator | ValidatorConfig)[];
 
   /**
    * パーサー
@@ -56,7 +56,7 @@ export type ValidateOptions = {
  * - フォーマット
  * - シリアライズ
  */
-export interface IValueRule<V = any, F = string> extends IFactoryable, IDestructible {
+export interface ValueRule<V = any, F = string> extends Identifiable, Destructible {
   /**
    * ValueRuleのインスタンスであるか
    */

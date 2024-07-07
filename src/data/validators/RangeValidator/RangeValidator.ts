@@ -16,13 +16,6 @@ class RangeValidator<C extends RangeValidatorConfig = RangeValidatorConfig> exte
   number | string | BigNumber,
   C
 > {
-  /**
-   * 種別
-   */
-  static TYPE = 'range';
-
-  protected _defaultMessage: string = DEFAULT_MESSAGE;
-
   protected _min: BigNumber;
 
   protected _max: BigNumber;
@@ -31,6 +24,10 @@ class RangeValidator<C extends RangeValidatorConfig = RangeValidatorConfig> exte
     super(config);
     this._min = new BigNumber(this.config.min);
     this._max = new BigNumber(this.config.max);
+  }
+
+  protected _getDefaultMessage() {
+    return DEFAULT_MESSAGE;
   }
 
   protected _validate(target: number | string | BigNumber): boolean {

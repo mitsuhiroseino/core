@@ -1,7 +1,6 @@
-import { IdentifiableItem } from '@visue/utils/types';
-import Evented from '../../../base/Evented';
-import assignId from '../../../helpers/assignId';
-import { EntityItem } from '../types';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
+import EventedBase from '../../../base/EventedBase';
+import { Entity, EntityItem } from '../types';
 import { EntityBaseEvents } from './constants';
 import { EntityBaseConfig, EntityBaseEventHandlers } from './types';
 
@@ -13,30 +12,20 @@ abstract class EntityBase<
     H extends EntityBaseEventHandlers = EntityBaseEventHandlers,
     C extends EntityBaseConfig<I, H> = EntityBaseConfig<I, H>,
   >
-  extends Evented<H, C>
-  implements IdentifiableItem
+  extends EventedBase<H, C>
+  implements Entity<I>
 {
   readonly isEntity = true;
 
   /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'entity';
-
-  /**
    * ID
    */
-  readonly id!: string;
+  readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
-
-  /**
-   * ID
-   */
-  readonly $id: string;
+  readonly $idName?: string;
 
   /**
    * 要素
@@ -52,7 +41,8 @@ abstract class EntityBase<
 
   constructor(config?: C) {
     super(config);
-    this.$id = assignId(this.config.item, '$id');
+    const { item, idProperty, idNameProperty } = this.config;
+    assignIdentifier(this, item, { idProperty, idNameProperty });
   }
 
   protected _setItem(item: I): void {
@@ -67,6 +57,19 @@ abstract class EntityBase<
    */
   get<V = unknown>(name: string): V {
     return this._item[name];
+  }
+
+  set<V = unknown>(name: string, value: V, silent?: boolean): boolean {
+    return false;
+  }
+
+  /**
+   * 項目値の更新
+   * @param updates 更新情報
+   * @param silent trueの場合、updateイベントを発火しない
+   */
+  update(updates: Partial<I>, silent?: boolean): boolean {
+    return false;
   }
 }
 export default EntityBase;

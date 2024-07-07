@@ -1,16 +1,16 @@
 import { FilterConfig, IFilter } from '@visue/datakit/filters';
 import { ISorter, SorterConfig } from '@visue/datakit/sorters';
-import { IDestructible } from '../../base/DestructibleBase';
-import { EventHandlers, IObservable } from '../../events/Observable';
-import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
-import { ISelection, SelectionConfig } from '../../selections';
-import { EntityItem, IEntity } from '../entities';
-import { IValueRule, ValueRuleConfig } from '../valuerules';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
+import { Destructible } from '../../base/DestructibleBase';
+import { EventHandlers, Observable } from '../../events';
+import { Selection, SelectionConfig } from '../../selections';
+import { Entity, EntityItem } from '../entities';
+import { ValueRule, ValueRuleConfig } from '../valuerules';
 
 /**
  * コレクションのコンフィグ
  */
-export type CollectionConfig<I extends EntityItem = EntityItem, S = any[]> = FactoryableConfig & {
+export type CollectionConfig<I extends EntityItem = EntityItem, S = any> = IdentifiableConfig & {
   /**
    * データソース
    */
@@ -29,16 +29,16 @@ export type CollectionConfig<I extends EntityItem = EntityItem, S = any[]> = Fac
   /**
    * 選択
    */
-  selection?: ISelection<IEntity<I>> | SelectionConfig;
+  selection?: Selection<Entity<I>> | SelectionConfig;
 };
 
 /**
  * オブジェクト要素のコレクション
  */
-export interface ICollection<I extends EntityItem = EntityItem, S = any, H = EventHandlers>
-  extends IObservable<H>,
-    IFactoryable,
-    IDestructible {
+export interface Collection<I extends EntityItem = EntityItem, S = any, H = EventHandlers>
+  extends Observable<H>,
+    Identifiable,
+    Destructible {
   /**
    * Collectionのインスタンスであるか
    */
@@ -57,7 +57,7 @@ export interface ICollection<I extends EntityItem = EntityItem, S = any, H = Eve
   /**
    * 元レコード配列の取得
    */
-  getSourceEntities(): IEntity<I>[];
+  getSourceEntities(): Entity<I>[];
 
   /**
    * 元データの件数
@@ -72,7 +72,7 @@ export interface ICollection<I extends EntityItem = EntityItem, S = any, H = Eve
   /**
    * フィルター、ソートが適用されたレコード配列の取得
    */
-  getEntities(): IEntity<I>[];
+  getEntities(): Entity<I>[];
 
   /**
    * フィルター、ソートが適用されたデータの件数
@@ -83,13 +83,13 @@ export interface ICollection<I extends EntityItem = EntityItem, S = any, H = Eve
    * IDの一致する要素を1件取得
    * @param id ID
    */
-  get(id: string): IEntity<I> | undefined;
+  get(id: string): Entity<I> | undefined;
 
   /**
    * 条件に一致する要素を全て取得する
    * @param filter 条件
    */
-  select(filter: IFilter | FilterConfig): IEntity<I>[];
+  select(filter: IFilter | FilterConfig): Entity<I>[];
 
   /**
    * フィルターの追加
@@ -133,36 +133,36 @@ export type EditableCollectionConfig<I extends EntityItem = EntityItem, S = any[
   /**
    * 値規定
    */
-  valueRules: (IValueRule | ValueRuleConfig)[];
+  valueRules: (ValueRule | ValueRuleConfig)[];
 };
 
 /**
  * 編集可能なオブジェクト要素のコレクション
  */
 export interface IEditableCollection<I extends EntityItem = EntityItem, S = any, H = EventHandlers>
-  extends ICollection<I, S, H> {
+  extends Collection<I, S, H> {
   /**
    * 要素の追加
    * @param items
    * @returns 追加した要素
    */
-  add(items: I | I[]): IEntity<I>[];
+  add(items: I | I[]): Entity<I>[];
 
   /**
    * 要素の追加
    * @param items
    */
-  update(items: I | I[]): IEntity<I>[];
+  update(items: I | I[]): Entity<I>[];
 
   /**
    * 要素の追加
    * @returns 削除した要素
    */
-  remove(items: string | I | (string | I)[]): IEntity<I>[];
+  remove(items: string | I | (string | I)[]): Entity<I>[];
 
   /**
    * 要素の追加
    * @returns 削除した要素
    */
-  claer(): IEntity<I>[];
+  claer(): Entity<I>[];
 }

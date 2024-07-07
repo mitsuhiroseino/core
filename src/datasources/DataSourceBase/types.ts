@@ -1,7 +1,7 @@
-import { EventedConfig, EventedEventHandlers } from '../../base/Evented';
-import { EventInfo } from '../../events/Observable';
-import { IReader, ReaderConfig } from '../../readers';
-import { IWriter, WriterConfig } from '../../writers';
+import { EventedConfig, EventedEventHandlers } from '../../base/EventedBase';
+import { EventInfo } from '../../events';
+import { Reader, ReaderConfig } from '../../readers';
+import { Writer, WriterConfig } from '../../writers';
 import { CreateOptions, DataSourceConfig, DeleteOptions, ReadOptions, UpdateOptions } from '../types';
 import { DataSourceEventsBase } from './constants';
 
@@ -50,10 +50,10 @@ export type DataSourceConfigBase<
     /**
      * リソースを取得する際に変換が必要な場合に指定する
      */
-    reader?: string | ReaderConfig | IReader;
+    reader?: string | ReaderConfig | Reader;
 
     /**
      * リソースを保存する際に変換が必要な場合に指定する
      */
-    writer?: string | WriterConfig | IWriter;
+    writer?: string | WriterConfig | Writer;
   };

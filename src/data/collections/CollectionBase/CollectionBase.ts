@@ -1,14 +1,13 @@
-import clone from 'lodash/clone';
-
 import { FilterConfig, FilterFactory, IFilter } from '@visue/datakit/filters';
 import { ISorter, SorterConfig, SorterFactory } from '@visue/datakit/sorters';
 import asArray from '@visue/utils/array/asArray';
 import remove from '@visue/utils/array/remove';
-import Evented from '../../../base/Evented';
-import initFactoryable from '../../../helpers/initFactoryable';
-import { ISelection, SelectionFactory } from '../../../selections';
-import { EntityItem, IEntity } from '../../entities';
-import { ICollection } from '../types';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
+import clone from 'lodash/clone';
+import EventedBase from '../../../base/EventedBase';
+import { Selection, SelectionFactory } from '../../../selections';
+import { Entity, EntityItem } from '../../entities';
+import { Collection } from '../types';
 import { CollectionBaseEvents } from './constants';
 import { CollectionBaseConfig, CollectionBaseEventHandlers } from './types';
 
@@ -29,15 +28,10 @@ abstract class CollectionBase<
     H extends CollectionBaseEventHandlers<I> = CollectionBaseEventHandlers<I>,
     C extends CollectionBaseConfig<I, S, H> = CollectionBaseConfig<I, S, H>,
   >
-  extends Evented<H, C>
-  implements ICollection<I, S, H>
+  extends EventedBase<H, C>
+  implements Collection<I, S, H>
 {
   readonly isCollection = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'collection';
 
   /**
    * ID
@@ -45,9 +39,9 @@ abstract class CollectionBase<
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   /**
    * 元データ
@@ -57,17 +51,17 @@ abstract class CollectionBase<
   /**
    * 元エンティティ配列
    */
-  protected _sourceEntities: IEntity<I>[] = [];
+  protected _sourceEntities: Entity<I>[] = [];
 
   /**
    * ソートやフィルタリングが反映されたデータ
    */
-  protected _entities: IEntity<I>[] = [];
+  protected _entities: Entity<I>[] = [];
 
   /**
    * Entityのマップ
    */
-  protected _entityMap: { [$id: string]: IEntity<I> } = {};
+  protected _entityMap: { [$id: string]: Entity<I> } = {};
 
   /**
    * フィルター
@@ -82,11 +76,11 @@ abstract class CollectionBase<
   /**
    * 選択
    */
-  protected _selection?: ISelection;
+  protected _selection?: Selection;
 
   constructor(config?: C) {
     super(config);
-    initFactoryable(this, this.config);
+    assignIdentifier(this, this.config);
     const me = this,
       { source, filters, sorters, selection } = me.config;
     if (filters) {
@@ -115,7 +109,7 @@ abstract class CollectionBase<
    * ソースエンティティの差し替え(イベント発火、dataへの適用あり)
    * @param entities
    */
-  protected _setSourceEntities(entities: IEntity<I>[]) {
+  protected _setSourceEntities(entities: Entity<I>[]) {
     this._sourceEntities = entities;
     this.fire(CollectionBaseEvents.sourcechange, { source: entities });
     // sourceが差し替えられたらdataも更新する
@@ -143,13 +137,13 @@ abstract class CollectionBase<
    * sourceを_sourceEntityに変換する
    * @param source
    */
-  protected abstract _toSourceEntities(source?: S): IEntity<I>[];
+  protected abstract _toSourceEntities(source?: S): Entity<I>[];
 
   getSourceItems(): I[] {
     return this._toItems(this.getSourceEntities());
   }
 
-  getSourceEntities(): IEntity<I>[] {
+  getSourceEntities(): Entity<I>[] {
     return this._sourceEntities;
   }
 
@@ -161,7 +155,7 @@ abstract class CollectionBase<
     return this._toItems(this._entities);
   }
 
-  getEntities(): IEntity<I>[] {
+  getEntities(): Entity<I>[] {
     return this._entities;
   }
 
@@ -174,7 +168,7 @@ abstract class CollectionBase<
    * @param entities
    * @returns
    */
-  protected _toItems(entities: IEntity<I> | IEntity<I>[]): I[] {
+  protected _toItems(entities: Entity<I> | Entity<I>[]): I[] {
     return asArray(entities).map((entity) => this._toItem(entity));
   }
 
@@ -183,7 +177,7 @@ abstract class CollectionBase<
    * @param entity
    * @returns
    */
-  protected _toItem(entity: IEntity<I>): I {
+  protected _toItem(entity: Entity<I>): I {
     return entity.item;
   }
 
@@ -191,7 +185,7 @@ abstract class CollectionBase<
    * entitiesの差し替え(イベント発火あり)
    * @param entities
    */
-  protected _setEntities(entities: IEntity<I>[]) {
+  protected _setEntities(entities: Entity<I>[]) {
     const me = this;
     me._setEntities_(entities);
     me.fire(CollectionBaseEvents.datachange, { data: entities });
@@ -201,7 +195,7 @@ abstract class CollectionBase<
    * entitiesの差し替え
    * @param item
    */
-  protected _setEntities_(entities: IEntity<I>[]) {
+  protected _setEntities_(entities: Entity<I>[]) {
     const me = this;
     me._entities = entities;
     me._entityMap = {};
@@ -296,7 +290,7 @@ abstract class CollectionBase<
   /**
    * フィルターを適用する
    */
-  protected _applyFilter(entities: IEntity<I>[] = this.getSourceEntities()): IEntity<I>[] {
+  protected _applyFilter(entities: Entity<I>[] = this.getSourceEntities()): Entity<I>[] {
     const me = this,
       filters = me._filters;
     let filteredEntities;
@@ -394,7 +388,7 @@ abstract class CollectionBase<
   /**
    * ソート状態を適用する
    */
-  protected _applySort(entities: IEntity<I>[] = this.getSourceEntities()): IEntity<I>[] {
+  protected _applySort(entities: Entity<I>[] = this.getSourceEntities()): Entity<I>[] {
     const me = this,
       sorters = me._sorters,
       length = sorters.length;
@@ -419,7 +413,7 @@ abstract class CollectionBase<
    * フィルタ、ソートなどを適用しentitiesへ反映する(イベント発火あり)
    * @param entities
    */
-  protected _applyEntities(entities: IEntity<I>[] = this.getSourceEntities()) {
+  protected _applyEntities(entities: Entity<I>[] = this.getSourceEntities()) {
     const filteredEntities = this._applyFilter(entities);
     const sortedEntities = this._applySort(filteredEntities);
     this._setEntities(sortedEntities);
@@ -429,17 +423,17 @@ abstract class CollectionBase<
    * フィルタ、ソートなどを適用しentitiesへ反映する
    * @param entities
    */
-  protected _applyEntities_(entities: IEntity<I>[] = this.getSourceEntities()) {
+  protected _applyEntities_(entities: Entity<I>[] = this.getSourceEntities()) {
     const filteredEntities = this._applyFilter(entities);
     const sortedEntities = this._applySort(filteredEntities);
     this._setEntities_(sortedEntities);
   }
 
-  get(id: string): IEntity<I> | undefined {
+  get(id: string): Entity<I> | undefined {
     return this._entityMap[id];
   }
 
-  select(condition: IFilter | FilterConfig): IEntity<I>[] {
+  select(condition: IFilter | FilterConfig): Entity<I>[] {
     const filter = this._toFilter(condition);
     return this._entities.filter((entity) => filter.match(entity.item));
   }

@@ -1,8 +1,8 @@
 import asArray from '@visue/utils/array/asArray';
+import assignIdentifier from '@visue/utils/identifier/assignIdentifier';
 import cloneDeep from 'lodash/cloneDeep';
-import Base from '../../base/Base';
-import initFactoryable from '../../helpers/initFactoryable';
-import { IReader } from '../types';
+import ConfigurableBase from '../../base/ConfigurableBase';
+import { Reader } from '../types';
 import { ReadOptionsBase, ReaderConfigBase } from './types';
 
 /**
@@ -13,15 +13,10 @@ abstract class ReaderBase<
     O extends ReadOptionsBase = ReadOptionsBase,
     C extends ReaderConfigBase = ReaderConfigBase,
   >
-  extends Base<C>
-  implements IReader<D, O>
+  extends ConfigurableBase<C>
+  implements Reader<D, O>
 {
   readonly isReader = true;
-
-  /**
-   * カテゴリー
-   */
-  static readonly CATEGORY = 'reader';
 
   /**
    * ID
@@ -29,13 +24,13 @@ abstract class ReaderBase<
   readonly $id!: string;
 
   /**
-   * 種別
+   * 識別名
    */
-  readonly type!: string;
+  readonly $idName?: string;
 
   constructor(config?: C) {
     super(config);
-    initFactoryable(this, this.config);
+    assignIdentifier(this, this.config);
   }
 
   read<R = any>(data: D, options?: O): R {

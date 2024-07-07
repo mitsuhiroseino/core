@@ -1,4 +1,4 @@
-import { EventInfo } from '../../../events/Observable';
+import { EventInfo } from '../../../events';
 import { EntityBaseConfig, EntityBaseEventHandlers } from '../EntityBase';
 import { EntityItem } from '../types';
 import DataEntityBase from './DataEntityBase';

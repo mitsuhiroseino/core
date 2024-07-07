@@ -1,12 +1,12 @@
-import Base from '../Base';
-import { DestructibleConfigBase, IDestructible } from './types';
+import ConfigurableBase from '../ConfigurableBase';
+import { Destructible, DestructibleConfigBase } from './types';
 
 /**
  * destructorメソッドを持つクラスの基底クラス
  */
 export default abstract class DestructibleBase<C extends DestructibleConfigBase = DestructibleConfigBase>
-  extends Base<C>
-  implements IDestructible
+  extends ConfigurableBase<C>
+  implements Destructible
 {
   /**
    * 破棄状態か

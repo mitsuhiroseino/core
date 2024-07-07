@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
-import Evented from '../../base/Evented';
+import EventedBase from '../../base/EventedBase';
 import { I18nResourcesEvents } from './constants';
 import { I18nResource, I18nResourcesConfig, I18nResourcesEventHandlers } from './types';
 
@@ -27,7 +27,7 @@ type ResourceInfo = {
   completed: boolean;
 };
 
-class I18nResources extends Evented<I18nResourcesEventHandlers, I18nResourcesConfig> {
+class I18nResources extends EventedBase<I18nResourcesEventHandlers, I18nResourcesConfig> {
   /**
    * 言語毎のリソース情報
    */

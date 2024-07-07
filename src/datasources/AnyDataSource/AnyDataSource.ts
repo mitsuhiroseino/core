@@ -5,11 +5,6 @@ import { AnyDataSourceConfig, AnyDataSourceEventHandlers } from './types';
  * 任意のデータソースを作成することができるデータソース
  */
 class AnyDataSource<D = any> extends DataSourceBase<D, AnyDataSourceEventHandlers, AnyDataSourceConfig<D>> {
-  /**
-   * 種別
-   */
-  static TYPE = 'any';
-
   protected _create(data: D, config: AnyDataSourceConfig<D>): Promise<any> {
     throw config.create ? config.create(data, config) : Promise.resolve(null);
   }

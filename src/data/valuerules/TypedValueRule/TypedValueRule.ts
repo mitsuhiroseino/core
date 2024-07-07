@@ -1,9 +1,9 @@
-import { IValueType, ValueTypeFactory } from '../../../data/valuetypes';
+import { ValueType, ValueTypeFactory } from '../../../data/valuetypes';
 import ValueRuleBase from '../ValueRuleBase';
 import { TypedValueRuleConfig } from './types';
 
 /**
- * 値型を持つフィールド
+ * データ種別を持つ値のルール
  */
 class TypedValueRule<V = any, F = string, C extends TypedValueRuleConfig = TypedValueRuleConfig> extends ValueRuleBase<
   V,
@@ -11,14 +11,9 @@ class TypedValueRule<V = any, F = string, C extends TypedValueRuleConfig = Typed
   C
 > {
   /**
-   * 種別
-   */
-  static TYPE = 'typed';
-
-  /**
    * 値型
    */
-  private _valueType: IValueType;
+  private _valueType: ValueType;
 
   constructor(config: C) {
     super(config);

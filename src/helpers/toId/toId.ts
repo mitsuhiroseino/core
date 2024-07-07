@@ -1,7 +1,7 @@
-import { IdentifiableItem } from '@visue/utils/types';
+import { Identifiable } from '@visue/utils';
 import isString from 'lodash/isString';
 
-const toId = (target: string | IdentifiableItem): string => {
+const toId = (target: string | Identifiable): string => {
   return isString(target) ? target : target.$id;
 };
 export default toId;

@@ -9,24 +9,21 @@ i18nResources.updateDefault({
 });
 
 /**
- * 値が指定の数以上か
+ * 値が指定の数以下か
  */
 class MaxValidator<C extends MaxValidatorConfig = MaxValidatorConfig> extends ValidatorBase<
   number | string | BigNumber,
   C
 > {
-  /**
-   * 種別
-   */
-  static TYPE = 'max';
-
-  protected _defaultMessage: string = DEFAULT_MESSAGE;
-
   protected _max: BigNumber;
 
   constructor(config: C) {
     super(config);
     this._max = new BigNumber(this.config.max);
+  }
+
+  protected _getDefaultMessage() {
+    return DEFAULT_MESSAGE;
   }
 
   protected _validate(target: number | string | BigNumber): boolean {

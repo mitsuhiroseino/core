@@ -1,30 +1,30 @@
 import { NumberFilterConfig, RELATIONAL_OPERATOR } from '@visue/datakit/filters/NumberFilter';
 import { LengthSorterConfig } from '@visue/datakit/sorters/LengthSorter';
 import { ValueSorterConfig } from '@visue/datakit/sorters/ValueSorter';
-import { CollectionFactory } from 'src/data/collections';
+import { COLLECTION_TYPES, CollectionFactory } from 'src/data/collections';
 import ChainedCollection from 'src/data/collections/ChainedCollection';
 import DataCollection from 'src/data/collections/DataCollection';
 
 describe('ChainedCollection', () => {
   describe('Factory', () => {
     test('create', () => {
-      const result: ChainedCollection = CollectionFactory.create(ChainedCollection.TYPE);
+      const result: ChainedCollection = CollectionFactory.create(COLLECTION_TYPES.CHAINED);
       expect(result).toBeInstanceOf(ChainedCollection);
     });
   });
 
   const VALUE_RULES = [
-      { type: 'typed', name: 'field0', valueType: 'number' },
-      { type: 'typed', name: 'field1', valueType: 'number' },
-      { type: 'typed', name: 'field2', valueType: 'number' },
-      { type: 'typed', name: 'field3', valueType: 'string' },
+      { type: 'typed', name: 'property0', valueType: 'number' },
+      { type: 'typed', name: 'property1', valueType: 'number' },
+      { type: 'typed', name: 'property2', valueType: 'number' },
+      { type: 'typed', name: 'property3', valueType: 'string' },
     ],
-    ITEM0 = { $id: 'ID0', field0: 0, field1: 4, field2: 0, field3: '!!' },
-    ITEM1 = { $id: 'ID1', field0: 1, field1: 3, field2: 1, field3: '!!' },
-    ITEM2 = { $id: 'ID2', field0: 2, field1: 2, field2: 0, field3: '!' },
-    ITEM3 = { $id: 'ID3', field0: 3, field1: 1, field2: 1, field3: '!' },
-    ITEM4 = { $id: 'ID4', field0: 4, field1: 0, field2: 0, field3: '!' },
-    ITEM5 = { $id: 'ID5', field0: 5, field1: 5, field2: 5, field3: '!!!!!' },
+    ITEM0 = { $id: 'ID0', property0: 0, property1: 4, property2: 0, property3: '!!' },
+    ITEM1 = { $id: 'ID1', property0: 1, property1: 3, property2: 1, property3: '!!' },
+    ITEM2 = { $id: 'ID2', property0: 2, property1: 2, property2: 0, property3: '!' },
+    ITEM3 = { $id: 'ID3', property0: 3, property1: 1, property2: 1, property3: '!' },
+    ITEM4 = { $id: 'ID4', property0: 4, property1: 0, property2: 0, property3: '!' },
+    ITEM5 = { $id: 'ID5', property0: 5, property1: 5, property2: 5, property3: '!!!!!' },
     SOURCE = [ITEM0, ITEM1, ITEM2, ITEM3, ITEM4],
     EXPECTED_ENTITY0 = { item: ITEM0 },
     EXPECTED_ENTITY1 = { item: ITEM1 },
@@ -79,7 +79,7 @@ describe('ChainedCollection', () => {
       const source = new DataCollection({ source: SOURCE, valueRules: VALUE_RULES }),
         collection = new ChainedCollection({ source });
 
-      const filter0: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'field1', value: 2, not: true };
+      const filter0: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'property1', value: 2, not: true };
       source.addFilters(filter0);
 
       // sourceの状態
@@ -104,7 +104,7 @@ describe('ChainedCollection', () => {
       const filter1: NumberFilterConfig = {
         $id: 'filter1',
         type: 'number',
-        path: 'field0',
+        path: 'property0',
         value: 2,
         operator: RELATIONAL_OPERATOR.GT,
       };
@@ -124,7 +124,7 @@ describe('ChainedCollection', () => {
       const source = new DataCollection({ source: SOURCE, valueRules: VALUE_RULES }),
         collection = new ChainedCollection({ source });
 
-      const sorter0: ValueSorterConfig = { $id: 'sorter0', type: 'value', path: 'field2' };
+      const sorter0: ValueSorterConfig = { $id: 'sorter0', type: 'value', path: 'property2' };
       source.addSorters(sorter0);
 
       // sourceの状態
@@ -148,7 +148,7 @@ describe('ChainedCollection', () => {
         EXPECTED_ENTITY3,
       ]);
 
-      const sorter1: LengthSorterConfig = { $id: 'sorter1', type: 'length', path: 'field3' };
+      const sorter1: LengthSorterConfig = { $id: 'sorter1', type: 'length', path: 'property3' };
       source.addSorters(sorter1);
 
       // sourceの状態
@@ -177,8 +177,8 @@ describe('ChainedCollection', () => {
   describe('chained側の操作', () => {
     test('初期状態(filters,sortersあり)', () => {
       const source = new DataCollection({ source: SOURCE, valueRules: VALUE_RULES }),
-        filters: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'field1', value: 2, not: true },
-        sorters: ValueSorterConfig = { $id: 'sort0', type: 'value', path: 'field2' },
+        filters: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'property1', value: 2, not: true },
+        sorters: ValueSorterConfig = { $id: 'sort0', type: 'value', path: 'property2' },
         collection = new ChainedCollection({
           source,
           filters,
@@ -204,7 +204,7 @@ describe('ChainedCollection', () => {
       const source = new DataCollection({ source: SOURCE, valueRules: VALUE_RULES }),
         collection = new ChainedCollection({ source });
 
-      const filter0: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'field1', value: 2, not: true };
+      const filter0: NumberFilterConfig = { $id: 'filter0', type: 'number', path: 'property1', value: 2, not: true };
       collection.addFilters(filter0);
 
       // sourceの状態
@@ -224,7 +224,7 @@ describe('ChainedCollection', () => {
       const filter1: NumberFilterConfig = {
         $id: 'filter0',
         type: 'number',
-        path: 'field0',
+        path: 'property0',
         value: 2,
         operator: RELATIONAL_OPERATOR.GT,
       };
@@ -244,7 +244,7 @@ describe('ChainedCollection', () => {
       const source = new DataCollection({ source: SOURCE, valueRules: VALUE_RULES }),
         collection = new ChainedCollection({ source });
 
-      const sorter0: ValueSorterConfig = { $id: 'sorter0', type: 'value', path: 'field2' };
+      const sorter0: ValueSorterConfig = { $id: 'sorter0', type: 'value', path: 'property2' };
       collection.addSorters(sorter0);
 
       // sourceの状態
@@ -262,7 +262,7 @@ describe('ChainedCollection', () => {
         EXPECTED_ENTITY3,
       ]);
 
-      const sorter1: ValueSorterConfig = { $id: 'sorter1', type: 'length', path: 'field3' };
+      const sorter1: ValueSorterConfig = { $id: 'sorter1', type: 'length', path: 'property3' };
       collection.addSorters(sorter1);
 
       // sourceの状態

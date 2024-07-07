@@ -7,11 +7,6 @@ import { MemoryDataSourceConfig, MemoryDataSourceEventHandlers } from './types';
  */
 class MemoryDataSource<D = any> extends DataSourceBase<D, MemoryDataSourceEventHandlers, MemoryDataSourceConfig<D>> {
   /**
-   * 種別
-   */
-  static TYPE = 'memory';
-
-  /**
    * メモリーに保持したデータ
    */
   private _data: D | null = null;

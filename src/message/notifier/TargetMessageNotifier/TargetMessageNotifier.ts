@@ -1,16 +1,11 @@
 import MessageNotifierBase from '../MessageNotifierBase';
-import { IMessageNotifier } from '../types';
+import { MessageNotifier } from '../types';
 import { TargetMessageNotifierConfig, TargetSetOptions } from './types';
 
 class TargetMessageNotifier
   extends MessageNotifierBase<TargetSetOptions, TargetMessageNotifierConfig>
-  implements IMessageNotifier
+  implements MessageNotifier
 {
-  /**
-   * 種別
-   */
-  static TYPE = 'target';
-
   protected _set(message: string, options: TargetSetOptions): void {
     const { target } = options;
     if (target != null) {

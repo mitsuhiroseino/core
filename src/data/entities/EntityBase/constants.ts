@@ -1,4 +1,4 @@
-import { EventedEvents } from '../../../base/Evented';
+import { EventedEvents } from '../../../base/EventedBase';
 
 /**
  * イベント

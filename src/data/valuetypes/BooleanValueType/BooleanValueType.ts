@@ -1,13 +1,11 @@
 import ValueTypeBase from '../ValueTypeBase';
+import { VALUE_TYPE_TYPES } from '../constants';
 import { BooleanValueTypeConfig } from './types';
 
 /**
  * boolean
  */
 class BooleanValueType<C extends BooleanValueTypeConfig = BooleanValueTypeConfig> extends ValueTypeBase<boolean, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'boolean';
+  protected _type = VALUE_TYPE_TYPES.BOOLEAN;
 }
 export default BooleanValueType;

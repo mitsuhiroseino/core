@@ -1,18 +1,13 @@
 import { MessageLevel } from '../../../message/types';
 import { MESSAGE_LEVEL } from '../../constants';
 import MessageNotifierBase from '../MessageNotifierBase';
-import { IMessageNotifier } from '../types';
+import { MessageNotifier } from '../types';
 import { LogMessageNotifierConfig, LogSetOptions } from './types';
 
 class LogMessageNotifier
   extends MessageNotifierBase<LogSetOptions, LogMessageNotifierConfig>
-  implements IMessageNotifier
+  implements MessageNotifier
 {
-  /**
-   * 種別
-   */
-  static TYPE = 'log';
-
   protected _level: MessageLevel = MESSAGE_LEVEL.DEBUG;
 
   protected _set(message: string, options: LogSetOptions): void {

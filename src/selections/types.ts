@@ -1,25 +1,24 @@
-import { IdentifiableItem } from '@visue/utils/types';
-import { IDestructible } from '../base/DestructibleBase';
-import { EventHandlers, IObservable } from '../events/Observable';
-import { FactoryableConfig, IFactoryable } from '../factory/Factory';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
+import { Destructible } from '../base/DestructibleBase';
+import { EventHandlers, Observable } from '../events';
 
 /**
  * コンフィグ
  */
-export type SelectionConfig = FactoryableConfig & {
+export type SelectionConfig = IdentifiableConfig & {
   /**
    * 複数選択可否
    */
-  multiple?: boolean;
+  multi?: boolean;
 };
 
 /**
  * 選択情報
  */
-export interface ISelection<I extends IdentifiableItem = IdentifiableItem, H = EventHandlers>
-  extends IObservable<H>,
-    IFactoryable,
-    IDestructible {
+export interface Selection<I extends Identifiable = Identifiable, H = EventHandlers>
+  extends Observable<H>,
+    Identifiable,
+    Destructible {
   /**
    * Selectionのインスタンスであるか
    */

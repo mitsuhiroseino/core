@@ -1,5 +1,5 @@
-import { EventInfo } from '../../../events/Observable';
-import { EntityItem, IEntity } from '../../entities';
+import { EventInfo } from '../../../events';
+import { Entity, EntityItem } from '../../entities';
 import { CollectionBaseConfig, CollectionBaseEventHandlers } from '../CollectionBase';
 import { EditableCollectionConfig } from '../types';
 import { DataCollectionBaseEvents } from './constants';
@@ -8,10 +8,10 @@ import { DataCollectionBaseEvents } from './constants';
  * イベントハンドラー
  */
 export type DataCollectionBaseEventHandlers<I extends EntityItem = EntityItem> = CollectionBaseEventHandlers<I> & {
-  [DataCollectionBaseEvents.entitiesadd]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
-  [DataCollectionBaseEvents.entitiesupdate]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
-  [DataCollectionBaseEvents.entitiesremove]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
-  [DataCollectionBaseEvents.entitiesclear]?: (event: EventInfo<{ entities: IEntity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesadd]?: (event: EventInfo<{ entities: Entity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesupdate]?: (event: EventInfo<{ entities: Entity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesremove]?: (event: EventInfo<{ entities: Entity<I>[] }>) => void;
+  [DataCollectionBaseEvents.entitiesclear]?: (event: EventInfo<{ entities: Entity<I>[] }>) => void;
 };
 
 /**

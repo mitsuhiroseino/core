@@ -1,4 +1,4 @@
-import { ConfigBase } from '../../base/Base';
+import { ConfigurableConfigBase } from '../../base/ConfigurableBase';
 import { ReadOptions, ReaderConfig } from '../types';
 
 /**
@@ -9,5 +9,7 @@ export type ReadOptionsBase = ReadOptions;
 /**
  * Readerのコンフィグ
  */
-export type ReaderConfigBase<I = any, C extends ReaderConfigBase<I, any> = ReaderConfigBase<I, any>> = ConfigBase &
-  ReaderConfig<I, C>;
+export type ReaderConfigBase<
+  I = any,
+  C extends ReaderConfigBase<I, any> = ReaderConfigBase<I, any>,
+> = ConfigurableConfigBase & ReaderConfig<I, C>;

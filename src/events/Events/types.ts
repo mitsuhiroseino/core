@@ -1,5 +1,5 @@
-import { ConfigBase } from '../../base/Base';
-import { EventHandlers } from '../Observable';
+import { ConfigurableConfigBase } from '../../base/ConfigurableBase';
+import { EventHandlers } from '../types';
 import Events from './Events';
 
 export type EventTransformationConfig<T = any> = {
@@ -74,7 +74,7 @@ export type EventSynchronousConfig = {
 /**
  * Eventsのコンフィグ
  */
-export type EventsConfig<H = EventHandlers> = ConfigBase & {
+export type EventsConfig<H = EventHandlers> = ConfigurableConfigBase & {
   /**
    * インスタンス作成時に設定するイベントハンドラー
    */

@@ -9,10 +9,5 @@ class DataEntity<
   I extends EntityItem = EntityItem,
   H extends DataEntityEventHandlers<I> = DataEntityEventHandlers<I>,
   C extends DataEntityConfig<I, H> = DataEntityConfig<I, H>,
-> extends DataEntityBase<I, H, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'data';
-}
+> extends DataEntityBase<I, H, C> {}
 export default DataEntity;

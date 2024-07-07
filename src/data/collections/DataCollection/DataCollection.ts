@@ -10,10 +10,5 @@ class DataCollection<
   S extends I[] = I[],
   H extends DataCollectionEventHandlers<I> = DataCollectionEventHandlers<I>,
   C extends DataCollectionConfig<I, S, H> = DataCollectionConfig<I, S, H>,
-> extends DataCollectionBase<I, S, H, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'data';
-}
+> extends DataCollectionBase<I, S, H, C> {}
 export default DataCollection;

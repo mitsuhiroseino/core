@@ -1,10 +1,10 @@
 import { StringFormatterConfig } from '@visue/datakit/formatters/StringFormatter';
-import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
 
 /**
  * コンフィグ
  */
-export type ValidatorConfig = FactoryableConfig &
+export type ValidatorConfig = IdentifiableConfig &
   StringFormatterConfig & {
     /**
      * メッセージ定義
@@ -25,7 +25,7 @@ export type ValidatorConfig = FactoryableConfig &
 /**
  * バリデーターのインターフェイス
  */
-export interface IValidator<V = unknown> extends IFactoryable {
+export interface Validator<V = any> extends Identifiable {
   /**
    * Validatorのインスタンスであるか
    */
@@ -34,7 +34,7 @@ export interface IValidator<V = unknown> extends IFactoryable {
   /**
    * 複数値用のバリデーター
    */
-  readonly multiple?: true;
+  readonly multi?: true;
 
   /**
    * 値の検証を行う

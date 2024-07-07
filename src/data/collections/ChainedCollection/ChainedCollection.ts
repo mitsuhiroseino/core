@@ -1,9 +1,8 @@
 import clone from 'lodash/clone';
-
-import { EntityItem, IEntity } from '../../entities';
+import { Entity, EntityItem } from '../../entities';
 import CollectionBase, { CollectionBaseEvents } from '../CollectionBase';
 import NoopCollection from '../NoopCollection';
-import { ICollection } from '../types';
+import { Collection } from '../types';
 import { ChainedCollectionConfig, ChainedCollectionEventHandlers } from './types';
 
 /**
@@ -11,15 +10,10 @@ import { ChainedCollectionConfig, ChainedCollectionEventHandlers } from './types
  */
 class ChainedCollection<
   I extends EntityItem = EntityItem,
-  S extends ICollection<I> = ICollection<I>,
+  S extends Collection<I> = Collection<I>,
   H extends ChainedCollectionEventHandlers<I> = ChainedCollectionEventHandlers<I>,
   C extends ChainedCollectionConfig<I, S, H> = ChainedCollectionConfig<I, S, H>,
 > extends CollectionBase<I, S, H, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'chained';
-
   protected _setSource(source: S): void {
     const me = this,
       oldSource = me._source;
@@ -42,7 +36,7 @@ class ChainedCollection<
     me._source = source;
   }
 
-  protected _toSourceEntities(source: S = this._source): IEntity<I>[] {
+  protected _toSourceEntities(source: S = this._source): Entity<I>[] {
     return clone(source.getEntities());
   }
 

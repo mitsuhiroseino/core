@@ -15,12 +15,9 @@ class MinLengthValidator<C extends MinLengthValidatorConfig = MinLengthValidator
   string | unknown[] | { [key: string]: unknown },
   C
 > {
-  /**
-   * 種別
-   */
-  static TYPE = 'minlength';
-
-  protected _defaultMessage: string = DEFAULT_MESSAGE;
+  protected _getDefaultMessage() {
+    return DEFAULT_MESSAGE;
+  }
 
   protected _validate(target: string | unknown[] | { [key: string]: unknown }): boolean {
     return size(target) >= this.config.minLength;

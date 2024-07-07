@@ -2,8 +2,8 @@ export type GetValueConfig = {
   /**
    * 対象の値のプロパティを検証対象にする場合に指定する
    * 例:
-   *   対象の値 = { filed1: 'ABC', filed2: 'abc', filed3: '123' }
-   *   property = 'field2'
+   *   対象の値 = { value1: 'ABC', value2: 'abc', value3: '123' }
+   *   property = 'value2'
    *
    *   上記の場合の検証対象の値は'abc'となる
    *

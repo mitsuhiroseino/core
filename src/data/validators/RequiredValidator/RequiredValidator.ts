@@ -12,12 +12,9 @@ i18nResources.updateDefault({
  * 値が入力されているか
  */
 class RequiredValidator<C extends RequiredValidatorConfig = RequiredValidatorConfig> extends ValidatorBase<unknown, C> {
-  /**
-   * 種別
-   */
-  static TYPE = 'required';
-
-  protected _defaultMessage: string = DEFAULT_MESSAGE;
+  protected _getDefaultMessage() {
+    return DEFAULT_MESSAGE;
+  }
 
   protected _validate(target: unknown): boolean {
     return !isEmptyValue(target);

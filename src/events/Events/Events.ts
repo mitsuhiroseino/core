@@ -9,8 +9,8 @@ import {
   EventInfo,
   FireOptions,
   FireParams,
-  IObservable,
-} from '../Observable';
+  Observable,
+} from '../types';
 import { EventSynchronousConfig, EventTransformationConfigs, EventsConfig } from './types';
 
 /**
@@ -24,7 +24,7 @@ type RegisteredHandler = {
 /**
  * イベントシステム
  */
-class Events<H = EventHandlers> extends DestructibleBase<EventsConfig<H>> implements IObservable<H> {
+class Events<H = EventHandlers> extends DestructibleBase<EventsConfig<H>> implements Observable<H> {
   /**
    * イベントハンドラー
    */

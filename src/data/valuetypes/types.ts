@@ -1,7 +1,7 @@
 import { FormatterConfig, IFormatter } from '@visue/datakit/formatters';
 import { IParser, ParserConfig } from '@visue/datakit/parsers';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
 import { ToValidValueOptions } from '@visue/utils/lang/toValidValue';
-import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
 
 /**
  * コンフィグ
@@ -9,7 +9,7 @@ import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
 export type ValueTypeConfig<
   P extends ParserConfig = ParserConfig,
   F extends FormatterConfig = FormatterConfig,
-> = FactoryableConfig &
+> = IdentifiableConfig &
   ToValidValueOptions<string> & {
     /**
      * パーサー
@@ -25,7 +25,7 @@ export type ValueTypeConfig<
 /**
  * 値型のインターフェイス
  */
-export interface IValueType<V = any> extends IFactoryable {
+export interface ValueType<V = any> extends Identifiable {
   /**
    * ValueTypeのインスタンスであるか
    */

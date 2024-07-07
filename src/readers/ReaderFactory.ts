@@ -1,7 +1,16 @@
-import Factory from '../factory/Factory';
-import { IReader, ReaderConfig } from './types';
+import EasyFactory from '@visue/factory/easy/EasyFactory';
+import ArrayReader from './ArrayReader';
+import JsonReader from './JsonReader';
+import ObjectReader from './ObjectReader';
+import { READER_TYPES } from './constants';
+import { Reader } from './types';
 
-const FACTORY = new Factory<IReader, ReaderConfig>({
+const ReaderFactory = new EasyFactory<Reader>({
   category: 'reader',
+  products: [
+    { type: READER_TYPES.ARRAY, Class: ArrayReader },
+    { type: READER_TYPES.JSON, Class: JsonReader },
+    { type: READER_TYPES.OBJECT, Class: ObjectReader },
+  ],
 });
-export default FACTORY;
+export default ReaderFactory;

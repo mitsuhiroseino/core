@@ -6,7 +6,7 @@ import DestructibleBase from '../../base/DestructibleBase';
 import { t } from '../../i18n';
 import { MESSAGE_LEVEL, MESSAGE_LEVEL_ORDER, MESSAGE_TYPE } from '../constants';
 import MessageNotifierFactory from '../notifier/MessageNotifierFactory';
-import { IMessageNotifier, MessageNotifierConfig } from '../notifier/types';
+import { MessageNotifier, MessageNotifierConfig } from '../notifier/types';
 import { MessageLevel } from '../types';
 import { MessageConfig, MessageSetOptions, RegisterOptions } from './types';
 
@@ -17,7 +17,7 @@ class Message<C extends MessageConfig = MessageConfig> extends DestructibleBase<
   /**
    * 配信先
    */
-  private _notifiers: { [type: string]: IMessageNotifier[] } = {};
+  private _notifiers: { [type: string]: MessageNotifier[] } = {};
 
   /**
    * 出力するメッセージレベル
@@ -36,7 +36,7 @@ class Message<C extends MessageConfig = MessageConfig> extends DestructibleBase<
    * notifierを登録する
    * @param notifier
    */
-  register(notifier: string | MessageNotifierConfig | IMessageNotifier, options: RegisterOptions = {}) {
+  register(notifier: string | MessageNotifierConfig | MessageNotifier, options: RegisterOptions = {}) {
     const { types = MESSAGE_TYPE.GLOBAL } = options;
     for (const type of asArray(types)) {
       const notifiers = this._notifiers[type] || [];
@@ -50,12 +50,12 @@ class Message<C extends MessageConfig = MessageConfig> extends DestructibleBase<
    * @param target id or notifierのインスタンス
    * @returns
    */
-  remove(target: string | IMessageNotifier): IMessageNotifier[] {
+  remove(target: string | MessageNotifier): MessageNotifier[] {
     let predicate;
     if (isString(target)) {
-      predicate = (notifier: IMessageNotifier) => notifier.$id === target;
+      predicate = (notifier: MessageNotifier) => notifier.$id === target;
     } else {
-      predicate = (notifier: IMessageNotifier) => notifier === target;
+      predicate = (notifier: MessageNotifier) => notifier === target;
     }
     const removed = [];
     for (const type in this._notifiers) {

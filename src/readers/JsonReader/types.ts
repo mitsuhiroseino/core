@@ -1,4 +1,4 @@
-import { JsonParseOptions } from '@visue/utils/types';
+import { JsonParseOptions } from '@visue/utils';
 import { ReadOptionsBase, ReaderConfigBase } from '../ReaderBase';
 
 /**

@@ -1,5 +1,5 @@
-import { EventedConfig, EventedEventHandlers } from '../../../base/Evented';
-import { EventInfo } from '../../../events/Observable';
+import { EventedConfig, EventedEventHandlers } from '../../../base/EventedBase';
+import { EventInfo } from '../../../events';
 import { EntityConfig, EntityItem } from '../types';
 import { EntityBaseEvents } from './constants';
 

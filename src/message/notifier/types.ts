@@ -1,16 +1,16 @@
-import { IDestructible } from '../../base/DestructibleBase';
-import { FactoryableConfig, IFactoryable } from '../../factory/Factory';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
+import { Destructible } from '../../base/DestructibleBase';
 import { SetOptions } from '../types';
 
 /**
  * コンフィグ
  */
-export type MessageNotifierConfig = FactoryableConfig & SetOptions;
+export type MessageNotifierConfig = IdentifiableConfig & SetOptions;
 
 /**
  * メッセージを表示するインターフェイス
  */
-export interface IMessageNotifier<O extends SetOptions = SetOptions> extends IFactoryable, IDestructible {
+export interface MessageNotifier<O extends SetOptions = SetOptions> extends Identifiable, Destructible {
   /**
    * メッセージを設定する
    * @param message

@@ -1,4 +1,4 @@
-import { FactoryableConfig, IFactoryable } from '../factory/Factory';
+import { Identifiable, IdentifiableConfig } from '@visue/utils';
 
 /**
  * writeメソッドのオプション
@@ -8,7 +8,7 @@ export type WriteOptions = {};
 /**
  * コンフィグ
  */
-export type WriterConfig = FactoryableConfig &
+export type WriterConfig = IdentifiableConfig &
   WriteOptions & {
     /**
      * 出力は配列形式
@@ -19,7 +19,7 @@ export type WriterConfig = FactoryableConfig &
 /**
  * ライターのインターフェイス
  */
-export interface IWriter<D = any, O extends WriteOptions = WriteOptions> extends IFactoryable {
+export interface Writer<D = any, O extends WriteOptions = WriteOptions> extends Identifiable {
   /**
    * dataを出力用に変換する
    */

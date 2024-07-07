@@ -1,7 +1,10 @@
-import Factory from '../factory/Factory';
-import { ISelection, SelectionConfig } from './types';
+import EasyFactory from '@visue/factory/easy/EasyFactory';
+import DataSelection from './DataSelection';
+import { SELECTION_TYPES } from './constants';
+import { Selection } from './types';
 
-const FACTORY = new Factory<ISelection, SelectionConfig>({
+const SelectionFactory = new EasyFactory<Selection>({
   category: 'selection',
+  products: [{ type: SELECTION_TYPES.DATA, Class: DataSelection }],
 });
-export default FACTORY;
+export default SelectionFactory;

@@ -1,5 +1,5 @@
+import { AnyObject } from '@visue/utils';
 import mapFrom from '@visue/utils/array/mapFrom';
-import { AnyObject } from '@visue/utils/types';
 import WriterBase from '../WriterBase';
 import { ArrayWriteOptions, ArrayWriterConfig } from './types';
 
@@ -7,11 +7,6 @@ import { ArrayWriteOptions, ArrayWriterConfig } from './types';
  * 配列用のライター
  */
 class ArrayWriter extends WriterBase<any, ArrayWriteOptions, ArrayWriterConfig> {
-  /**
-   * 種別
-   */
-  static TYPE = 'array';
-
   /**
    * indexと項目名のマッピング
    */

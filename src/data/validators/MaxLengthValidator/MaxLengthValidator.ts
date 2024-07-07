@@ -15,12 +15,9 @@ class MaxLengthValidator<C extends MaxLengthValidatorConfig = MaxLengthValidator
   string | unknown[] | { [key: string]: unknown },
   C
 > {
-  /**
-   * 種別
-   */
-  static TYPE = 'maxlength';
-
-  protected _defaultMessage: string = DEFAULT_MESSAGE;
+  protected _getDefaultMessage() {
+    return DEFAULT_MESSAGE;
+  }
 
   protected _validate(target: string | unknown[] | { [key: string]: unknown }): boolean {
     return size(target) <= this.config.maxLength;
