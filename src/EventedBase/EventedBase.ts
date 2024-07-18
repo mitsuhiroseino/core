@@ -1,6 +1,6 @@
-import { EventHandler, EventHandlerOptions, FireOptions, FireParams } from '../../events';
-import Events, { EventsConfig } from '../../events/Events';
 import DestructibleBase from '../DestructibleBase';
+import { EventHandler, EventHandlerOptions, FireOptions, FireParams } from '../events';
+import Events, { EventsConfig } from '../events/Events';
 import { EventedEvents } from './constants';
 import { Evented, EventedConfig, EventedEventHandlers } from './types';
 

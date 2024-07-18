@@ -1,4 +1,4 @@
-import { ConfigurableConfigBase } from '../../base/ConfigurableBase';
+import { ConfigurableConfigBase } from '../../ConfigurableBase';
 import { EventHandlers } from '../types';
 import Events from './Events';
 

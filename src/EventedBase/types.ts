@@ -1,7 +1,7 @@
-import { EventInfo, Observable } from '../../events';
-import Events from '../../events/Events';
 import { ConfigurableConfigBase } from '../ConfigurableBase';
 import { Destructible } from '../DestructibleBase';
+import { EventInfo, Observable } from '../events';
+import Events from '../events/Events';
 import EventedBase from './EventedBase';
 import { EventedEvents } from './constants';
 
