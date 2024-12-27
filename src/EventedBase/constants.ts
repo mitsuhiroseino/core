@@ -1,6 +1,6 @@
 /**
  * イベント
  */
-export const EventedEvents = {
-  destroy: 'destroy',
+export const EVENTED_EVENTS = {
+  DESTROY: 'destroy',
 } as const;

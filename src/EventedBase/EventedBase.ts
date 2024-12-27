@@ -1,7 +1,7 @@
 import DestructibleBase from '../DestructibleBase';
 import { EventHandler, EventHandlerOptions, FireOptions, FireParams } from '../events';
 import Events, { EventsConfig } from '../events/Events';
-import { EventedEvents } from './constants';
+import { EVENTED_EVENTS } from './constants';
 import { Evented, EventedConfig, EventedEventHandlers } from './types';
 
 /**
@@ -115,7 +115,7 @@ export default abstract class EventedBase<
 
   destructor() {
     super.destructor();
-    this.fire(EventedEvents.destroy);
+    this.fire(EVENTED_EVENTS.DESTROY);
     this._deleteProperties(['_events']);
   }
 }

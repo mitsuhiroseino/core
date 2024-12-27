@@ -3,13 +3,13 @@ import { Destructible } from '../DestructibleBase';
 import { EventInfo, Observable } from '../events';
 import Events from '../events/Events';
 import EventedBase from './EventedBase';
-import { EventedEvents } from './constants';
+import { EVENTED_EVENTS } from './constants';
 
 /**
  * イベントハンドラー
  */
 export type EventedEventHandlers = {
-  [EventedEvents.destroy]?: (event: EventInfo<EventedBase>) => void;
+  [EVENTED_EVENTS.DESTROY]?: (event: EventInfo<EventedBase>) => void;
 };
 
 /**
